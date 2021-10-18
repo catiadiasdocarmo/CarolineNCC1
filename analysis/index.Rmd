@@ -1,5 +1,6 @@
 ---
-title: "Home"
+title: "Coleções Nucleares - 1° Capítulo Caroline"
+author: "LucianoRogerio; Caroline Cardoso"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -8,4 +9,19 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+# **Introdução**
+
+
+# **Objetivos**
+  
+  O objetivo deste trabalho é criar coleções nucleares do banco de germoplasma da EMBRAPA Mandioca, para reduzir os custos com conservação de 
+  
+  
+# **Material e métodos**
+
+## Dados Fenotípicos
+[link](https://www.google.com.br/)
+
+## Dados Moleculares
+
+
