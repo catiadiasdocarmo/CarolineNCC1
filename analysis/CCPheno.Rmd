@@ -1,0 +1,62 @@
+---
+title: "CCPheno"
+author: "LucianoRogerio"
+date: "2021-10-25"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r, eval = FALSE}
+library(corehunter); library(StatMatch)
+
+DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ";", dec = ".",
+                      na.strings = "NA", colClasses =  c("factor",
+                                                        rep("character", times = 24),
+                                                        rep("numeric", times = 27)))
+
+
+### Colecao Nuclear - Distancia de Gower e pacote CoreHunter
+
+DistCar <- gower.dist(data.x = DataCar[,-1])
+row.names(DistCar) <- colnames(DistCar) <- DataCar$Acessos
+DistCar2 <- distances(DistCar)
+
+CCC <- sampleCore(DistCar2, objective(type = "EN", measure = "PD"), size = 338)
+
+DataCarCCPheno1 <- DataCar[DataCar$Acessos%in%CCC$sel,]
+
+write.table(DataCarCCPheno1, here::here("output", "DadosCCPheno1.CSV"),
+            quote = F, sep = ";", dec = ".")
+
+
+### Colecao Nuclear - Algoritmo pacote CoreHunter
+colnames(DataCar)[1] <- "NAME"
+DataCar$NAME <- as.character(DataCar$NAME)
+DataCarP <- phenotypes(data = as.data.frame(DataCar[,-1]))
+core <- sampleCore(DataCarP, objective(type = "EN", measure = "GD"), size = 338)
+
+DataCarCCPheno2 <- DataCar[core$sel,]
+
+write.table(DataCarCCPheno2, file = here::here("output", "DadosCCPheno2.CSV"),
+            quote = F, sep = ";", dec = ".")
+
+
+### Colecao Nuclear - Distancia de Gower e MLST DARwin
+library(phangorn)
+DistCar <- as.dist(DistCar)
+writeDist(x = DistCar, file = here::here("output", "MatrizGowerCaroline.phy"), format = "phylip",
+          upper = T, diag = T)
+
+SelDARwin <- read.table(here::here("output","MatrizGowerCaroline.DON"),
+                             sep = "\t", header = T, skip = 2,
+                             nrows = 1686)
+ClonesSel <- SelDARwin %>% filter(CC338 == "Kept") %>%
+  select(Name)
+DataCarCCPheno3 <- DataCar[ClonesSel$Name,]
+
+write.table(DataCarCCPheno3, file= here::here("output", "DadosCCPheno3.CSV"), quote = F, sep = ";", dec = ".")
+```
+

@@ -19,9 +19,17 @@ editor_options:
   
 # **Material e métodos**
 
-## Dados Fenotípicos
-[link](https://www.google.com.br/)
+## [Dados Fenotípicos - Seleção](PhenoData.html)
 
-## Dados Moleculares
+## [Dados Moleculares - Seleção](GenoData.html)
+
+## [Coleções Nucleares Fenotípicas](CNPhen.html)
+
+## [Coleções Nucleares Genotípicas](CNGen.html)
+
+## [Análises Discriminantes](AnDis.html)
+
+## [Estimativas de Diversidade genética](DivGen.html)
+
 
 
