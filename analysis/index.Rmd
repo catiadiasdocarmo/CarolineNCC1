@@ -23,9 +23,9 @@ editor_options:
 
 ## [Dados Moleculares - Seleção](GenoData.html)
 
-## [Coleções Nucleares Fenotípicas](CNPheno.html)
+## [Coleções Nucleares Fenotípicas](CCPheno.html)
 
-## [Coleções Nucleares Genotípicas](CNGeno.html)
+## [Coleções Nucleares Genotípicas](CCGeno.html)
 
 ## [Análises Discriminantes](AnDis.html)
 
