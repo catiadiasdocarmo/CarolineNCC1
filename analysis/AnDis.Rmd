@@ -1,0 +1,214 @@
+---
+title: "Análises Descritivas"
+author: "LucianoRogerio; Caroline Cardoso"
+date: "2021-10-25"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(tidyverse); library(here); library(reshape2)
+#### Boxplot de colecoes nucleares
+
+## Colecoes nucleares estimadas com dados Fenotipicos
+
+Method1 <- read.table(here::here("output", "DadosCCPheno1.CSV"), header = T, sep = ";", dec = ".",
+                     colClasses = c(rep("factor", times = 36),
+                                    rep("numeric", times = 16)))
+Method1$HCNMod <- as.factor(Method1$HCNMod)
+Method1$DMCsg <- as.numeric(as.character(Method1$DMCsg))
+
+
+Method2 <- read.table(here::here("output", "DadosCCPheno2.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method2$HCNMod <- as.factor(Method2$HCNMod)
+Method2$DMCsg <- as.numeric(as.character(Method2$DMCsg))
+
+
+Method3 <- read.table(here::here("output", "DadosCCPheno3.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method3$HCNMod <- as.factor(Method3$HCNMod)
+Method3$DMCsg <- as.numeric(as.character(Method3$DMCsg))
+
+## Colecoes Nucleares estimadas com dados Moleculares
+
+Method4 <- read.table(here::here("output", "DadosCCGeno1.CSV"), header = T, sep = ";", dec = ".",
+                     colClasses = c(rep("factor", times = 36),
+                                    rep("numeric", times = 16)))
+Method4$HCNMod <- as.factor(Method4$HCNMod)
+Method4$DMCsg <- as.numeric(as.character(Method4$DMCsg))
+
+
+Method5 <- read.table(here::here("output", "DadosCCGeno2.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method5$HCNMod <- as.factor(Method5$HCNMod)
+Method5$DMCsg <- as.numeric(as.character(Method5$DMCsg))
+
+
+Method6 <- read.table(here::here("output", "DadosCCGeno3.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method6$HCNMod <- as.factor(Method6$HCNMod)
+Method6$DMCsg <- as.numeric(as.character(Method6$DMCsg))
+
+Method7 <- read.table(here::here("output", "DadosCCGeno4.CSV"), header = T, sep = ";", dec = ".",
+                     colClasses = c(rep("factor", times = 36),
+                                    rep("numeric", times = 16)))
+Method7$HCNMod <- as.factor(Method7$HCNMod)
+Method7$DMCsg <- as.numeric(as.character(Method7$DMCsg))
+
+
+Method8 <- read.table(here::here("output", "DadosCCGeno5.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method8$HCNMod <- as.factor(Method8$HCNMod)
+Method8$DMCsg <- as.numeric(as.character(Method8$DMCsg))
+
+
+Method9 <- read.table(here::here("output", "DadosCCGeno6.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method9$HCNMod <- as.factor(Method9$HCNMod)
+Method9$DMCsg <- as.numeric(as.character(Method9$DMCsg))
+
+Method10 <- read.table(here::here("output", "DadosCCGeno7.CSV"), header = T, sep = ";", dec = ".",
+                     colClasses = c(rep("factor", times = 36),
+                                    rep("numeric", times = 16)))
+Method10$HCNMod <- as.factor(Method10$HCNMod)
+Method10$DMCsg <- as.numeric(as.character(Method10$DMCsg))
+
+
+Method11 <- read.table(here::here("output", "DadosCCGeno8.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method11$HCNMod <- as.factor(Method11$HCNMod)
+Method11$DMCsg <- as.numeric(as.character(Method11$DMCsg))
+
+
+Method12 <- read.table(here::here("output", "DadosCCGeno9.CSV"), header = T, sep = ";", dec = ".",
+                      colClasses = c(rep("factor", times = 36),
+                                     rep("numeric", times = 16)))
+Method12$HCNMod <- as.factor(Method12$HCNMod)
+Method12$DMCsg <- as.numeric(as.character(Method12$DMCsg))
+
+## Dados Fenotipicos do Banco de Germoplasma de Mandioca da EMBRAPA Mandioca
+
+AllBAG <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ";", dec = ".",
+                     colClasses = c(rep("factor", times = 36),
+                                    rep("numeric", times = 16)))
+AllBAG$HCNMod <- as.factor(AllBAG$HCNMod)
+AllBAG$DMCsg <- as.numeric(as.character(AllBAG$DMCsg))
+
+
+AllBAG$Data <- rep("BAG", times = nrow(AllBAG))
+AllBAG$Method <- rep("BAG", times = nrow(AllBAG))
+
+Method1$Data <- rep("Pheno", times = nrow(Method1))
+Method1$Method <- rep("GW/CH", times = nrow(Method1))
+
+Method2$Data <- rep("Pheno", times = nrow(Method2))
+Method2$Method <- rep("CH", times = nrow(Method2))
+
+Method3$Data <- rep("Pheno", times = nrow(Method3))
+Method3$Method <- rep("GW/MLST", times = nrow(Method3))
+
+Method4$Data <- rep("Geno", times = nrow(Method4))
+Method4$Method <- rep("MR/SH", times = nrow(Method4))
+
+Method5$Data <- rep("Geno", times = nrow(Method5))
+Method5$Method <- rep("CE/SH", times = nrow(Method5))
+
+Method6$Data <- rep("Geno", times = nrow(Method6))
+Method6$Method <- rep("MR/EH", times = nrow(Method6))
+
+Method7$Data <- rep("Geno", times = nrow(Method7))
+Method7$Method <- rep("CE/EH", times = nrow(Method7))
+
+Method8$Data <- rep("Geno", times = nrow(Method8))
+Method8$Method <- rep("MR/AC", times = nrow(Method8))
+
+Method9$Data <- rep("Geno", times = nrow(Method9))
+Method9$Method <- rep("CE/AC", times = nrow(Method9))
+
+Method10$Data <- rep("Geno", times = nrow(Method10))
+Method10$Method <- rep("AM/MLST", times = nrow(Method10))
+
+Method11$Data <- rep("Geno", times = nrow(Method11))
+Method11$Method <- rep("MR/MLST", times = nrow(Method11))
+
+Method12$Data <- rep("Geno", times = nrow(Method12))
+Method12$Method <- rep("CE/MLST", times = nrow(Method12))
+
+Alldataset <- rbind(AllBAG, Method1, Method2, Method3,
+                    Method4, Method5, Method6,
+                    Method7, Method8, Method9,
+                    Method10, Method11, Method12)
+
+
+QualityTrait <- colnames(Alldataset)[2:36]
+
+
+AlldataSetQuant <- Alldataset %>% select(-QualityTrait)
+AlldataSetQuali <- Alldataset %>% select(Acessos, QualityTrait, Data, Method)
+
+AlldataSetQuant2 <- melt(AlldataSetQuant, id.vars = c("Acessos", "Data", "Method"),
+       variable.name = "Trait", value.name = "Value")
+head(AlldataSetQuant2)
+
+
+AlldataSetQuant2$Data <- factor(AlldataSetQuant2$Data,
+                                levels = c("BAG", "Pheno", "Geno"), ordered = T)
+AlldataSetQuant2$Method <- factor(AlldataSetQuant2$Method,
+                                levels = c("BAG", "GW/CH", "GW/MLST", "CH",
+                                           "MR/SH", "MR/EH", "MR/AC", "MR/MLST",
+                                           "CE/SH", "CE/EH", "CE/AC", "CE/MLST",
+                                           "AM/MLST"),
+                                ordered = T)
+
+## Remover os outliers
+
+filter_lims <- function(x){
+  l <- boxplot.stats(x)$stats[1]
+  u <- boxplot.stats(x)$stats[5]
+
+  for (i in 1:length(x)){
+    x[i] <- ifelse(x[i]>l & x[i]<u, x[i], NA)
+  }
+  return(x)
+}
+
+
+AlldataSetQuant3 <- AlldataSetQuant2 %>% group_by(Trait, Method) %>%
+  mutate(Value2 = filter_lims(Value))
+
+
+## Plotar o boxplot por conjunto de caracteres
+Foliar <- c("RetFoliar", "ComprLobulo", "LargLobulo",
+            "RelComprLar", "AltPl", "PPA",
+            "ComprPeciolo")
+Root <- c("FRY", "EspEntreCasca", "ComprMedRzs",
+          "DiamMedRzs", "NRPl", "DMCsg", "IndColh")
+Root2 <- c("FRYC", "FRYNC")
+
+### Caracteres morfologicos de parte aerea
+AlldataSetQuant3 %>% filter(Trait == Foliar) %>%
+  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) +
+  geom_boxplot() + facet_wrap(~Trait, scale = "free", ncol = 2) + ylab(NULL)
+
+### Caracteres morfologicos de raiz
+AlldataSetQuant3 %>% filter(Trait == Root) %>%
+  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) +
+  geom_boxplot() + facet_wrap(~Trait, scale = "free", ncol = 2) + ylab(NULL)
+
+AlldataSetQuant3 %>% filter(Trait == Root2) %>%
+  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) +
+  geom_boxplot() + facet_wrap(~Trait, scale = "free", ncol = 2) + ylab(NULL)
+
+```
+
