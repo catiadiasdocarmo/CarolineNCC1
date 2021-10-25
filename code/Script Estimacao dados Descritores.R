@@ -1,6 +1,6 @@
 library(tidyverse)
 
-#DadosPhen <- read.csv2("Dados fenotípicos BAG.CSV", header = T, na.strings = "-")
+#DadosPhen <- read.csv2("Dados fenotipicos BAG.CSV", header = T, na.strings = "-")
 
 DadosPhen <- read.table("Teste.txt", header = T, sep = "\t", na.strings = "-")
 traits <- colnames(DadosPhen)
@@ -118,11 +118,11 @@ Res %>% left_join(Res2, by = c("Genotipos" = "Genotipos")) %>% select(-Genotipos
 
 write.csv(Res3, "DadosProntos.CSV", quote = F, row.names = F)
 
-#### Colecao Nuclear com dados fenotípicos
+#### Colecao Nuclear com dados fenotipicos
 library(corehunter); library(StatMatch)
 
-DataCar <- read.table("data/DadosSelCaroline.CSV", header = T, sep = ";", dec = ".",
-                      na.strings = "NA", colClasses =  c("factor", 
+DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ";", dec = ".",
+                      na.strings = "NA", colClasses =  c("factor",
                                                         rep("character", times = 24),
                                                         rep("numeric", times = 27)))
 
@@ -130,7 +130,7 @@ DistCar <- gower.dist(data.x = DataCar[,-1])
 row.names(DistCar) <- colnames(DistCar) <- DataCar$Acessos
 DistCar2 <- distances(DistCar)
 
-CCC <- sampleCore(DistCar2, objective(type = "EN", measure = "PD"), size = 0.2)
+CCC <- sampleCore(DistCar2, objective(type = "EN", measure = "PD"), size = 338)
 
 DataCarCCPheno1 <- DataCar[DataCar$Acessos%in%CCC$sel,]
 
@@ -139,7 +139,7 @@ write.table(DataCarCCPheno1, "DadosPheno1CCPheno1.CSV", quote = F, sep = ";", de
 colnames(DataCar)[1] <- "NAME"
 DataCar$NAME <- as.character(DataCar$NAME)
 DataCarP <- phenotypes(data = as.data.frame(DataCar[,-1]))
-core <- sampleCore(DataCarP, objective(type = "EN", measure = "GD"), size = 0.2)
+core <- sampleCore(DataCarP, objective(type = "EN", measure = "GD"), size = 338)
 
 DataCarCCPheno2 <- DataCar[core$sel,]
 
@@ -155,9 +155,6 @@ DataCarCCPheno3 <- DataCar[-NSelDARwin$Clone,]
 
 write.table(DataCarCCPheno3, file= "DadosPheno3CCPheno1.CSV", quote = F, sep = ";", dec = ".")
 
-data <- exampleData()
-core2 <- sampleCore(data$dist, objective(type = "EN", measure = "PD"))
-core3 <- sampleCore(data$geno, objective(type = "SH", measure = "MR"))
 
 #### Boxplot de colecoes nucleares
 
@@ -219,7 +216,7 @@ head(AlldataSet2)
 filter_lims <- function(x){
   l <- boxplot.stats(x)$stats[1]
   u <- boxplot.stats(x)$stats[5]
-  
+
   for (i in 1:length(x)){
     x[i] <- ifelse(x[i]>l & x[i]<u, x[i], NA)
   }
@@ -293,7 +290,7 @@ CHCar <- genotypes(GBSDataCar2, format = "biparental")
 core3 <- sampleCore(CHCar, objective(type = "SH", measure = "MR"), size = 337)
 CloneSel <- core3$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
-  gsub(pattern = "Aipim.", replacement = "Aipim-") %>% 
+  gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
 
 core3$sel[core3$sel%like%"BGM.0290"]
@@ -308,9 +305,9 @@ write.table(DataCarCCGeno4, file= "DadosGeno1CCGeno1.CSV", quote = F, sep = ";",
 core4 <- sampleCore(CHCar, objective(type = "SH", measure = "CE"), size = 337)
 CloneSel <- core4$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
-  gsub(pattern = "Aipim.", replacement = "Aipim-") %>% 
+  gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
-  
+
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
 
@@ -324,7 +321,7 @@ write.table(DataCarCCGeno5, file= "DadosGeno2CCGeno1.CSV", quote = F, sep = ";",
 core5 <- sampleCore(CHCar, objective(type = "HE", measure = "MR"), size = 337)
 CloneSel <- core5$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
-  gsub(pattern = "Aipim.", replacement = "Aipim-") %>% 
+  gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
@@ -339,7 +336,7 @@ write.table(DataCarCCGeno6, file= "DadosGeno3CCGeno1.CSV", quote = F, sep = ";",
 core6 <- sampleCore(CHCar, objective(type = "HE", measure = "CE"), size = 337)
 CloneSel <- core6$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
-  gsub(pattern = "Aipim.", replacement = "Aipim-") %>% 
+  gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
@@ -352,8 +349,8 @@ write.table(DataCarCCGeno7, file= "DadosGeno4CCGeno1.CSV", quote = F, sep = ";",
 core7 <- sampleCore(CHCar, objective(type = "CV", measure = "MR"), size = 337)
 CloneSel <- core7$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
-  gsub(pattern = "Aipim.", replacement = "Aipim-") %>% 
-  gsub(pattern = "CPAFRO-09", replacement = "CPAFRO-09=PÃO-DO-ACRE")
+  gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
+  gsub(pattern = "CPAFRO-09", replacement = "CPAFRO-09=P?O-DO-ACRE")
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
 
@@ -365,12 +362,12 @@ write.table(DataCarCCGeno8, file= "DadosGeno5CCGeno1.CSV", quote = F, sep = ";",
 core8 <- sampleCore(CHCar, objective(type = "CV", measure = "CE"), size = 337)
 CloneSel <- core8$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
-  gsub(pattern = "Aipim.", replacement = "Aipim-") %>% 
+  gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL") %>%
   gsub(pattern = "CPAFRO.", replacement = "CPAFRO-") %>%
   gsub(pattern = "CPAFRO-03", replacement = "CPAFRO-03=PIRARUCU") %>%
-  gsub(pattern = "CPAFRO-09", replacement = "CPAFRO-09=PÃO-DO-ACRE") %>%
-  gsub(pattern = "CPAFRO-12", replacement = "CPAFRO-12=CIPÓ") %>%
+  gsub(pattern = "CPAFRO-09", replacement = "CPAFRO-09=P?O-DO-ACRE") %>%
+  gsub(pattern = "CPAFRO-12", replacement = "CPAFRO-12=CIP?") %>%
   gsub(pattern = "CPAFRO-18", replacement = "CPAFRO-18=IM-946") %>%
   gsub(pattern = "CPAFRO-28", replacement = "CPAFRO-28=PARATI") %>%
   gsub(pattern = "CPAFRO-40", replacement = "CPAFRO-40=EAB-451")
@@ -382,4 +379,123 @@ DataCarCCGeno9 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
 write.table(DataCarCCGeno9, file= "DadosGeno6CCGeno1.CSV", quote = F, sep = ";", dec = ".")
 
+## Allele Match Distance for MLST - DARwin
+saveRDS(GBSDataCar2, file = "data/DadosGBSCaroline.RDS")
 
+GBSDataCar <- readRDS("data/DadosGBSCaroline.RDS")
+
+Freq <- colMeans(GBSDataCar, na.rm = T)
+
+MAF <- Freq
+for(i in 1:length(MAF)){
+  if(MAF[i] >0.5){MAF[i] <- 1 - MAF[i]} else {MAF[i] <- MAF[i]}
+}
+
+GBSDataCar2 <- as.data.frame(GBSDataCar[,(MAF >= 0.05)])
+GBSDataCar3 <- GBSDataCar2
+
+GBSDataCar3[GBSDataCar3==0] <- "0/0"
+GBSDataCar3[GBSDataCar3==1] <- "0/1"
+GBSDataCar3[GBSDataCar3==2] <- "1/1"
+
+GBSDataCar3[1:10,1:20]
+
+M_Darwin_Car <- apply(GBSDataCar3, 1, function(x) do.call(cbind, strsplit(x, split = "/")))
+
+dim(M_Darwin_Car)
+
+rownames(M_Darwin_Car) <- rep(colnames(GBSDataCar3), each=2)
+
+M_Darwin_Car[1:10,1:10]
+
+write.table(t(M_Darwin_Car), file = "output/CarDarwinMatrix.txt", quote = F,
+            sep = "\t")
+
+rm(M_Darwin_Car); rm(GBSDataCar); rm(GBSDataCar2); rm(GBSDataCar3)
+
+CCSelAM.DARwin <- read.table(here::here("output", "CarDarwinMatrix.don"),
+                             sep = "\t", header = T,skip = 2,
+                             nrows = 1363)
+
+ClonesSel <- CCSelAM.DARwin %>% filter(CC338 == "Kept") %>%
+  select(NÂº)
+ClonesSel <- ClonesSel$NÂº %>%
+  gsub(pattern = "BGM.", replacement = "BGM-") %>%
+  gsub(pattern = "BRS.", replacement = "BRS-") %>%
+  gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
+  gsub(pattern = "SE.", replacement = "SE-") %>%
+  gsub(pattern = "X2011.24.", replacement = "2011-24-") %>%
+  gsub(pattern = "X2011.34.", replacement = "2011-34-") %>%
+  gsub(pattern = "BRS-Poti.Branca", replacement = "BRS-Poti-Branca") %>%
+  gsub(pattern = "BGM-1277.1", replacement = "BGM-1277") %>%
+  gsub(pattern = "BGM-1550.1", replacement = "BGM-1550") %>%
+  gsub(pattern = "BGM-1616.1", replacement = "BGM-1616") %>%
+  gsub(pattern = "BGM-1680.1", replacement = "BGM-1680") %>%
+  gsub(pattern = "CPAFRO.03", replacement = "CPAFRO-03=PIRARUCU") %>%
+  gsub(pattern = "CPAFRO.18", replacement = "CPAFRO-18=IM-946") %>%
+  gsub(pattern = "CPAFRO.29", replacement = "CPAFRO-29") %>%
+  gsub(pattern = "CPAFRO.33", replacement = "CPAFRO-33") %>%
+  gsub(pattern = "CPAFRO.42", replacement = "CPAFRO-42")
+
+ClonesSel[ClonesSel%in%DataCar$Acessos]
+DataCarCCGeno10 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+
+write.table(DataCarCCGeno10, file= "DadosGeno7CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+
+## Modified Rodgers distances for MLST - DARwin
+library(poppr); library(adegenet); library(here); library(tidyverse)
+GBSDataCar <- readRDS("data/DadosGBSCaroline.RDS")
+
+Freq <- colMeans(GBSDataCar, na.rm = T)
+
+MAF <- Freq
+for(i in 1:length(MAF)){
+  if(MAF[i] >0.5){MAF[i] <- 1 - MAF[i]} else {MAF[i] <- MAF[i]}
+}
+
+GBSDataCar2 <- as.data.frame(GBSDataCar[,(MAF >= 0.05)])
+rm(GBSDataCar)
+GenIdCar <- df2genind(GBSDataCar2, ploidy = 2, type = "PA", ncode = 1)
+
+
+MRDist <- rogers.dist(GenIdCar)
+MRDist <- MRDistance
+writeDist(x = MRDist, file = here::here("output","MatrizMDCaroline.phy"),
+          format = "phylip", upper = F, diag = T)
+
+CCSelMR.DARwin <- read.table(here::here("output", "MatrizMDCaroline.DON"),
+                             sep = "\t", header = T,skip = 2,
+                             nrows = 1336)
+
+ClonesSel <- CCSelMR.DARwin %>% filter(Tree.Sample_338 == "Kept") %>%
+  select(Name)
+ClonesSel <- ClonesSel$Name %>%
+             gsub(pattern = "CPAFRO-03", replacement = "CPAFRO-03=PIRARUCU") %>%
+             gsub(pattern = "CPAFRO-18", replacement = "CPAFRO-18=IM-946") %>%
+             gsub(pattern = "CPAFRO-28", replacement = "CPAFRO-28=PARATI")
+DataCarCCGeno11 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+
+write.table(DataCarCCGeno11, file= "DadosGeno8CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+
+## for MLST - DARwin
+
+library(poppr); library(adegenet); library(here); library(phangorn)
+library(data.table)
+CEDist <- edwards.dist(GenIdCar)
+
+writeDist(x = CEDist, file = here::here("output","MatrizCECaroline.phy"),
+          format = "phylip", upper = F, diag = T)
+
+CCSelCE.DARwin <- read.table(here::here("output","MatrizCECaroline.DON"),
+                             sep = "\t", header = T, skip = 2,
+                             nrows = 1336)
+ClonesSel <- CCSelCE.DARwin %>% filter(Tree.Sample_338 == "Kept") %>%
+  select(Name)
+ClonesSel <- ClonesSel$Name %>%
+  gsub(pattern = "CPAFRO-03", replacement = "CPAFRO-03=PIRARUCU") %>%
+  gsub(pattern = "CPAFRO-05", replacement = "CPAFRO-05=ENTALA-GATO") %>%
+  gsub(pattern = "CPAFRO-18", replacement = "CPAFRO-18=IM-946")
+
+DataCarCCGeno12 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+
+write.table(DataCarCCGeno12, file= "DadosGeno9CCGeno1.CSV", quote = F, sep = ";", dec = ".")
