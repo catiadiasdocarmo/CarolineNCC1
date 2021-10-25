@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="LucianoRogerio" />
+<meta name="author" content="LucianoRogerio; Caroline Cardoso" />
 
 <meta name="date" content="2021-10-25" />
 
@@ -351,7 +351,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">CCPheno</h1>
-<h4 class="author">LucianoRogerio</h4>
+<h4 class="author">LucianoRogerio; Caroline Cardoso</h4>
 <h4 class="date">2021-10-25</h4>
 
 </div>
@@ -468,16 +468,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree84ad9ecf7bd7a7dff71c1d409807c7fba9947c72targetblank84ad9eca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/84ad9ecf7bd7a7dff71c1d409807c7fba9947c72" target="_blank">84ad9ec</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treee880482dd60b1a41ff97741d6ac59cc131d9bce3targetblanke880482a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/e880482dd60b1a41ff97741d6ac59cc131d9bce3" target="_blank">e880482</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree84ad9ecf7bd7a7dff71c1d409807c7fba9947c72targetblank84ad9eca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treee880482dd60b1a41ff97741d6ac59cc131d9bce3targetblanke880482a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/84ad9ecf7bd7a7dff71c1d409807c7fba9947c72" target="_blank">84ad9ec</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/e880482dd60b1a41ff97741d6ac59cc131d9bce3" target="_blank">e880482</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -488,7 +488,6 @@ Ignored files:
     Ignored:    .Rproj.user/
 
 Untracked files:
-    Untracked:  analysis/AnDis.Rmd
     Untracked:  analysis/CCGeno.Rmd
     Untracked:  analysis/GenoData.Rmd
     Untracked:  analysis/PhenoData.Rmd
@@ -557,6 +556,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/e880482dd60b1a41ff97741d6ac59cc131d9bce3/analysis/CCPheno.Rmd" target="_blank">e880482</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-10-25
+</td>
+<td>
+First Boxplot Graphs and Html pages
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/95ef77efb812cbe5902a59218a3de50cf2139efb/docs/CCPheno.html" target="_blank">95ef77e</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-10-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/84ad9ecf7bd7a7dff71c1d409807c7fba9947c72/analysis/CCPheno.Rmd" target="_blank">84ad9ec</a>
 </td>
 <td>
@@ -606,7 +639,7 @@ DataCar$NAME &lt;- as.character(DataCar$NAME)
 DataCarP &lt;- phenotypes(data = as.data.frame(DataCar[,-1]))
 core &lt;- sampleCore(DataCarP, objective(type = &quot;EN&quot;, measure = &quot;GD&quot;), size = 338)
 
-DataCarCCPheno2 &lt;- DataCar[core$sel,]
+DataCarCCPheno2 &lt;- DataCar[DataCar$Acessos%in%core$sel,]
 
 write.table(DataCarCCPheno2, file = here::here(&quot;output&quot;, &quot;DadosCCPheno2.CSV&quot;),
             quote = F, sep = &quot;;&quot;, dec = &quot;.&quot;)
@@ -623,9 +656,10 @@ SelDARwin &lt;- read.table(here::here(&quot;output&quot;,&quot;MatrizGowerCaroli
                              nrows = 1686)
 ClonesSel &lt;- SelDARwin %&gt;% filter(CC338 == &quot;Kept&quot;) %&gt;%
   select(Name)
-DataCarCCPheno3 &lt;- DataCar[ClonesSel$Name,]
+DataCarCCPheno3 &lt;- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
-write.table(DataCarCCPheno3, file= here::here(&quot;output&quot;, &quot;DadosCCPheno3.CSV&quot;), quote = F, sep = &quot;;&quot;, dec = &quot;.&quot;)</code></pre>
+write.table(DataCarCCPheno3, file= here::here(&quot;output&quot;, &quot;DadosCCPheno3.CSV&quot;),
+            quote = F, sep = &quot;;&quot;, dec = &quot;.&quot;)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
