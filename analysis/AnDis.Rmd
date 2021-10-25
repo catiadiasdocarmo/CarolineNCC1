@@ -212,3 +212,6 @@ AlldataSetQuant3 %>% filter(Trait == Root2) %>%
 
 ```
 
+Back - [Coleções Nucleares Genotípicas](CNGeno.html)
+Next - [Estimativas de Diversidade genética](DivGen.html)
+[Home](index.html)

@@ -61,3 +61,6 @@ write.table(DataCarCCPheno3, file= here::here("output", "DadosCCPheno3.CSV"),
             quote = F, sep = ";", dec = ".")
 ```
 
+Back - [Dados Moleculares - Seleção](GenoData.html)
+Next - [Coleções Nucleares Genotípicas](CNGeno.html)
+[Home](index.html)
