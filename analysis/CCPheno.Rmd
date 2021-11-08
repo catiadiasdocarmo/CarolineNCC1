@@ -12,7 +12,7 @@ editor_options:
 ```{r, eval = FALSE}
 library(corehunter); library(StatMatch)
 
-DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ";", dec = ".",
+DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ",", dec = ".",
                       na.strings = "NA", colClasses =  c("factor",
                                                         rep("character", times = 24),
                                                         rep("numeric", times = 27)))
@@ -34,11 +34,11 @@ write.table(DataCarCCPheno1, here::here("output", "DadosCCPheno1.CSV"),
 
 ### Colecao Nuclear - Algoritmo pacote CoreHunter
 colnames(DataCar)[1] <- "NAME"
-DataCar$NAME <- as.character(DataCar$NAME)
+rownames(DataCar) <- as.character(DataCar$NAME)
 DataCarP <- phenotypes(data = as.data.frame(DataCar[,-1]))
 core <- sampleCore(DataCarP, objective(type = "EN", measure = "GD"), size = 338)
 
-DataCarCCPheno2 <- DataCar[DataCar$Acessos%in%core$sel,]
+DataCarCCPheno2 <- DataCar[rownames(DataCar)%in%core$sel,]
 
 write.table(DataCarCCPheno2, file = here::here("output", "DadosCCPheno2.CSV"),
             quote = F, sep = ";", dec = ".")
