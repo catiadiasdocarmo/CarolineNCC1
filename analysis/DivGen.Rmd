@@ -1,0 +1,46 @@
+---
+title: "Diversidade Genetica"
+author: "LucianoRogerio"
+date: "2021-11-08"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(tidyverse)
+source(here::here("code", "Shannon-Weaver.R"))
+Alldataset <- readRDS(here::here("output", "AllDataCCCaroline.RDS"))
+
+QualityTrait <- colnames(Alldataset)[2:36]
+
+
+AlldataSetQuant <- Alldataset %>% select(-QualityTrait)
+AlldataSetQuali <- Alldataset %>% select(Acessos, QualityTrait, Data, Method)
+
+AlldataSetQuant %>% filter(Data=="BAG", !is.na(AltPl)) %>% select(AltPl) -> teste
+  Shannon.Weaver.QT(teste$AltPl, formula = 2)
+
+Trait <- c("CorFolhaApical" = 4, "CorPeciolo" = 6, "CorFolhaDesenv" = 5,
+           "CorNerv" = 4, "CorCortexCaule" = 4, "CorExternaCaule" = 7,
+           "CorEpidCaule" = 4, "CorRamosTerm" = 3, "CorExternaRzs" = 4,
+           "CorCortexRzs" = 4, "CorPolpaRzs" = 5, "NLobulos" = 5,
+           "Pubescencia" = 2, "FormaLobuloCentral" = 9, "PosicaoPeciolo" = 4,
+           "Sinuosidade" = 2, "ComprEstip" = 2, "HabCresCaule" = 2,
+           "TipoPlan" = 4, "MargEstip" = 2, "HabRamif" = 4, "NiveisRam" = 4, 
+           "ProemCicatrizesFolhas" = 2, "FormaRzs" = 4, "TxtEpidermeRzs" = 2,
+           "PresPedunculoRzs" = 3, "PosicaoRzs" = 3, "Flowering" = 2,
+           "DestqPelicRz" = 2, "DestqCortexRz" = 3, "ConstrRzs" = 3,
+           "ComprFilotaxia" = 3, "AnguloRamif" = 22, "PorteMod" = 5, 
+           "HCNMod" = 9)
+
+AlldataSetQuali %>% select(-Acessos) %>% group_by(Data, Method) %>% list() %>%
+  apply(FUN = Shannon.Weaver.QL, nclass = Trait, 2) %>%
+  diag() %>% as.data.frame -> Res
+
+dados <- AlldataSetQuali %>% filter(Data=="BAG") %>% select(-c(Acessos, Data, Method))
+
+```
+

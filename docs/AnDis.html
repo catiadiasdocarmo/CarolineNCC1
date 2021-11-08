@@ -377,7 +377,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-10-25
+<strong>Last updated:</strong> 2021-11-08
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -468,32 +468,37 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree2cdf2a95615011c37bc9c34bc3abcda3d373b74btargetblank2cdf2a9a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/2cdf2a95615011c37bc9c34bc3abcda3d373b74b" target="_blank">2cdf2a9</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree37c20d24ffbc9001b3f69a45c21e5420fa5af373targetblank37c20d2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/37c20d24ffbc9001b3f69a45c21e5420fa5af373" target="_blank">37c20d2</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree2cdf2a95615011c37bc9c34bc3abcda3d373b74btargetblank2cdf2a9a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree37c20d24ffbc9001b3f69a45c21e5420fa5af373targetblank37c20d2a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/2cdf2a95615011c37bc9c34bc3abcda3d373b74b" target="_blank">2cdf2a9</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/37c20d24ffbc9001b3f69a45c21e5420fa5af373" target="_blank">37c20d2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    output/MatrizMDCaroline.dis
-    Ignored:    output/MatrizMDCaroline.phy
-    Ignored:    output/MatrizMDCaroline_EL-998.arb
+
+Untracked files:
+    Untracked:  analysis/DivGen.Rmd
+    Untracked:  output/AllDataCCCaroline.RDS
+    Untracked:  output/BoxplotFoliar.jpg
 
 Unstaged changes:
     Modified:   analysis/AnDis.Rmd
     Modified:   analysis/CCPheno.Rmd
-    Modified:   analysis/index.Rmd
+    Modified:   code/Shannon-Weaver.R
+    Modified:   data/DadosSelCaroline.CSV
+    Modified:   output/DadosCCPheno2.CSV
 
 </code></pre>
 <p>
@@ -532,6 +537,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/15bf4bb7ca823753a72510ab3bb68eaaaa8bcb28/analysis/AnDis.Rmd" target="_blank">15bf4bb</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-10-25
+</td>
+<td>
+Fix and add link for the html pages
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/15bf4bb7ca823753a72510ab3bb68eaaaa8bcb28/docs/AnDis.html" target="_blank">15bf4bb</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-10-25
+</td>
+<td>
+Fix and add link for the html pages
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -575,40 +614,30 @@ First Boxplot Graphs and Html pages
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<pre class="r"><code>library(tidyverse); library(here); library(reshape2)</code></pre>
-<pre><code>-- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>v ggplot2 3.3.5     v purrr   0.3.4
-v tibble  3.1.5     v dplyr   1.0.7
-v tidyr   1.1.4     v stringr 1.4.0
-v readr   2.0.2     v forcats 0.5.1</code></pre>
-<pre><code>-- Conflicts ------------------------------------------ tidyverse_conflicts() --
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()</code></pre>
-<pre><code>here() starts at C:/Users/User/Documents/GitHub/CarolineNCC1</code></pre>
-<pre><code>
-Attaching package: &#39;reshape2&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:tidyr&#39;:
-
-    smiths</code></pre>
-<pre class="r"><code>#### Boxplot de colecoes nucleares
+<pre class="r"><code>suppressMessages(library(tidyverse)); suppressMessages(library(here)); suppressMessages(library(reshape2))
+#### Boxplot de colecoes nucleares
 
 ## Colecoes nucleares estimadas com dados Fenotipicos
 
-Method1 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCPheno1.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
-                     colClasses = c(rep(&quot;factor&quot;, times = 36),
+Method1 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCPheno1.CSV&quot;), header = T,
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
+                      colClasses = c(rep(&quot;factor&quot;, times = 36),
                                     rep(&quot;numeric&quot;, times = 16)))
 Method1$HCNMod &lt;- as.factor(Method1$HCNMod)
 Method1$DMCsg &lt;- as.numeric(as.character(Method1$DMCsg))
 
 
-Method2 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCPheno2.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+Method2 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCPheno2.CSV&quot;), header = T,
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method2$HCNMod &lt;- as.factor(Method2$HCNMod)
 Method2$DMCsg &lt;- as.numeric(as.character(Method2$DMCsg))
+colnames(Method2)[1] &lt;- &quot;Acessos&quot;
 
 
-Method3 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCPheno3.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+Method3 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCPheno3.CSV&quot;), header = T,
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method3$HCNMod &lt;- as.factor(Method3$HCNMod)
@@ -616,69 +645,79 @@ Method3$DMCsg &lt;- as.numeric(as.character(Method3$DMCsg))
 
 ## Colecoes Nucleares estimadas com dados Moleculares
 
-Method4 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno1.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
-                     colClasses = c(rep(&quot;factor&quot;, times = 36),
+Method4 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno1.CSV&quot;), header = T, 
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
+                      colClasses = c(rep(&quot;factor&quot;, times = 36),
                                     rep(&quot;numeric&quot;, times = 16)))
 Method4$HCNMod &lt;- as.factor(Method4$HCNMod)
 Method4$DMCsg &lt;- as.numeric(as.character(Method4$DMCsg))
 
 
-Method5 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno2.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+Method5 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno2.CSV&quot;), header = T, 
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method5$HCNMod &lt;- as.factor(Method5$HCNMod)
 Method5$DMCsg &lt;- as.numeric(as.character(Method5$DMCsg))
 
 
-Method6 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno3.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+Method6 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno3.CSV&quot;), header = T, 
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method6$HCNMod &lt;- as.factor(Method6$HCNMod)
 Method6$DMCsg &lt;- as.numeric(as.character(Method6$DMCsg))
 
-Method7 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno4.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
-                     colClasses = c(rep(&quot;factor&quot;, times = 36),
+Method7 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno4.CSV&quot;), header = T,
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
+                      colClasses = c(rep(&quot;factor&quot;, times = 36),
                                     rep(&quot;numeric&quot;, times = 16)))
 Method7$HCNMod &lt;- as.factor(Method7$HCNMod)
 Method7$DMCsg &lt;- as.numeric(as.character(Method7$DMCsg))
 
 
-Method8 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno5.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+Method8 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno5.CSV&quot;), header = T,
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method8$HCNMod &lt;- as.factor(Method8$HCNMod)
 Method8$DMCsg &lt;- as.numeric(as.character(Method8$DMCsg))
 
 
-Method9 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno6.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+Method9 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno6.CSV&quot;), header = T,
+                      sep = &quot;;&quot;, dec = &quot;.&quot;,
                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method9$HCNMod &lt;- as.factor(Method9$HCNMod)
 Method9$DMCsg &lt;- as.numeric(as.character(Method9$DMCsg))
 
-Method10 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno7.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
-                     colClasses = c(rep(&quot;factor&quot;, times = 36),
+Method10 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno7.CSV&quot;), header = T,
+                       sep = &quot;;&quot;, dec = &quot;.&quot;,
+                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                     rep(&quot;numeric&quot;, times = 16)))
 Method10$HCNMod &lt;- as.factor(Method10$HCNMod)
 Method10$DMCsg &lt;- as.numeric(as.character(Method10$DMCsg))
 
 
-Method11 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno8.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+Method11 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno8.CSV&quot;), header = T,
+                       sep = &quot;;&quot;, dec = &quot;.&quot;,
                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method11$HCNMod &lt;- as.factor(Method11$HCNMod)
 Method11$DMCsg &lt;- as.numeric(as.character(Method11$DMCsg))
 
 
-Method12 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno9.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
-                      colClasses = c(rep(&quot;factor&quot;, times = 36),
+Method12 &lt;- read.table(here::here(&quot;output&quot;, &quot;DadosCCGeno9.CSV&quot;), header = T,
+                       sep = &quot;;&quot;, dec = &quot;.&quot;,
+                       colClasses = c(rep(&quot;factor&quot;, times = 36),
                                      rep(&quot;numeric&quot;, times = 16)))
 Method12$HCNMod &lt;- as.factor(Method12$HCNMod)
 Method12$DMCsg &lt;- as.numeric(as.character(Method12$DMCsg))
 
 ## Dados Fenotipicos do Banco de Germoplasma de Mandioca da EMBRAPA Mandioca
 
-AllBAG &lt;- read.table(here::here(&quot;data&quot;, &quot;DadosSelCaroline.CSV&quot;), header = T, sep = &quot;;&quot;, dec = &quot;.&quot;,
+AllBAG &lt;- read.table(here::here(&quot;data&quot;, &quot;DadosSelCaroline.CSV&quot;), header = T,
+                     sep = &quot;,&quot;, dec = &quot;.&quot;,
                      colClasses = c(rep(&quot;factor&quot;, times = 36),
                                     rep(&quot;numeric&quot;, times = 16)))
 AllBAG$HCNMod &lt;- as.factor(AllBAG$HCNMod)
@@ -729,14 +768,15 @@ Alldataset &lt;- rbind(AllBAG, Method1, Method2, Method3,
                     Method7, Method8, Method9,
                     Method10, Method11, Method12)
 
+saveRDS(Alldataset, here::here(&quot;output&quot;, &quot;AllDataCCCaroline.RDS&quot;))
 
 QualityTrait &lt;- colnames(Alldataset)[2:36]
 
 
 AlldataSetQuant &lt;- Alldataset %&gt;% select(-QualityTrait)</code></pre>
 <pre><code>Note: Using an external vector in selections is ambiguous.
-i Use `all_of(QualityTrait)` instead of `QualityTrait` to silence this message.
-i See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+ℹ Use `all_of(QualityTrait)` instead of `QualityTrait` to silence this message.
+ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
 This message is displayed once per session.</code></pre>
 <pre class="r"><code>AlldataSetQuali &lt;- Alldataset %&gt;% select(Acessos, QualityTrait, Data, Method)
 
@@ -782,1945 +822,177 @@ Foliar &lt;- c(&quot;RetFoliar&quot;, &quot;ComprLobulo&quot;, &quot;LargLobulo&
             &quot;ComprPeciolo&quot;)
 Root &lt;- c(&quot;FRY&quot;, &quot;EspEntreCasca&quot;, &quot;ComprMedRzs&quot;,
           &quot;DiamMedRzs&quot;, &quot;NRPl&quot;, &quot;DMCsg&quot;, &quot;IndColh&quot;)
-Root2 &lt;- c(&quot;FRYC&quot;, &quot;FRYNC&quot;)
-
-### Caracteres morfologicos de parte aerea
-AlldataSetQuant3 %&gt;% filter(Trait == Foliar) %&gt;%
-  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) +
-  geom_boxplot() + facet_wrap(~Trait, scale = &quot;free&quot;, ncol = 2) + ylab(NULL)</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Foliar): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning: Removed 334 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="figure/AnDis.Rmd/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+Root2 &lt;- c(&quot;FRYC&quot;, &quot;FRYNC&quot;)</code></pre>
+<pre class="r"><code>### Caracteres morfologicos de parte aerea
+AlldataSetQuant3 %&gt;% filter(Trait%in%Foliar) %&gt;%
+  ggplot(mapping = aes(y = Value2, fill = Data, x = Method), message = F) +
+  geom_boxplot() + facet_wrap(~Trait, scales = &quot;free_y&quot;, ncol = 2,) + ylab(NULL) +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+        colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Warning: Removed 2472 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>### Caracteres morfologicos de raiz
-AlldataSetQuant3 %&gt;% filter(Trait == Root) %&gt;%
+AlldataSetQuant3 %&gt;% filter(Trait%in%Root) %&gt;%
   ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) +
-  geom_boxplot() + facet_wrap(~Trait, scale = &quot;free&quot;, ncol = 2) + ylab(NULL)</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root): comprimento do objeto maior não é múltiplo
-do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning: Removed 404 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="figure/AnDis.Rmd/unnamed-chunk-1-2.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>AlldataSetQuant3 %&gt;% filter(Trait == Root2) %&gt;%
+  geom_boxplot() + facet_wrap(~Trait, scales = &quot;free_y&quot;, ncol = 2) + ylab(NULL) +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+        colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Warning: Removed 2973 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>AlldataSetQuant3 %&gt;% filter(Trait%in%Root2) %&gt;%
   ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) +
-  geom_boxplot() + facet_wrap(~Trait, scale = &quot;free&quot;, ncol = 2) + ylab(NULL)</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning in `==.default`(Trait, Root2): comprimento do objeto maior não é
-múltiplo do comprimento do objeto menor</code></pre>
-<pre><code>Warning in is.na(e1) | is.na(e2): comprimento do objeto maior não é múltiplo do
-comprimento do objeto menor</code></pre>
-<pre><code>Warning: Removed 309 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="figure/AnDis.Rmd/unnamed-chunk-1-3.png" width="672" style="display: block; margin: auto;" /></p>
+  geom_boxplot() + facet_wrap(~Trait, scales = &quot;free_y&quot;, ncol = 2) + ylab(NULL) +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+        colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Warning: Removed 634 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>AlldataSetQuali2 &lt;- melt(AlldataSetQuali, id.vars = c(&quot;Acessos&quot;, &quot;Data&quot;, &quot;Method&quot;),
+       variable.name = &quot;Trait&quot;, value.name = &quot;Value&quot;)</code></pre>
+<pre><code>Warning: attributes are not identical across measure variables; they will be
+dropped</code></pre>
+<pre class="r"><code>head(AlldataSetQuali2)</code></pre>
+<pre><code>           Acessos Data Method          Trait Value
+1      2011-03-01-  BAG    BAG CorFolhaApical     5
+2 11---CONQUISTA-2  BAG    BAG CorFolhaApical     5
+3      2011-24-156  BAG    BAG CorFolhaApical     3
+4       2011-34-41  BAG    BAG CorFolhaApical     3
+5       2011-34-45  BAG    BAG CorFolhaApical     9
+6       2011-34-64  BAG    BAG CorFolhaApical     7</code></pre>
+<pre class="r"><code>AlldataSetQuali3 &lt;- AlldataSetQuali2 %&gt;% filter (!is.na(Value)) %&gt;%
+  group_by(Trait, Data, Method) %&gt;% summarise(N = table(Value, useNA = &quot;no&quot;),
+                                              Score = names(N)) </code></pre>
+<pre><code>`summarise()` has grouped output by &#39;Trait&#39;, &#39;Data&#39;, &#39;Method&#39;. You can override using the `.groups` argument.</code></pre>
+<pre class="r"><code>AlldataSetQuali3$Data &lt;- factor(AlldataSetQuali3$Data,
+                                levels = c(&quot;BAG&quot;, &quot;Pheno&quot;, &quot;Geno&quot;), ordered = T)
+AlldataSetQuali3$Method &lt;- factor(AlldataSetQuali3$Method,
+                                levels = c(&quot;BAG&quot;, &quot;GW/CH&quot;, &quot;GW/MLST&quot;, &quot;CH&quot;,
+                                           &quot;MR/SH&quot;, &quot;MR/EH&quot;, &quot;MR/AC&quot;, &quot;MR/MLST&quot;,
+                                           &quot;CE/SH&quot;, &quot;CE/EH&quot;, &quot;CE/AC&quot;, &quot;CE/MLST&quot;,
+                                           &quot;AM/MLST&quot;),
+                                ordered = T)
+AlldataSetQuali3$Score &lt;- factor(AlldataSetQuali3$Score,
+                                 levels = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+                                            30, 40, 45, 50, 60, 70, 80, 85, 90,
+                                            95, 100, 105, 110, 115, 120, 130,
+                                            140, 150, 160))
+
+traitsFolha &lt;- levels(AlldataSetQuali3$Trait)[c(1:4, 8, 12:17, 20, 23)]
+traitsCaule &lt;- levels(AlldataSetQuali3$Trait)[c(5:7, 18:19, 21:22, 28, 32:34)]
+traitsRaiz &lt;- levels(AlldataSetQuali3$Trait)[c(9:11, 24:27, 29:31, 35)]
+
+traitsFolha1 &lt;- traitsFolha[c(1:5)]
+traitsFolha2 &lt;- traitsFolha[c(6, 8, 10, 13)]
+traitsFolha3 &lt;- traitsFolha[c(7, 9, 11:12)]
+
+traitsCaule1 &lt;- traitsCaule[c(1:3, 8:9)]
+traitsCaule2 &lt;- traitsCaule[c(4:7, 11)]
+traitsCaule3 &lt;- traitsCaule[c(10)]
+
+traitsRaiz1 &lt;- traitsRaiz[c(1:3, 5, 8:9)]
+traitsRaiz2 &lt;- traitsRaiz[c(4, 6:7, 10:11)]
+
+# Fig 1. Barplot with the First set of stem traits
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsCaule1) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Fig 2. Barplot with the Second set of stem traits
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsCaule2) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-2.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Fig 3. Barplot with the branch angle
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsCaule3) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Fig 4. Barplot with the First set of leaf traits
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsFolha1) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-4.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Fig 5. Barplot with the Second set of leaf traits
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsFolha2) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-5.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Fig 6. Barplot with the Third set of leaf traits
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsFolha3) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-6.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Fig 7. Barplot with the First set of root traits
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsRaiz1) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-7.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Fig 8. Barplot with the Second set of root traits
+AlldataSetQuali3 %&gt;% filter(Trait%in%traitsRaiz2) %&gt;% 
+  ggplot(aes(y = N, x = Method, fill = Score)) +
+  geom_bar(stat = &quot;identity&quot;, position = &quot;fill&quot;) +
+  facet_wrap(~Trait, ncol = 2, scales = &quot;fixed&quot;) + ylab(NULL) +
+  scale_fill_viridis_d() +
+  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
+                                   colour = c(&quot;blue&quot;, rep(&quot;red&quot;, 3), rep(&quot;green&quot;, 9))))</code></pre>
+<pre><code>Warning: Vectorized input to `element_text()` is not officially supported.
+Results may be unexpected or may change in future versions of ggplot2.</code></pre>
+<pre><code>Don&#39;t know how to automatically pick scale for object of type table. Defaulting to continuous.</code></pre>
+<p><img src="figure/AnDis.Rmd/unnamed-chunk-4-8.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Back - <a href="CNGeno.html">Coleções Nucleares Genotípicas</a> Next - <a href="DivGen.html">Estimativas de Diversidade genética</a> <a href="index.html">Home</a></p>
 <br>
 <p>
@@ -2731,15 +1003,15 @@ comprimento do objeto menor</code></pre>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.1.1 (2021-08-10)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 19043)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Big Sur 11.6.1
 
 Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
 
 locale:
-[1] LC_COLLATE=Portuguese_Brazil.1252  LC_CTYPE=Portuguese_Brazil.1252   
-[3] LC_MONETARY=Portuguese_Brazil.1252 LC_NUMERIC=C                      
-[5] LC_TIME=Portuguese_Brazil.1252    
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -2753,19 +1025,19 @@ loaded via a namespace (and not attached):
  [1] Rcpp_1.0.7        lubridate_1.8.0   assertthat_0.2.1  rprojroot_2.0.2  
  [5] digest_0.6.28     utf8_1.2.2        plyr_1.8.6        R6_2.5.1         
  [9] cellranger_1.1.0  backports_1.2.1   reprex_2.0.1      evaluate_0.14    
-[13] highr_0.9         httr_1.4.2        pillar_1.6.3      rlang_0.4.11     
+[13] highr_0.9         httr_1.4.2        pillar_1.6.4      rlang_0.4.12     
 [17] readxl_1.3.1      rstudioapi_0.13   whisker_0.4       jquerylib_0.1.4  
 [21] rmarkdown_2.11    labeling_0.4.2    munsell_0.5.0     broom_0.7.9      
-[25] compiler_4.1.1    httpuv_1.6.3      modelr_0.1.8      xfun_0.26        
+[25] compiler_4.1.1    httpuv_1.6.3      modelr_0.1.8      xfun_0.27        
 [29] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.1  workflowr_1.6.2  
-[33] viridisLite_0.4.0 fansi_0.5.0       crayon_1.4.1      tzdb_0.1.2       
+[33] viridisLite_0.4.0 fansi_0.5.0       crayon_1.4.2      tzdb_0.1.2       
 [37] dbplyr_2.1.1      withr_2.4.2       later_1.3.0       grid_4.1.1       
 [41] jsonlite_1.7.2    gtable_0.3.0      lifecycle_1.0.1   DBI_1.1.1        
-[45] git2r_0.28.0      magrittr_2.0.1    scales_1.1.1      cli_3.0.1        
+[45] git2r_0.28.0      magrittr_2.0.1    scales_1.1.1      cli_3.1.0        
 [49] stringi_1.7.5     farver_2.1.0      fs_1.5.0          promises_1.2.0.1 
-[53] xml2_1.3.2        bslib_0.3.1       ellipsis_0.3.2    generics_0.1.0   
+[53] xml2_1.3.2        bslib_0.3.1       ellipsis_0.3.2    generics_0.1.1   
 [57] vctrs_0.3.8       tools_4.1.1       glue_1.4.2        hms_1.1.1        
-[61] fastmap_1.1.0     yaml_2.2.1        colorspace_2.0-2  rvest_1.0.1      
+[61] fastmap_1.1.0     yaml_2.2.1        colorspace_2.0-2  rvest_1.0.2      
 [65] knitr_1.36        haven_2.4.3       sass_0.4.0       </code></pre>
 </div>
 </div>
