@@ -37,6 +37,9 @@ for(i in 1:nrow(DataMethod)){
   }
 }
 
+write.table(QuantSHs, here::here("output", "Shannon-WeaverCCQuantIndex.csv"), dec = ".",
+            sep = ",", quote = F, row.names = F)
+
 Table1SH <- matrix(QuantSHs$SH, byrow = F, ncol = 13)
 rownames(Table1SH) <- unique(QuantSHs$Trait)
 colnames(Table1SH) <- unique(paste(QuantSHs$Data, QuantSHs$Method, sep = " - "))
@@ -57,6 +60,7 @@ Table1SH %>% reactable(defaultPageSize = 16, columns = list(
   'Geno - AM/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - MR/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - CE/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US"))))
+
 
 Trait <- c("CorFolhaApical" = 4, "CorPeciolo" = 6, "CorFolhaDesenv" = 5,
            "CorNerv" = 4, "CorCortexCaule" = 4, "CorExternaCaule" = 7,
@@ -88,6 +92,10 @@ for(i in 1:nrow(DataMethod)){
   }
 }
 
+write.table(QualSHs, here::here("output", "Shannon-WeaverCCQualIndex.csv"), dec = ".",
+            sep = ",", quote = F, row.names = F)
+
+
 Table2SH <- matrix(QualSHs$SH, byrow = F, ncol = 13)
 rownames(Table2SH) <- unique(QualSHs$Trait)
 colnames(Table2SH) <- unique(paste(QualSHs$Data, QualSHs$Method, sep = " - "))
@@ -108,12 +116,6 @@ Table2SH %>% reactable(defaultPageSize = 15, columns = list(
   'Geno - AM/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - MR/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - CE/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US"))))
-
-SHs <- rbind(QuantSHs, QualSHs) %>% arrange(Data, Method)
-
-write.table(SHs, here::here("output", "Shannon-WeaverCCIndex.csv"), dec = ".",
-            sep = ",", quote = F, row.names = F)
-
 
 ```
 

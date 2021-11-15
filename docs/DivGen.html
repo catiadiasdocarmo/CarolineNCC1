@@ -474,16 +474,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeae04cde227ae3453fd93d99b2370e3865793e728targetblankae04cdea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/ae04cde227ae3453fd93d99b2370e3865793e728" target="_blank">ae04cde</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treed1a806dd27c80dead556149de4664416b0fe0284targetblankd1a806da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/d1a806dd27c80dead556149de4664416b0fe0284" target="_blank">d1a806d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeae04cde227ae3453fd93d99b2370e3865793e728targetblankae04cdea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treed1a806dd27c80dead556149de4664416b0fe0284targetblankd1a806da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/ae04cde227ae3453fd93d99b2370e3865793e728" target="_blank">ae04cde</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/d1a806dd27c80dead556149de4664416b0fe0284" target="_blank">d1a806d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -495,11 +495,11 @@ Ignored files:
     Ignored:    .Rproj.user/
 
 Untracked files:
-    Untracked:  output/Shannon-WeaverCCIndex.csv
+    Untracked:  output/Shannon-WeaverCCQualIndex.csv
+    Untracked:  output/Shannon-WeaverCCQuantIndex.csv
 
 Unstaged changes:
     Modified:   analysis/DivGen.Rmd
-    Modified:   code/Shannon-Weaver.R
 
 </code></pre>
 <p>
@@ -538,6 +538,74 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/b3b87905efd8eba8ff3c189eccea1b3ea8a30c4d/analysis/DivGen.Rmd" target="_blank">b3b8790</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-11-15
+</td>
+<td>
+Add of Shannon-Weaver estimation for each nuclear core collection and the EMBRAPA Cassava bank of germplasm
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/b3b87905efd8eba8ff3c189eccea1b3ea8a30c4d/docs/DivGen.html" target="_blank">b3b8790</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-11-15
+</td>
+<td>
+Add of Shannon-Weaver estimation for each nuclear core collection and the EMBRAPA Cassava bank of germplasm
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/5adacf77517303bcbe4380ed4916e8049e3d4e0c/analysis/DivGen.Rmd" target="_blank">5adacf7</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-11-15
+</td>
+<td>
+Add of Shannon-Weaver estimation for each nuclear core collection and the EMBRAPA Cassava bank of germplasm
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/5adacf77517303bcbe4380ed4916e8049e3d4e0c/docs/DivGen.html" target="_blank">5adacf7</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-11-15
+</td>
+<td>
+Add of Shannon-Weaver estimation for each nuclear core collection and the EMBRAPA Cassava bank of germplasm
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -620,6 +688,9 @@ for(i in 1:nrow(DataMethod)){
   }
 }
 
+write.table(QuantSHs, here::here(&quot;output&quot;, &quot;Shannon-WeaverCCQuantIndex.csv&quot;), dec = &quot;.&quot;,
+            sep = &quot;,&quot;, quote = F, row.names = F)
+
 Table1SH &lt;- matrix(QuantSHs$SH, byrow = F, ncol = 13)
 rownames(Table1SH) &lt;- unique(QuantSHs$Trait)
 colnames(Table1SH) &lt;- unique(paste(QuantSHs$Data, QuantSHs$Method, sep = &quot; - &quot;))
@@ -672,6 +743,10 @@ for(i in 1:nrow(DataMethod)){
   }
 }
 
+write.table(QualSHs, here::here(&quot;output&quot;, &quot;Shannon-WeaverCCQualIndex.csv&quot;), dec = &quot;.&quot;,
+            sep = &quot;,&quot;, quote = F, row.names = F)
+
+
 Table2SH &lt;- matrix(QualSHs$SH, byrow = F, ncol = 13)
 rownames(Table2SH) &lt;- unique(QualSHs$Trait)
 colnames(Table2SH) &lt;- unique(paste(QualSHs$Data, QualSHs$Method, sep = &quot; - &quot;))
@@ -694,10 +769,6 @@ Table2SH %&gt;% reactable(defaultPageSize = 15, columns = list(
   &#39;Geno - CE/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;))))</code></pre>
 <div id="htmlwidget-e55255c032fd6a098c86" class="reactable html-widget" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-e55255c032fd6a098c86">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["CorFolhaApical","CorPeciolo","CorFolhaDesenv","CorNerv","CorCortexCaule","CorExternaCaule","CorEpidCaule","CorRamosTerm","CorExternaRzs","CorCortexRzs","CorPolpaRzs","NLobulos","Pubescencia","FormaLobuloCentral","PosicaoPeciolo","Sinuosidade","ComprEstip","HabCresCaule","TipoPlan","MargEstip","HabRamif","NiveisRam","ProemCicatrizesFolhas","FormaRzs","TxtEpidermeRzs","PresPedunculoRzs","PosicaoRzs","Flowering","DestqPelicRz","DestqCortexRz","ConstrRzs","ComprFilotaxia","AnguloRamif","PorteMod","HCNMod"],"BAG":[0.874649381045863,0.893419497246725,0.331780070660149,0.584610457619389,0.588299342703687,0.910661776639711,0.982714417738007,0.791052235758965,0.716010023065295,0.843928274476804,0.434442599431325,0.450837985130597,0.819639455811512,0.426705927545497,0.560948290121146,0.972936639858713,0.586382202732086,-0,0.734566786379192,0.303839666646552,0.736575162363181,0.979104511583825,0.90947491911518,0.70345256810396,0.714640011077921,0.901296895890101,0.590093298458395,0.867452950552861,0.992476003943082,0.560129975279865,0.95174406891734,0.821514120039713,0.611593633916321,0.768684392501375,0.637086632701694],"Pheno - GW/CH":[0.930167621919419,0.905659150955942,0.428037874327956,0.717289558273341,0.714966238020661,0.967657805491652,0.985461951681098,0.875504291256632,0.847812355052181,0.898401384331701,0.564158388154794,0.580599386233374,0.890491640219491,0.615674779382579,0.729786562417762,0.96954501052924,0.741595829047245,-0,0.833147329940307,0.511190993860204,0.783381447269182,0.986174438275048,0.987511657226395,0.787753956994675,0.800257668337244,0.945165070248669,0.710454827516519,0.954977412503246,0.992329115369309,0.697521335905205,0.944123818357537,0.945046791555596,0.597141230325688,0.837156646616499,0.603986705011601],"Pheno - CH":[0.931182427161484,0.902061045328562,0.425182209803207,0.720048273117729,0.69057040100796,0.952270499008997,0.985144815627562,0.890372692197959,0.843761100603489,0.896385594438565,0.539272546766722,0.586007285523226,0.876168647392353,0.619618113401002,0.742060415992214,0.961236604722876,0.77417520924595,-0,0.808836291986755,0.510184376722198,0.747716685843195,0.981626094190129,0.987844413087681,0.789540306051391,0.811278124459133,0.930432796899466,0.695633639793958,0.938479867423036,0.984511609829399,0.665841749043992,0.951886492858439,0.901735039101639,0.615716268549345,0.854211224769791,0.605006486101202],"Pheno - GW/MLST":[0.891652419178126,0.904820741824233,0.397938227659294,0.698022048576042,0.707343690384112,0.962927458477552,0.986997886186965,0.871459021743989,0.824607982474616,0.882390304765755,0.539709725729234,0.527600226716176,0.88453099090332,0.517749311122165,0.682573104664739,0.94434538105009,0.741595829047245,-0,0.774356575311932,0.435869915362958,0.765926526302432,0.98477355227715,0.969296665365814,0.744423578990063,0.822927484449126,0.948531734527603,0.665104783273638,0.938479867423036,0.981425747450633,0.679948403479914,0.950553062627564,0.924087751338096,0.607243606253378,0.809842409536298,0.597553001508359],"Geno - MR/SH":[0.877393103622409,0.850512307073509,0.203633880074854,0.457348150684453,0.590983005427637,0.916253239831707,0.975716998503459,0.748375074309066,0.773136090450446,0.82914299494353,0.406360873058399,0.448942481030101,0.796817492324405,0.41681051509193,0.53764269115177,0.992601095893032,0.300719695671606,-0,0.704631404335716,0.145750730275264,0.741771454261246,0.958569672017323,0.85471572722622,0.700377997335091,0.85379394871692,0.893448940634308,0.553379047853694,0.891556999605832,0.999079718180582,0.648248291318233,0.986558921100101,0.818300824395916,0.584964629762219,0.718178401169849,0.623107516834833],"Geno - CE/SH":[0.861013315835696,0.873898155223072,0.181659815381459,0.460272876706902,0.5934618744783,0.918793142611814,0.979343888058768,0.738864104724914,0.749843063767768,0.829075192322645,0.407003332653638,0.454447252045746,0.791858352567484,0.443979783107151,0.563626742641201,0.99716352926154,0.275584409175154,-0,0.710718636781445,0.192752280034242,0.758183981110683,0.961845528505937,0.812583232196548,0.683584595270811,0.849605610107997,0.886736666721832,0.550821577489049,0.894980537192127,0.999479294454309,0.615369523030042,0.985250502834787,0.77207127635811,0.580087670040358,0.698592998198362,0.607509309285351],"Geno - MR/EH":[0.863256169654973,0.827242120203474,0.207823148780204,0.444475330432466,0.588049927611902,0.921894624560481,0.983102578102043,0.718307514766547,0.762723545162753,0.847617831061752,0.407334463785589,0.453678506208889,0.77655578544446,0.450597508736828,0.519176304958913,0.995978956518722,0.312903289977546,-0,0.688433674387576,0.161947506526385,0.729074726571632,0.962918511165839,0.861218514794928,0.722491228216593,0.855614923694979,0.909832681044343,0.56427369141076,0.914288440912736,0.999479294454309,0.644209934598629,0.977686871215776,0.791966918955396,0.579699801325343,0.716419068610282,0.627281947572834],"Geno - CE/EH":[0.857459026657252,0.845655859740528,0.220460610274715,0.464024098455853,0.598225064883228,0.917107607450862,0.986531119956779,0.72548333993848,0.774874882614392,0.828501357861042,0.411094280748647,0.466463789624158,0.75513621152246,0.43237791699454,0.529797742279386,0.991182513957207,0.312903289977546,-0,0.708190247371531,0.161947506526385,0.746165673729996,0.956585217481652,0.852148920789731,0.722102119521949,0.864826251396842,0.89625125108578,0.564174402756705,0.87726422045082,0.999897765793645,0.651795357733025,0.98500814319475,0.79335106773661,0.580847920065679,0.729082707531494,0.615643178339579],"Geno - MR/AC":[0.8386955191153,0.899731536931856,0.243558183977678,0.607904340301104,0.611169314449215,0.913371732220363,0.977798862458573,0.803808709476245,0.736787374631817,0.895060924826564,0.444127893716306,0.415878817233519,0.841507212720332,0.348073116571955,0.49350003198811,0.959504448920178,0.34806465832722,-0,0.705727356107172,0.249882292833185,0.75035947364643,0.971750962724485,0.867473433475035,0.615832391923315,0.704576712872594,0.8397891689377,0.555383901928866,0.865906595311841,0.999839301781049,0.564543650189887,0.969904069981427,0.751333473097455,0.583659613815128,0.702708855606425,0.601964920957262],"Geno - CE/AC":[0.870266644700018,0.894793505410491,0.237749393181163,0.550388630180243,0.592062512588314,0.927513480316551,0.985324762675489,0.76257128629585,0.735627010311266,0.839816738840446,0.417726665738088,0.49110995032786,0.841507212720332,0.375749557620798,0.533835169643269,0.975948610296314,0.381346926495242,-0,0.727387774749995,0.221780685985139,0.749874149256548,0.976537429004916,0.834648285181383,0.629978852483122,0.779755732946874,0.814393087551531,0.500076846313536,0.87353969793209,0.997903923934691,0.591292325130358,0.972155213134642,0.807449876419474,0.577920462665012,0.696644541412614,0.593531936194794],"Geno - AM/MLST":[0.892463793845713,0.861443109055574,0.216886421327928,0.517124698068902,0.584168756606415,0.918432563913128,0.985329955658368,0.786497715992396,0.753364925629818,0.838880859575284,0.481168432311385,0.496224310871297,0.897296125473617,0.454078311943719,0.564684316299847,0.962773005238754,0.300063932170002,-0,0.706733590390603,0.206995531717441,0.707920905115962,0.987930251311558,0.866893670556864,0.694088286220909,0.790415635701529,0.830349780472111,0.584204911001617,0.911215834289424,0.996026586212805,0.618490388110358,0.962618633208531,0.845234043909535,0.574157242398086,0.702494742533539,0.557685653867107],"Geno - MR/MLST":[0.871493867098362,0.889584962816285,0.211358848717313,0.563571745437897,0.559775417454415,0.90571422731573,0.973624410193925,0.74006935521448,0.744451824977332,0.819536713057877,0.46072538077851,0.435036774780958,0.907063581622761,0.386938318657945,0.538199811823594,0.973349786216423,0.336565071085958,-0,0.701026815055509,0.236255515332415,0.731947200970661,0.979683532357899,0.900902695447897,0.713084219677486,0.700967109936604,0.794057472299474,0.52514961946973,0.914288440912736,0.996026586212805,0.559598215360713,0.976163081836927,0.76693298998595,0.582635414772248,0.66217755609566,0.602904469729348],"Geno - CE/MLST":[0.871493867098362,0.889584962816285,0.211358848717313,0.563571745437897,0.559775417454415,0.90571422731573,0.973624410193925,0.74006935521448,0.744451824977332,0.819536713057877,0.46072538077851,0.435036774780958,0.907063581622761,0.386938318657945,0.538199811823594,0.973349786216423,0.336565071085958,-0,0.701026815055509,0.236255515332415,0.731947200970661,0.979683532357899,0.900902695447897,0.713084219677486,0.700967109936604,0.794057472299474,0.52514961946973,0.914288440912736,0.996026586212805,0.559598215360713,0.976163081836927,0.76693298998595,0.582635414772248,0.66217755609566,0.602904469729348]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"BAG","name":"BAG","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/CH","name":"Pheno - GW/CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - CH","name":"Pheno - CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/MLST","name":"Pheno - GW/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/SH","name":"Geno - MR/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/SH","name":"Geno - CE/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/EH","name":"Geno - MR/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/EH","name":"Geno - CE/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/AC","name":"Geno - MR/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/AC","name":"Geno - CE/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - AM/MLST","name":"Geno - AM/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/MLST","name":"Geno - MR/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/MLST","name":"Geno - CE/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":15,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"527f28014f623355abdbff7baba224b9","key":"527f28014f623355abdbff7baba224b9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-<pre class="r"><code>SHs &lt;- rbind(QuantSHs, QualSHs) %&gt;% arrange(Data, Method)
-
-write.table(SHs, here::here(&quot;output&quot;, &quot;Shannon-WeaverCCIndex.csv&quot;), dec = &quot;.&quot;,
-            sep = &quot;,&quot;, quote = F, row.names = F)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
