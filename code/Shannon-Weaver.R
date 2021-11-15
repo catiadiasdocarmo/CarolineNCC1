@@ -61,7 +61,7 @@ Please choose '1' to use mean and sd to delimited Classes or
 choose '2' to use the amplitude to delimited the classes")}}
 
 Shannon.Weaver.QL <- function(dados, nclass){
-  pr <- table(dados)
+  pr <- table(as.character(dados))
   pr <- pr[!is.na(pr)]
   pr2 <- pr/sum(pr)
   Agalinha <- -sum(pr2*log(pr2))/log(nclass)

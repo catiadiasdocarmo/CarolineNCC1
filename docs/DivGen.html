@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="LucianoRogerio" />
+
+<meta name="date" content="2021-11-08" />
+
+<title>Diversidade Genetica</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-17.0.0/react.min.js"></script>
+<script src="site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/reactable-binding-0.2.3/reactable.js"></script>
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">CarolineNCC1</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Diversidade Genetica</h1>
+<h4 class="author">LucianoRogerio</h4>
+<h4 class="date">2021-11-08</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-11-15
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>CarolineNCC1/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20210920code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20210920)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20210920code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20210920)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeae04cde227ae3453fd93d99b2370e3865793e728targetblankae04cdea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/ae04cde227ae3453fd93d99b2370e3865793e728" target="_blank">ae04cde</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeae04cde227ae3453fd93d99b2370e3865793e728targetblankae04cdea" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/ae04cde227ae3453fd93d99b2370e3865793e728" target="_blank">ae04cde</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  output/Shannon-WeaverCCIndex.csv
+
+Unstaged changes:
+    Modified:   analysis/DivGen.Rmd
+    Modified:   code/Shannon-Weaver.R
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/DivGen.Rmd</code>) and HTML (<code>docs/DivGen.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/3ecd450ab90c10bb5493fef3f62129d07b526087/analysis/DivGen.Rmd" target="_blank">3ecd450</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-11-08
+</td>
+<td>
+Final graphs for Descritive analysis
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/a5ffd578a0cbf6e6b46a3bb836b5854a8497c6de/analysis/DivGen.Rmd" target="_blank">a5ffd57</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-11-08
+</td>
+<td>
+Final graphs for Descritive analysis
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<pre class="r"><code>library(tidyverse); library(reactable)</code></pre>
+<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>✓ ggplot2 3.3.5     ✓ purrr   0.3.4
+✓ tibble  3.1.6     ✓ dplyr   1.0.7
+✓ tidyr   1.1.4     ✓ stringr 1.4.0
+✓ readr   2.1.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>source(here::here(&quot;code&quot;, &quot;Shannon-Weaver.R&quot;))
+Alldataset &lt;- readRDS(here::here(&quot;output&quot;, &quot;AllDataCCCaroline.RDS&quot;))
+
+QualityTrait &lt;- colnames(Alldataset)[2:36]
+
+
+AlldataSetQuant &lt;- Alldataset %&gt;% select(-QualityTrait)</code></pre>
+<pre><code>Note: Using an external vector in selections is ambiguous.
+ℹ Use `all_of(QualityTrait)` instead of `QualityTrait` to silence this message.
+ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+This message is displayed once per session.</code></pre>
+<pre class="r"><code>AlldataSetQuali &lt;- Alldataset %&gt;% select(Acessos, QualityTrait, Data, Method)
+
+QuantTrait &lt;- colnames(AlldataSetQuant)[2:17]
+DataMethod &lt;- unique(data.frame(Data = AlldataSetQuant$Data,
+                                Method = AlldataSetQuant$Method))
+
+QuantSHs &lt;- NULL
+for(i in 1:nrow(DataMethod)){
+  for(trait in QuantTrait){
+    QuantSH &lt;- data.frame(Data = DataMethod$Data[i],
+                          Method = DataMethod$Method[i],
+                          Trait = trait,
+                          SH = Shannon.Weaver.QT(AlldataSetQuant[(AlldataSetQuant$Data%in%DataMethod$Data[i] &amp;
+                                                                    AlldataSetQuant$Method%in%DataMethod$Method[i]),trait],
+                                                 formula = 2))
+    QuantSHs &lt;- rbind(QuantSHs, QuantSH)
+  }
+}
+
+Table1SH &lt;- matrix(QuantSHs$SH, byrow = F, ncol = 13)
+rownames(Table1SH) &lt;- unique(QuantSHs$Trait)
+colnames(Table1SH) &lt;- unique(paste(QuantSHs$Data, QuantSHs$Method, sep = &quot; - &quot;))
+colnames(Table1SH)[1] &lt;- &quot;BAG&quot;
+
+## Table 1 - Shannon-Weaver indexes for Cassava quantitative traits of the Bank of germplasm and 12 nuclear core collections.
+Table1SH %&gt;% reactable(defaultPageSize = 16, columns = list(
+  BAG = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Pheno - GW/CH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Pheno - CH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Pheno - GW/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/SH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/SH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/EH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/EH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/AC&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/AC&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - AM/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;))))</code></pre>
+<div id="htmlwidget-d8cf4676368b49e0f32b" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d8cf4676368b49e0f32b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["RetFoliar","ComprLobulo","LargLobulo","RelComprLar","ComprPeciolo","EspEntreCasca","ComprMedRzs","DiamMedRzs","NRPl","AltPl","PPA","FRY","FRYC","FRYNC","IndColh","DMCsg"],"BAG":[0.466444027818092,0.790509535009375,0.817605818373428,0.505233331839662,0.693703215621474,0.0188128674784199,0.492184761694434,0.62409103166667,0.642146725499504,0.637821281986609,0.695313600640349,0.666914752208341,0.299549896543822,0.450578167772166,0.664525140305016,0.69541993656207],"Pheno - GW/CH":[0.46721680499695,0.853731161081578,0.91366812014824,0.644444621822134,0.77955659551092,0.0385920075989587,0.677952181470234,0.718517742302053,0.708276802391989,0.731390992006081,0.799723462667591,0.734887666814377,0.346751485883052,0.487558746966165,0.749839558352619,0.783497720598183],"Pheno - CH":[0.637794812183606,0.830838056447484,0.909029128850821,0.58179748225468,0.790271996590016,0.034384873143908,0.662580168449545,0.69152332967945,0.681260283332875,0.703703819243049,0.761440400552681,0.730590415367005,0.352700857003375,0.488821091047892,0.717415201596361,0.794615967090108],"Pheno - GW/MLST":[0.601639311498229,0.882902134116442,0.892120730292672,0.510143907185938,0.863516347548117,0.0250727649894403,0.619280695822489,0.67736015973516,0.670323562998501,0.696287511810903,0.750907295726225,0.703562940303107,0.307254891493895,0.619162699217446,0.827327415256317,0.844798520672111],"Geno - MR/SH":[0.463626477320682,0.855026088150591,0.835432930344894,0.647234469430626,0.904545535054658,0.778389116441683,0.739229326956083,0.657459482496544,0.606108802380338,0.684216357326213,0.784446606536106,0.846247761500901,0.835101588912655,0.732313876657342,0.852361476904823,0.788707343758581],"Geno - CE/SH":[0.456765362111258,0.823267571934894,0.841657964270235,0.432474893423315,0.775373504408369,0.0336802691987071,0.729761576135652,0.613423407663441,0.584650486058249,0.84675820342872,0.817578274322201,0.827441668878728,0.825010873735873,0.578462425471007,0.82923432551847,0.773321529244302],"Geno - MR/EH":[0.444540755528538,0.816156823128071,0.852283600618144,0.507052016570218,0.768214325102335,0.0241784669956082,0.798196978216528,0.644796737791763,0.593490634690123,0.830850072381599,0.812012194253551,0.844345168374866,0.822485617020372,0.7481014979205,0.83525249106633,0.810303105148223],"Geno - CE/EH":[0.444673896098976,0.815021042731969,0.879748829870214,0.643299029908063,0.800775340036669,0.0242448280298119,0.721250994450267,0.651510624879926,0.594095370970296,0.845283711090983,0.818132739902477,0.832108281374703,0.833500414070103,0.78101645145653,0.835695039822367,0.780333861350853],"Geno - MR/AC":[0.724251402107229,0.858669293531101,0.855086496592411,0.60518556192479,0.852469850467046,0.036160094886108,0.679551498572854,0.700180489691954,0.636019117423702,0.634293886560298,0.728077472489958,0.87320501411991,0.837698237044448,0.776637831867212,0.795824739749427,0.726246120942042],"Geno - CE/AC":[0.631983311872707,0.803709160166756,0.87229816854469,0.608058692868984,0.782631900905064,0.0243787287284032,0.668537177186505,0.801315567689476,0.730615497472702,0.711478209048487,0.801387425607223,0.816686110171845,0.835618770617655,0.569333661479756,0.772517570381189,0.792255991079841],"Geno - AM/MLST":[0.609249576081954,0.793246980155372,0.851055580051357,0.525445590610693,0.780619742207273,0.0243115807513237,0.672957344817211,0.74292380591989,0.781964496298276,0.721668644303949,0.816550491828762,0.830947408614962,0.80347062167084,0.780795636012925,0.800581116945985,0.750768081882073],"Geno - MR/MLST":[0.493185078075367,0.849171398327936,0.86290902394242,0.561396393005193,0.823989178798141,0.0237883317862153,0.528987861064757,0.700608163225524,0.765722661078215,0.791568288419094,0.851906750989148,0.909998094923555,0.869424312588344,0.741090201197561,0.791956828617698,0.734799477667714],"Geno - CE/MLST":[0.493185078075367,0.849171398327936,0.86290902394242,0.561396393005193,0.823989178798141,0.0237883317862153,0.528987861064757,0.700608163225524,0.765722661078215,0.791568288419094,0.851906750989148,0.909998094923555,0.869424312588344,0.741090201197561,0.791956828617698,0.734799477667714]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"BAG","name":"BAG","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/CH","name":"Pheno - GW/CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - CH","name":"Pheno - CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/MLST","name":"Pheno - GW/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/SH","name":"Geno - MR/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/SH","name":"Geno - CE/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/EH","name":"Geno - MR/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/EH","name":"Geno - CE/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/AC","name":"Geno - MR/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/AC","name":"Geno - CE/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - AM/MLST","name":"Geno - AM/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/MLST","name":"Geno - MR/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/MLST","name":"Geno - CE/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":16,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"22c6c4b63b163c86ead4e2b6efa4c25a","key":"22c6c4b63b163c86ead4e2b6efa4c25a"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>Trait &lt;- c(&quot;CorFolhaApical&quot; = 4, &quot;CorPeciolo&quot; = 6, &quot;CorFolhaDesenv&quot; = 5,
+           &quot;CorNerv&quot; = 4, &quot;CorCortexCaule&quot; = 4, &quot;CorExternaCaule&quot; = 7,
+           &quot;CorEpidCaule&quot; = 4, &quot;CorRamosTerm&quot; = 3, &quot;CorExternaRzs&quot; = 4,
+           &quot;CorCortexRzs&quot; = 4, &quot;CorPolpaRzs&quot; = 5, &quot;NLobulos&quot; = 5,
+           &quot;Pubescencia&quot; = 2, &quot;FormaLobuloCentral&quot; = 9, &quot;PosicaoPeciolo&quot; = 4,
+           &quot;Sinuosidade&quot; = 2, &quot;ComprEstip&quot; = 2, &quot;HabCresCaule&quot; = 2,
+           &quot;TipoPlan&quot; = 4, &quot;MargEstip&quot; = 2, &quot;HabRamif&quot; = 4, &quot;NiveisRam&quot; = 4, 
+           &quot;ProemCicatrizesFolhas&quot; = 2, &quot;FormaRzs&quot; = 4, &quot;TxtEpidermeRzs&quot; = 2,
+           &quot;PresPedunculoRzs&quot; = 3, &quot;PosicaoRzs&quot; = 3, &quot;Flowering&quot; = 2,
+           &quot;DestqPelicRz&quot; = 2, &quot;DestqCortexRz&quot; = 3, &quot;ConstrRzs&quot; = 3,
+           &quot;ComprFilotaxia&quot; = 3, &quot;AnguloRamif&quot; = 22, &quot;PorteMod&quot; = 5, 
+           &quot;HCNMod&quot; = 9)
+
+QualTrait &lt;- data.frame(Trait = names(Trait),
+                        NClas = Trait,
+                        row.names = NULL)
+
+QualSHs &lt;- NULL
+for(i in 1:nrow(DataMethod)){
+  for(trait in QualTrait$Trait) {
+    QualSH &lt;- data.frame(Data = DataMethod$Data[i],
+                         Method = DataMethod$Method[i],
+                         Trait = trait,
+                         SH = Shannon.Weaver.QL(as.character(AlldataSetQuali[(AlldataSetQuali$Data%in%DataMethod$Data[i] &amp;
+                                                                    AlldataSetQuali$Method%in%DataMethod$Method[i]),trait]),
+                                                nclass = QualTrait$NClas[QualTrait$Trait%in%trait]))
+    QualSHs &lt;- rbind(QualSHs, QualSH)
+  }
+}
+
+Table2SH &lt;- matrix(QualSHs$SH, byrow = F, ncol = 13)
+rownames(Table2SH) &lt;- unique(QualSHs$Trait)
+colnames(Table2SH) &lt;- unique(paste(QualSHs$Data, QualSHs$Method, sep = &quot; - &quot;))
+colnames(Table2SH)[1] &lt;- &quot;BAG&quot;
+
+## Table 2 - Shannon-Weaver indexes for Cassava quality traits of the Bank of germplasm and 12 nuclear core collections.
+Table2SH %&gt;% reactable(defaultPageSize = 15, columns = list(
+  BAG = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Pheno - GW/CH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Pheno - CH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Pheno - GW/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/SH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/SH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/EH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/EH&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/AC&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/AC&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - AM/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - MR/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;)),
+  &#39;Geno - CE/MLST&#39; = colDef(format = colFormat(digits = 3, locales = &quot;en-US&quot;))))</code></pre>
+<div id="htmlwidget-e55255c032fd6a098c86" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e55255c032fd6a098c86">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["CorFolhaApical","CorPeciolo","CorFolhaDesenv","CorNerv","CorCortexCaule","CorExternaCaule","CorEpidCaule","CorRamosTerm","CorExternaRzs","CorCortexRzs","CorPolpaRzs","NLobulos","Pubescencia","FormaLobuloCentral","PosicaoPeciolo","Sinuosidade","ComprEstip","HabCresCaule","TipoPlan","MargEstip","HabRamif","NiveisRam","ProemCicatrizesFolhas","FormaRzs","TxtEpidermeRzs","PresPedunculoRzs","PosicaoRzs","Flowering","DestqPelicRz","DestqCortexRz","ConstrRzs","ComprFilotaxia","AnguloRamif","PorteMod","HCNMod"],"BAG":[0.874649381045863,0.893419497246725,0.331780070660149,0.584610457619389,0.588299342703687,0.910661776639711,0.982714417738007,0.791052235758965,0.716010023065295,0.843928274476804,0.434442599431325,0.450837985130597,0.819639455811512,0.426705927545497,0.560948290121146,0.972936639858713,0.586382202732086,-0,0.734566786379192,0.303839666646552,0.736575162363181,0.979104511583825,0.90947491911518,0.70345256810396,0.714640011077921,0.901296895890101,0.590093298458395,0.867452950552861,0.992476003943082,0.560129975279865,0.95174406891734,0.821514120039713,0.611593633916321,0.768684392501375,0.637086632701694],"Pheno - GW/CH":[0.930167621919419,0.905659150955942,0.428037874327956,0.717289558273341,0.714966238020661,0.967657805491652,0.985461951681098,0.875504291256632,0.847812355052181,0.898401384331701,0.564158388154794,0.580599386233374,0.890491640219491,0.615674779382579,0.729786562417762,0.96954501052924,0.741595829047245,-0,0.833147329940307,0.511190993860204,0.783381447269182,0.986174438275048,0.987511657226395,0.787753956994675,0.800257668337244,0.945165070248669,0.710454827516519,0.954977412503246,0.992329115369309,0.697521335905205,0.944123818357537,0.945046791555596,0.597141230325688,0.837156646616499,0.603986705011601],"Pheno - CH":[0.931182427161484,0.902061045328562,0.425182209803207,0.720048273117729,0.69057040100796,0.952270499008997,0.985144815627562,0.890372692197959,0.843761100603489,0.896385594438565,0.539272546766722,0.586007285523226,0.876168647392353,0.619618113401002,0.742060415992214,0.961236604722876,0.77417520924595,-0,0.808836291986755,0.510184376722198,0.747716685843195,0.981626094190129,0.987844413087681,0.789540306051391,0.811278124459133,0.930432796899466,0.695633639793958,0.938479867423036,0.984511609829399,0.665841749043992,0.951886492858439,0.901735039101639,0.615716268549345,0.854211224769791,0.605006486101202],"Pheno - GW/MLST":[0.891652419178126,0.904820741824233,0.397938227659294,0.698022048576042,0.707343690384112,0.962927458477552,0.986997886186965,0.871459021743989,0.824607982474616,0.882390304765755,0.539709725729234,0.527600226716176,0.88453099090332,0.517749311122165,0.682573104664739,0.94434538105009,0.741595829047245,-0,0.774356575311932,0.435869915362958,0.765926526302432,0.98477355227715,0.969296665365814,0.744423578990063,0.822927484449126,0.948531734527603,0.665104783273638,0.938479867423036,0.981425747450633,0.679948403479914,0.950553062627564,0.924087751338096,0.607243606253378,0.809842409536298,0.597553001508359],"Geno - MR/SH":[0.877393103622409,0.850512307073509,0.203633880074854,0.457348150684453,0.590983005427637,0.916253239831707,0.975716998503459,0.748375074309066,0.773136090450446,0.82914299494353,0.406360873058399,0.448942481030101,0.796817492324405,0.41681051509193,0.53764269115177,0.992601095893032,0.300719695671606,-0,0.704631404335716,0.145750730275264,0.741771454261246,0.958569672017323,0.85471572722622,0.700377997335091,0.85379394871692,0.893448940634308,0.553379047853694,0.891556999605832,0.999079718180582,0.648248291318233,0.986558921100101,0.818300824395916,0.584964629762219,0.718178401169849,0.623107516834833],"Geno - CE/SH":[0.861013315835696,0.873898155223072,0.181659815381459,0.460272876706902,0.5934618744783,0.918793142611814,0.979343888058768,0.738864104724914,0.749843063767768,0.829075192322645,0.407003332653638,0.454447252045746,0.791858352567484,0.443979783107151,0.563626742641201,0.99716352926154,0.275584409175154,-0,0.710718636781445,0.192752280034242,0.758183981110683,0.961845528505937,0.812583232196548,0.683584595270811,0.849605610107997,0.886736666721832,0.550821577489049,0.894980537192127,0.999479294454309,0.615369523030042,0.985250502834787,0.77207127635811,0.580087670040358,0.698592998198362,0.607509309285351],"Geno - MR/EH":[0.863256169654973,0.827242120203474,0.207823148780204,0.444475330432466,0.588049927611902,0.921894624560481,0.983102578102043,0.718307514766547,0.762723545162753,0.847617831061752,0.407334463785589,0.453678506208889,0.77655578544446,0.450597508736828,0.519176304958913,0.995978956518722,0.312903289977546,-0,0.688433674387576,0.161947506526385,0.729074726571632,0.962918511165839,0.861218514794928,0.722491228216593,0.855614923694979,0.909832681044343,0.56427369141076,0.914288440912736,0.999479294454309,0.644209934598629,0.977686871215776,0.791966918955396,0.579699801325343,0.716419068610282,0.627281947572834],"Geno - CE/EH":[0.857459026657252,0.845655859740528,0.220460610274715,0.464024098455853,0.598225064883228,0.917107607450862,0.986531119956779,0.72548333993848,0.774874882614392,0.828501357861042,0.411094280748647,0.466463789624158,0.75513621152246,0.43237791699454,0.529797742279386,0.991182513957207,0.312903289977546,-0,0.708190247371531,0.161947506526385,0.746165673729996,0.956585217481652,0.852148920789731,0.722102119521949,0.864826251396842,0.89625125108578,0.564174402756705,0.87726422045082,0.999897765793645,0.651795357733025,0.98500814319475,0.79335106773661,0.580847920065679,0.729082707531494,0.615643178339579],"Geno - MR/AC":[0.8386955191153,0.899731536931856,0.243558183977678,0.607904340301104,0.611169314449215,0.913371732220363,0.977798862458573,0.803808709476245,0.736787374631817,0.895060924826564,0.444127893716306,0.415878817233519,0.841507212720332,0.348073116571955,0.49350003198811,0.959504448920178,0.34806465832722,-0,0.705727356107172,0.249882292833185,0.75035947364643,0.971750962724485,0.867473433475035,0.615832391923315,0.704576712872594,0.8397891689377,0.555383901928866,0.865906595311841,0.999839301781049,0.564543650189887,0.969904069981427,0.751333473097455,0.583659613815128,0.702708855606425,0.601964920957262],"Geno - CE/AC":[0.870266644700018,0.894793505410491,0.237749393181163,0.550388630180243,0.592062512588314,0.927513480316551,0.985324762675489,0.76257128629585,0.735627010311266,0.839816738840446,0.417726665738088,0.49110995032786,0.841507212720332,0.375749557620798,0.533835169643269,0.975948610296314,0.381346926495242,-0,0.727387774749995,0.221780685985139,0.749874149256548,0.976537429004916,0.834648285181383,0.629978852483122,0.779755732946874,0.814393087551531,0.500076846313536,0.87353969793209,0.997903923934691,0.591292325130358,0.972155213134642,0.807449876419474,0.577920462665012,0.696644541412614,0.593531936194794],"Geno - AM/MLST":[0.892463793845713,0.861443109055574,0.216886421327928,0.517124698068902,0.584168756606415,0.918432563913128,0.985329955658368,0.786497715992396,0.753364925629818,0.838880859575284,0.481168432311385,0.496224310871297,0.897296125473617,0.454078311943719,0.564684316299847,0.962773005238754,0.300063932170002,-0,0.706733590390603,0.206995531717441,0.707920905115962,0.987930251311558,0.866893670556864,0.694088286220909,0.790415635701529,0.830349780472111,0.584204911001617,0.911215834289424,0.996026586212805,0.618490388110358,0.962618633208531,0.845234043909535,0.574157242398086,0.702494742533539,0.557685653867107],"Geno - MR/MLST":[0.871493867098362,0.889584962816285,0.211358848717313,0.563571745437897,0.559775417454415,0.90571422731573,0.973624410193925,0.74006935521448,0.744451824977332,0.819536713057877,0.46072538077851,0.435036774780958,0.907063581622761,0.386938318657945,0.538199811823594,0.973349786216423,0.336565071085958,-0,0.701026815055509,0.236255515332415,0.731947200970661,0.979683532357899,0.900902695447897,0.713084219677486,0.700967109936604,0.794057472299474,0.52514961946973,0.914288440912736,0.996026586212805,0.559598215360713,0.976163081836927,0.76693298998595,0.582635414772248,0.66217755609566,0.602904469729348],"Geno - CE/MLST":[0.871493867098362,0.889584962816285,0.211358848717313,0.563571745437897,0.559775417454415,0.90571422731573,0.973624410193925,0.74006935521448,0.744451824977332,0.819536713057877,0.46072538077851,0.435036774780958,0.907063581622761,0.386938318657945,0.538199811823594,0.973349786216423,0.336565071085958,-0,0.701026815055509,0.236255515332415,0.731947200970661,0.979683532357899,0.900902695447897,0.713084219677486,0.700967109936604,0.794057472299474,0.52514961946973,0.914288440912736,0.996026586212805,0.559598215360713,0.976163081836927,0.76693298998595,0.582635414772248,0.66217755609566,0.602904469729348]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"BAG","name":"BAG","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/CH","name":"Pheno - GW/CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - CH","name":"Pheno - CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/MLST","name":"Pheno - GW/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/SH","name":"Geno - MR/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/SH","name":"Geno - CE/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/EH","name":"Geno - MR/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/EH","name":"Geno - CE/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/AC","name":"Geno - MR/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/AC","name":"Geno - CE/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - AM/MLST","name":"Geno - AM/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/MLST","name":"Geno - MR/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/MLST","name":"Geno - CE/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":15,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"527f28014f623355abdbff7baba224b9","key":"527f28014f623355abdbff7baba224b9"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>SHs &lt;- rbind(QuantSHs, QualSHs) %&gt;% arrange(Data, Method)
+
+write.table(SHs, here::here(&quot;output&quot;, &quot;Shannon-WeaverCCIndex.csv&quot;), dec = &quot;.&quot;,
+            sep = &quot;,&quot;, quote = F, row.names = F)</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.1 (2021-08-10)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Big Sur 11.6.1
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] reactable_0.2.3 forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7    
+ [5] purrr_0.3.4     readr_2.1.0     tidyr_1.1.4     tibble_3.1.6   
+ [9] ggplot2_3.3.5   tidyverse_1.3.1
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.7        here_1.0.1        lubridate_1.8.0   assertthat_0.2.1 
+ [5] rprojroot_2.0.2   digest_0.6.28     utf8_1.2.2        reactR_0.4.4     
+ [9] R6_2.5.1          cellranger_1.1.0  backports_1.3.0   reprex_2.0.1     
+[13] evaluate_0.14     httr_1.4.2        pillar_1.6.4      rlang_0.4.12     
+[17] readxl_1.3.1      rstudioapi_0.13   whisker_0.4       jquerylib_0.1.4  
+[21] rmarkdown_2.11    htmlwidgets_1.5.4 munsell_0.5.0     broom_0.7.10     
+[25] compiler_4.1.1    httpuv_1.6.3      modelr_0.1.8      xfun_0.28        
+[29] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.1  workflowr_1.6.2  
+[33] fansi_0.5.0       crayon_1.4.2      tzdb_0.2.0        dbplyr_2.1.1     
+[37] withr_2.4.2       later_1.3.0       grid_4.1.1        jsonlite_1.7.2   
+[41] gtable_0.3.0      lifecycle_1.0.1   DBI_1.1.1         git2r_0.28.0     
+[45] magrittr_2.0.1    scales_1.1.1      cli_3.1.0         stringi_1.7.5    
+[49] fs_1.5.0          promises_1.2.0.1  xml2_1.3.2        bslib_0.3.1      
+[53] ellipsis_0.3.2    generics_0.1.1    vctrs_0.3.8       tools_4.1.1      
+[57] glue_1.5.0        crosstalk_1.2.0   hms_1.1.1         fastmap_1.1.0    
+[61] yaml_2.2.1        colorspace_2.0-2  rvest_1.0.2       knitr_1.36       
+[65] haven_2.4.3       sass_0.4.0       </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
