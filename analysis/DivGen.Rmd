@@ -10,7 +10,7 @@ editor_options:
 ## Introduction
 
 ```{r}
-library(tidyverse)
+library(tidyverse); library(reactable)
 source(here::here("code", "Shannon-Weaver.R"))
 Alldataset <- readRDS(here::here("output", "AllDataCCCaroline.RDS"))
 
@@ -20,8 +20,43 @@ QualityTrait <- colnames(Alldataset)[2:36]
 AlldataSetQuant <- Alldataset %>% select(-QualityTrait)
 AlldataSetQuali <- Alldataset %>% select(Acessos, QualityTrait, Data, Method)
 
-AlldataSetQuant %>% filter(Data=="BAG", !is.na(AltPl)) %>% select(AltPl) -> teste
-  Shannon.Weaver.QT(teste$AltPl, formula = 2)
+QuantTrait <- colnames(AlldataSetQuant)[2:17]
+DataMethod <- unique(data.frame(Data = AlldataSetQuant$Data,
+                                Method = AlldataSetQuant$Method))
+
+QuantSHs <- NULL
+for(i in 1:nrow(DataMethod)){
+  for(trait in QuantTrait){
+    QuantSH <- data.frame(Data = DataMethod$Data[i],
+                          Method = DataMethod$Method[i],
+                          Trait = trait,
+                          SH = Shannon.Weaver.QT(AlldataSetQuant[(AlldataSetQuant$Data%in%DataMethod$Data[i] &
+                                                                    AlldataSetQuant$Method%in%DataMethod$Method[i]),trait],
+                                                 formula = 2))
+    QuantSHs <- rbind(QuantSHs, QuantSH)
+  }
+}
+
+Table1SH <- matrix(QuantSHs$SH, byrow = F, ncol = 13)
+rownames(Table1SH) <- unique(QuantSHs$Trait)
+colnames(Table1SH) <- unique(paste(QuantSHs$Data, QuantSHs$Method, sep = " - "))
+colnames(Table1SH)[1] <- "BAG"
+
+## Table 1 - Shannon-Weaver indexes for Cassava quantitative traits of the Bank of germplasm and 12 nuclear core collections.
+Table1SH %>% reactable(defaultPageSize = 16, columns = list(
+  BAG = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Pheno - GW/CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Pheno - CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Pheno - GW/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/SH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/SH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/EH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/EH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/AC' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/AC' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - AM/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US"))))
 
 Trait <- c("CorFolhaApical" = 4, "CorPeciolo" = 6, "CorFolhaDesenv" = 5,
            "CorNerv" = 4, "CorCortexCaule" = 4, "CorExternaCaule" = 7,
@@ -36,11 +71,49 @@ Trait <- c("CorFolhaApical" = 4, "CorPeciolo" = 6, "CorFolhaDesenv" = 5,
            "ComprFilotaxia" = 3, "AnguloRamif" = 22, "PorteMod" = 5, 
            "HCNMod" = 9)
 
-AlldataSetQuali %>% select(-Acessos) %>% group_by(Data, Method) %>% list() %>%
-  apply(FUN = Shannon.Weaver.QL, nclass = Trait, 2) %>%
-  diag() %>% as.data.frame -> Res
+QualTrait <- data.frame(Trait = names(Trait),
+                        NClas = Trait,
+                        row.names = NULL)
 
-dados <- AlldataSetQuali %>% filter(Data=="BAG") %>% select(-c(Acessos, Data, Method))
+QualSHs <- NULL
+for(i in 1:nrow(DataMethod)){
+  for(trait in QualTrait$Trait) {
+    QualSH <- data.frame(Data = DataMethod$Data[i],
+                         Method = DataMethod$Method[i],
+                         Trait = trait,
+                         SH = Shannon.Weaver.QL(as.character(AlldataSetQuali[(AlldataSetQuali$Data%in%DataMethod$Data[i] &
+                                                                    AlldataSetQuali$Method%in%DataMethod$Method[i]),trait]),
+                                                nclass = QualTrait$NClas[QualTrait$Trait%in%trait]))
+    QualSHs <- rbind(QualSHs, QualSH)
+  }
+}
+
+Table2SH <- matrix(QualSHs$SH, byrow = F, ncol = 13)
+rownames(Table2SH) <- unique(QualSHs$Trait)
+colnames(Table2SH) <- unique(paste(QualSHs$Data, QualSHs$Method, sep = " - "))
+colnames(Table2SH)[1] <- "BAG"
+
+## Table 2 - Shannon-Weaver indexes for Cassava quality traits of the Bank of germplasm and 12 nuclear core collections.
+Table2SH %>% reactable(defaultPageSize = 15, columns = list(
+  BAG = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Pheno - GW/CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Pheno - CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Pheno - GW/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/SH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/SH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/EH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/EH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/AC' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/AC' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - AM/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - MR/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  'Geno - CE/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US"))))
+
+SHs <- rbind(QuantSHs, QualSHs) %>% arrange(Data, Method)
+
+write.table(SHs, here::here("output", "Shannon-WeaverCCIndex.csv"), dec = ".",
+            sep = ",", quote = F, row.names = F)
+
 
 ```
 
