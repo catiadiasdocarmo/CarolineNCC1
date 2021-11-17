@@ -281,7 +281,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -290,7 +290,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -299,10 +299,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-10-25
+<strong>Last updated:</strong> 2021-11-17
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>CarolineNCC1/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -318,42 +318,38 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree15bf4bb7ca823753a72510ab3bb68eaaaa8bcb28targetblank15bf4bba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/15bf4bb7ca823753a72510ab3bb68eaaaa8bcb28" target="_blank">15bf4bb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeff3f62682ad894499cf3a7c74f2d3057f60c536dtargetblankff3f626a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/ff3f62682ad894499cf3a7c74f2d3057f60c536d" target="_blank">ff3f626</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree15bf4bb7ca823753a72510ab3bb68eaaaa8bcb28targetblank15bf4bba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeff3f62682ad894499cf3a7c74f2d3057f60c536dtargetblankff3f626a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/15bf4bb7ca823753a72510ab3bb68eaaaa8bcb28" target="_blank">15bf4bb</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/ff3f62682ad894499cf3a7c74f2d3057f60c536d" target="_blank">ff3f626</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    output/MatrizMDCaroline.dis
-    Ignored:    output/MatrizMDCaroline.phy
-    Ignored:    output/MatrizMDCaroline_EL-998.arb
-
-Unstaged changes:
-    Modified:   analysis/index.Rmd
+    Ignored:    output/.DS_Store
 
 </code></pre>
 <p>
@@ -392,6 +388,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/1c732f95eb312465f683230f69c49a1af3a7e514/analysis/index.Rmd" target="_blank">1c732f9</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-11-17
+</td>
+<td>
+Atualização da Index page
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/37c20d24ffbc9001b3f69a45c21e5420fa5af373/analysis/index.Rmd" target="_blank">37c20d2</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-10-25
+</td>
+<td>
+Fix html links
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/37c20d24ffbc9001b3f69a45c21e5420fa5af373/docs/index.html" target="_blank">37c20d2</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-10-25
+</td>
+<td>
+Fix html links
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -537,15 +584,17 @@ Start workflowr project.
 </div>
 <div id="introdução" class="section level1">
 <h1><strong>Introdução</strong></h1>
+<p>O termo coleção nuclear é utilizado para designar um conjunto de acessos, menor do que o número total que compõe um determinado Banco Ativo de Germoplasma (BAG), que representa a máxima diversidade genética potencial, com a menor redundância possível (FRANKEL, 1984). Devido ao seu tamanho reduzido, a coleção nuclear possibilita o estudo intensivo e a utilização de forma eficiente do germoplasma, formando uma base completa de informações (CORDEIRO, ABADIE, 2007). Ressaltando que as coleções nucleares devem ser menores que a coleção principal, entre as proporções de 5% a 20%, representando até 90% da diversidade de toda coleção (ARAUJO, 2008).</p>
 </div>
 <div id="objetivos" class="section level1">
 <h1><strong>Objetivos</strong></h1>
-<p>O objetivo deste trabalho é criar coleções nucleares do banco de germoplasma da EMBRAPA Mandioca, para reduzir os custos com conservação de</p>
+<p>O objetivo deste trabalho é criar uma coleção nuclear, que represente a máxima diversidade da coleção completa, eliminando acessos redundantes, e aumentando a acessibilidade e o uso eficiente dos recursos genéticos do banco ativo de germoplasma de mandioca da EMBRAPA.</p>
 </div>
 <div id="material-e-métodos" class="section level1">
 <h1><strong>Material e métodos</strong></h1>
 <div id="dados-fenotípicos---seleção" class="section level2">
 <h2><a href="PhenoData.html">Dados Fenotípicos - Seleção</a></h2>
+<p>Primeiro iremos realizar uma seleção prévia das características quanto a variabilidade genética</p>
 </div>
 <div id="dados-moleculares---seleção" class="section level2">
 <h2><a href="GenoData.html">Dados Moleculares - Seleção</a></h2>
