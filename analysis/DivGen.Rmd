@@ -10,28 +10,32 @@ editor_options:
 ## Introduction
 
 ```{r}
-library(tidyverse); library(reactable)
+suppressMessages(library(tidyverse)); suppressMessages(library(data.table)); suppressMessages(library(reactable))
 source(here::here("code", "Shannon-Weaver.R"))
 Alldataset <- readRDS(here::here("output", "AllDataCCCaroline.RDS"))
 
 QualityTrait <- colnames(Alldataset)[2:36]
 
 
-AlldataSetQuant <- Alldataset %>% select(-QualityTrait)
-AlldataSetQuali <- Alldataset %>% select(Acessos, QualityTrait, Data, Method)
+AlldataSetQuant <- Alldataset %>% select(-all_of(QualityTrait))
+AlldataSetQuali <- Alldataset %>% select(Acessos, QualityTrait, Data, Method) %>% suppressMessages()
 
-QuantTrait <- colnames(AlldataSetQuant)[2:17]
+QuantTrait <- data.frame(Trait = colnames(AlldataSetQuant)[2:17],
+                         Min = apply(AlldataSetQuant[2:17], FUN = min, na.rm = TRUE, MARGIN = 2),
+                         Max = apply(AlldataSetQuant[2:17], FUN = max, na.rm = TRUE, MARGIN = 2))
 DataMethod <- unique(data.frame(Data = AlldataSetQuant$Data,
                                 Method = AlldataSetQuant$Method))
 
 QuantSHs <- NULL
 for(i in 1:nrow(DataMethod)){
-  for(trait in QuantTrait){
+  for(trait in QuantTrait$Trait){
     QuantSH <- data.frame(Data = DataMethod$Data[i],
                           Method = DataMethod$Method[i],
                           Trait = trait,
                           SH = Shannon.Weaver.QT(AlldataSetQuant[(AlldataSetQuant$Data%in%DataMethod$Data[i] &
                                                                     AlldataSetQuant$Method%in%DataMethod$Method[i]),trait],
+                                                 Min = QuantTrait[QuantTrait$Trait == trait, "Min"],
+                                                 Max = QuantTrait[QuantTrait$Trait == trait, "Max"],
                                                  formula = 2))
     QuantSHs <- rbind(QuantSHs, QuantSH)
   }
@@ -44,8 +48,11 @@ Table1SH <- matrix(QuantSHs$SH, byrow = F, ncol = 13)
 rownames(Table1SH) <- unique(QuantSHs$Trait)
 colnames(Table1SH) <- unique(paste(QuantSHs$Data, QuantSHs$Method, sep = " - "))
 colnames(Table1SH)[1] <- "BAG"
+```
 
-## Table 1 - Shannon-Weaver indexes for Cassava quantitative traits of the Bank of germplasm and 12 nuclear core collections.
+
+#### **Table 1.** Shannon-Weaver indexes for Cassava quantitative traits of the Bank of germplasm and 12 nuclear core collections.
+```{r, echo = FALSE}
 Table1SH %>% reactable(defaultPageSize = 16, columns = list(
   BAG = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Pheno - GW/CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
@@ -60,7 +67,9 @@ Table1SH %>% reactable(defaultPageSize = 16, columns = list(
   'Geno - AM/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - MR/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - CE/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US"))))
+```
 
+```{r}
 
 Trait <- c("CorFolhaApical" = 4, "CorPeciolo" = 6, "CorFolhaDesenv" = 5,
            "CorNerv" = 4, "CorCortexCaule" = 4, "CorExternaCaule" = 7,
@@ -101,7 +110,13 @@ rownames(Table2SH) <- unique(QualSHs$Trait)
 colnames(Table2SH) <- unique(paste(QualSHs$Data, QualSHs$Method, sep = " - "))
 colnames(Table2SH)[1] <- "BAG"
 
-## Table 2 - Shannon-Weaver indexes for Cassava quality traits of the Bank of germplasm and 12 nuclear core collections.
+
+SHInd <- as.data.frame(rbind(Table1SH, Table2SH))
+```
+
+
+#### **Table 2.** Shannon-Weaver indexes for Cassava quality traits of the Bank of germplasm and 12 nuclear core collections.
+```{r, echo = FALSE}
 Table2SH %>% reactable(defaultPageSize = 15, columns = list(
   BAG = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Pheno - GW/CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
@@ -116,6 +131,50 @@ Table2SH %>% reactable(defaultPageSize = 15, columns = list(
   'Geno - AM/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - MR/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Geno - CE/MLST' = colDef(format = colFormat(digits = 3, locales = "en-US"))))
+```
+
+
+## Core Collection Selection - Phenotypic data
+```{r}
+SHBAG <- SHInd[, "BAG"]
+SHIndPhen <- SHInd[ , colnames(SHInd)%like%"Pheno"]
+
+SHRelPhen <- (SHIndPhen - SHBAG)*100/SHBAG
+
+SHSelPhen <- data.frame(Method = colnames(SHRelPhen),
+                        SHMeanImprov = colMeans(SHRelPhen, na.rm = TRUE),
+                        SHsd = apply(SHRelPhen, FUN = sd, na.rm = TRUE, MARGIN = 2),
+                        row.names = NULL)
+```
+
+#### **Table 3.** Mean improvement of the Shannon-Weaver diversity index in % of nuclear core collections estimated of Phenotypic data compared to the Bank of Germplasm
+```{r, echo = FALSE}
+reactable(SHSelPhen, columns = list(
+  SHMeanImprov = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  SHsd = colDef(format = colFormat(digits = 3, locales = "en-US"))))
 
 ```
 
+## Core Collection Selection - Genotypic data
+```{r}
+SHIndGen <- SHInd[ , colnames(SHInd)%like%"Geno"]
+
+SHRelGen <- (SHIndGen - SHBAG)*100/SHBAG
+
+SHSelGen <- data.frame(Method = colnames(SHRelGen),
+                        SHMeanImprov = colMeans(SHRelGen, na.rm = TRUE),
+                        SHsd = apply(SHRelGen, FUN = sd, na.rm = TRUE, MARGIN = 2),
+                        row.names = NULL)
+```
+
+#### **Table 4.** Mean improvement of the Shannon-Weaver diversity index in % of nuclear core collections estimated of Genotypic data compared to the Bank of Germplasm
+```{r, echo = FALSE}
+reactable(SHSelGen, columns = list(
+  SHMeanImprov = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  SHsd = colDef(format = colFormat(digits = 3, locales = "en-US"))))
+
+```
+
+
+Back - [Estimativas de Diversidade genética](DivGen.html)
+[Home](index.html)
