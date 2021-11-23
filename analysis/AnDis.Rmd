@@ -371,7 +371,7 @@ AlldataSetQuali3 %>% filter(Trait%in%traitsFolha1) %>%
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### Fig 8. Barplot para o segundo grupo de características morfológicas foliares
+#### **Fig 8.** Barplot para o segundo grupo de características morfológicas foliares
 
 ```{r, echo = FALSE, warning = FALSE}
 AlldataSetQuali3 %>% filter(Trait%in%traitsFolha2) %>% 
@@ -383,7 +383,7 @@ AlldataSetQuali3 %>% filter(Trait%in%traitsFolha2) %>%
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### Fig 9. Barplot para o terceiro grupo de características morfológicas foliares
+#### **Fig 9.** Barplot para o terceiro grupo de características morfológicas foliares
 
 ```{r, echo = FALSE, warning = FALSE}
 AlldataSetQuali3 %>% filter(Trait%in%traitsFolha3) %>% 
@@ -395,7 +395,7 @@ AlldataSetQuali3 %>% filter(Trait%in%traitsFolha3) %>%
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### Fig 10. Barplot para o primeiro grupo de características morfológicas radiculares
+#### **Fig 10.** Barplot para o primeiro grupo de características morfológicas radiculares
 
 ```{r, echo = FALSE, warning = F}
 AlldataSetQuali3 %>% filter(Trait%in%traitsRaiz1) %>% 
@@ -407,7 +407,7 @@ AlldataSetQuali3 %>% filter(Trait%in%traitsRaiz1) %>%
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### Fig 11. Barplot para o segundo grupo de características morfológicas radiculares
+#### **Fig 11.** Barplot para o segundo grupo de características morfológicas radiculares
 
 ```{r, echo = FALSE, warning = FALSE}
 AlldataSetQuali3 %>% filter(Trait%in%traitsRaiz2) %>% 
