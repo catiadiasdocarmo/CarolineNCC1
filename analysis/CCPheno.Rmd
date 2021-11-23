@@ -1,5 +1,5 @@
 ---
-title: "CCPheno"
+title: "Coleções Nucleares Fenotípicas"
 author: "LucianoRogerio; Caroline Cardoso"
 date: "2021-10-25"
 output: workflowr::wflow_html
@@ -10,16 +10,16 @@ editor_options:
 ## Introduction
 
 ```{r, eval = FALSE}
-library(corehunter); library(StatMatch)
-
 DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ",", dec = ".",
                       na.strings = "NA", colClasses =  c("factor",
                                                         rep("character", times = 24),
                                                         rep("numeric", times = 27)))
+```
 
-
-### Colecao Nuclear - Distancia de Gower e pacote CoreHunter
-
+Coleção Nuclear 1 - Distância de Gower e pacote CoreHunter
+========================================================
+```{r, eval = FALSE}
+library(corehunter); library(StatMatch)
 DistCar <- gower.dist(data.x = DataCar[,-1])
 row.names(DistCar) <- colnames(DistCar) <- DataCar$Acessos
 DistCar2 <- distances(DistCar)
@@ -30,9 +30,11 @@ DataCarCCPheno1 <- DataCar[DataCar$Acessos%in%CCC$sel,]
 
 write.table(DataCarCCPheno1, here::here("output", "DadosCCPheno1.CSV"),
             quote = F, sep = ";", dec = ".")
+```
 
-
-### Colecao Nuclear - Algoritmo pacote CoreHunter
+Coleção Nuclear 2 - Algoritmo pacote CoreHunter
+=============================================
+```{r, eval = FALSE}
 colnames(DataCar)[1] <- "NAME"
 rownames(DataCar) <- as.character(DataCar$NAME)
 DataCarP <- phenotypes(data = as.data.frame(DataCar[,-1]))
@@ -42,9 +44,11 @@ DataCarCCPheno2 <- DataCar[rownames(DataCar)%in%core$sel,]
 
 write.table(DataCarCCPheno2, file = here::here("output", "DadosCCPheno2.CSV"),
             quote = F, sep = ";", dec = ".")
+```
 
-
-### Colecao Nuclear - Distancia de Gower e MLST DARwin
+Coleção Nuclear - Distância de Gower e MLST DARwin
+==================================================
+```{r, eval = FALSE}
 library(phangorn)
 DistCar <- as.dist(DistCar)
 writeDist(x = DistCar, file = here::here("output", "MatrizGowerCaroline.phy"), format = "phylip",
@@ -62,5 +66,7 @@ write.table(DataCarCCPheno3, file= here::here("output", "DadosCCPheno3.CSV"),
 ```
 
 Back - [Dados Moleculares - Seleção](GenoData.html)
+
 Next - [Coleções Nucleares Genotípicas](CNGeno.html)
+
 [Home](index.html)

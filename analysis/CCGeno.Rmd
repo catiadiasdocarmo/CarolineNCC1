@@ -1,6 +1,6 @@
 ---
 title: "CCGeno"
-author: "LucianoRogerio"
+author: "LucianoRogerio; Caroline Cardoso"
 date: "2021-10-25"
 output: workflowr::wflow_html
 editor_options:
@@ -13,3 +13,8 @@ editor_options:
 
 ```
 
+Back - [Coleções Nucleares Fenotípicas](CCPheno.html)
+
+Next - [Análises Discriminantes](AnDis.html)
+
+[Home](index.html)

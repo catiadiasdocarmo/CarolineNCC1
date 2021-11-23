@@ -177,4 +177,5 @@ reactable(SHSelGen, columns = list(
 
 
 Back - [Estimativas de Diversidade genética](DivGen.html)
+
 [Home](index.html)

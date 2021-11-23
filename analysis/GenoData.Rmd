@@ -1,6 +1,6 @@
 ---
 title: "GenoData"
-author: "LucianoRogerio"
+author: "LucianoRogerio; Caroline Cardoso"
 date: "2021-10-25"
 output: workflowr::wflow_html
 editor_options:
@@ -13,3 +13,8 @@ editor_options:
 
 ```
 
+Back - [Dados Fenotípicos - Seleção](PhenoData.html)
+
+Next - [Coleções Nucleares Fenotípicas](CCPheno.html)
+
+[Home](index.html)
