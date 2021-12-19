@@ -282,30 +282,34 @@ write.table(t(M_Darwin_Car), file = "output/CarDarwinMatrix.txt", quote = F,
 
 rm(M_Darwin_Car); rm(GBSDataCar); rm(GBSDataCar2); rm(GBSDataCar3)
 ##### Core Hunter
-library(corehunter); library(tidyverse)
+library(corehunter); library(tidyverse); library(data.table)
 
 CHCar <- genotypes(GBSDataCar2, format = "biparental")
 
 ## Shannon optimization - Modified Rogers Distance
-core3 <- sampleCore(CHCar, objective(type = "SH", measure = "MR"), size = 337)
+core3 <- sampleCore(CHCar, objective(type = "SH", measure = "MR"), size = 338)
 CloneSel <- core3$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
   gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
+  gsub(pattern = "í", replacement = "i") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
 
-core3$sel[core3$sel%like%"BGM.0290"]
+core3$sel[core3$sel%like%"Aip"]
+DataCar$Acessos[DataCar$Acessos%like%"Gau"]
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
+
 
 DataCarCCGeno4 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
 write.table(DataCarCCGeno4, file= "DadosGeno1CCGeno1.CSV", quote = F, sep = ";", dec = ".")
 
 ## Shannon optimization - Cavalli-Sforza and Edwards Distance
-core4 <- sampleCore(CHCar, objective(type = "SH", measure = "CE"), size = 337)
+core4 <- sampleCore(CHCar, objective(type = "SH", measure = "CE"), size = 338)
 CloneSel <- core4$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
   gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
+  gsub(pattern = "í", replacement = "i") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
 
 
@@ -318,10 +322,11 @@ write.table(DataCarCCGeno5, file= "DadosGeno2CCGeno1.CSV", quote = F, sep = ";",
 
 
 ## Expected Proportion of Heterozigous Loci optimization - Modified Rogers Distance
-core5 <- sampleCore(CHCar, objective(type = "HE", measure = "MR"), size = 337)
+core5 <- sampleCore(CHCar, objective(type = "HE", measure = "MR"), size = 338)
 CloneSel <- core5$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
   gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
+  gsub(pattern = "í", replacement = "i") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
@@ -333,10 +338,11 @@ DataCarCCGeno6 <- DataCar[DataCar$Acessos%in%CloneSel,]
 write.table(DataCarCCGeno6, file= "DadosGeno3CCGeno1.CSV", quote = F, sep = ";", dec = ".")
 
 ## Expected Proportion of Heterozigous Loci optimization - Cavalli-Sforza and Edwards Distance
-core6 <- sampleCore(CHCar, objective(type = "HE", measure = "CE"), size = 337)
+core6 <- sampleCore(CHCar, objective(type = "HE", measure = "CE"), size = 338)
 CloneSel <- core6$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
   gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
+  gsub(pattern = "í", replacement = "i") %>%
   gsub(pattern = "CPAFRO.35", replacement = "CPAFRO-35=BRS-COLONIAL")
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
@@ -346,11 +352,12 @@ DataCarCCGeno7 <- DataCar[DataCar$Acessos%in%CloneSel,]
 write.table(DataCarCCGeno7, file= "DadosGeno4CCGeno1.CSV", quote = F, sep = ";", dec = ".")
 
 ## Allele coverage optimization - Modified Rogers Distance
-core7 <- sampleCore(CHCar, objective(type = "CV", measure = "MR"), size = 337)
+core7 <- sampleCore(CHCar, objective(type = "CV", measure = "MR"), size = 338)
 CloneSel <- core7$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
   gsub(pattern = "Aipim.", replacement = "Aipim-") %>%
-  gsub(pattern = "CPAFRO-09", replacement = "CPAFRO-09=P?O-DO-ACRE")
+  gsub(pattern = "CPAFRO-05", replacement = "CPAFRO-05=ENTALA-GATO") %>%
+  gsub(pattern = "CPAFRO-09", replacement = "CPAFRO-09=PAO-DO-ACRE")
 
 CloneSel[!CloneSel%in%DataCar$Acessos]
 
@@ -359,7 +366,7 @@ DataCarCCGeno8 <- DataCar[DataCar$Acessos%in%CloneSel,]
 write.table(DataCarCCGeno8, file= "DadosGeno5CCGeno1.CSV", quote = F, sep = ";", dec = ".")
 
 ## Allele coverage optimization - Cavalli-Sforza and Edwards Distance
-core8 <- sampleCore(CHCar, objective(type = "CV", measure = "CE"), size = 337)
+core8 <- sampleCore(CHCar, objective(type = "CV", measure = "CE"), size = 338)
 CloneSel <- core8$sel %>%
   gsub(pattern = "BGM.", replacement = "BGM-") %>%
   gsub(pattern = "Aipim.", replacement = "Aipim-") %>%

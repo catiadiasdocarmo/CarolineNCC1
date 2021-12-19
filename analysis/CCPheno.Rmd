@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Introduction
+## Coleções Nucleares Fenotípicas
 
 ```{r, eval = FALSE}
 DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ",", dec = ".",
@@ -16,8 +16,8 @@ DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, se
                                                         rep("numeric", times = 27)))
 ```
 
-Coleção Nuclear 1 - Distância de Gower e pacote CoreHunter
-========================================================
+### Coleção Nuclear 1 - Distância de Gower e pacote CoreHunter
+
 ```{r, eval = FALSE}
 library(corehunter); library(StatMatch)
 DistCar <- gower.dist(data.x = DataCar[,-1])
@@ -32,8 +32,8 @@ write.table(DataCarCCPheno1, here::here("output", "DadosCCPheno1.CSV"),
             quote = F, sep = ";", dec = ".")
 ```
 
-Coleção Nuclear 2 - Algoritmo pacote CoreHunter
-=============================================
+### Coleção Nuclear 2 - Algoritmo pacote CoreHunter
+
 ```{r, eval = FALSE}
 colnames(DataCar)[1] <- "NAME"
 rownames(DataCar) <- as.character(DataCar$NAME)
@@ -46,14 +46,18 @@ write.table(DataCarCCPheno2, file = here::here("output", "DadosCCPheno2.CSV"),
             quote = F, sep = ";", dec = ".")
 ```
 
-Coleção Nuclear - Distância de Gower e MLST DARwin
-==================================================
+### Coleção Nuclear - Distância de Gower e Algoritmo MLST DARwin
+
 ```{r, eval = FALSE}
 library(phangorn)
 DistCar <- as.dist(DistCar)
 writeDist(x = DistCar, file = here::here("output", "MatrizGowerCaroline.phy"), format = "phylip",
           upper = T, diag = T)
+```
 
+
+
+```{r}
 SelDARwin <- read.table(here::here("output","MatrizGowerCaroline.DON"),
                              sep = "\t", header = T, skip = 2,
                              nrows = 1686)

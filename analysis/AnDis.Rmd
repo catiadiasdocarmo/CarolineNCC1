@@ -244,7 +244,7 @@ Root2 <- c("FRYC", "FRYNC")
 ```{r, fig.align='center', fig.height=9, echo = FALSE, warning = FALSE}
 AlldataSetQuant3 %>% filter(Trait%in%Foliar) %>%
   ggplot(mapping = aes(y = Value2, fill = Data, x = Method), message = F) +
-  geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2,) + ylab(NULL) +
+  geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
         colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
