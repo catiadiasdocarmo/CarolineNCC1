@@ -8,85 +8,52 @@ editor_options:
 ---
 
 
-## Atividades a finalizar nesta seção
+## Ajuste dos dados fenotípicos para rodar a análise de modelos mistos
 
-- [ ] Ajustar nomes das características
-
-| Característica | Sigla |
-| :------------: | ----- |
-| **PRC** - Produtividade de Raiz Comercial | PRC |
-| **PTR** - Produtividade Total de Raizes | PTR |
-| Peso.da.parte.aerea....CO_334.0000016 | PPA |
-| **IC** - Indice de Colheita | IC |
-| Altura.de.planta....CO_334.0000018 | AP |
-| Altura.de.planta.sem.folha....CO_334.0000125 | APsF |
-| **NMa** - N˚Manivas p/ Planta | NMa |
-| DMC..specific.gravimetry. | DMCsg |
-| HCN..Lab. | HCNLab |
-| PROD.AMD - Produtividade Amido | DRY |
-| Porte.de.planta....CO_334.0000099 | PA |
-| **PRNC** - Produtividade de Raizes ñ comerciais | PRNC |
-| Vigor | Vigor |
-| Retencao.foliar....CO_334.0000048 | RF |
-| Numero.de.raiz....CO_334.0000011 | NR |
-| Peso.raiz | PR |
-| Teor.de.amido.Corrigido | TAC |
-| DMC.Forno | DMCoven |
-| HCN.1....CO_334.0000091 | HCN1 |
-| HCN.2....CO_334.0000092 | HCN2 |
-| HCN.3....CO_334.0000093 | HCN3 |
-| HCN.4....CO_334.0000094 | HCN4 |
-| HCN.5....CO_334.0000095 | HCN5 |
-| HCN.6....CO_334.0000096 | HCN6 |
-| HCN.7....CO_334.0000097 | HCN7 |
-| HCN.8....CO_334.0000098 | HCN8 |
-| HCN.9....CO_334.0000099 | HCN9 |
-|     |     |
-
-  - Sugestão: usar a função colnames do R para trocar os nomes das características do Objeto que precisa trocar
-  
-```
-colnames(DadosPhen)[c(18, 12, 13, 20)] <- c("PortePl","AltPl", "AltPlsF",
-                                            "Vigor", "PPA")
-```
-
-- [ ] separar a característica HCN em outro objeto do R, sem perder as informações de:
-
-  - PLOT
-  - Ano
-  - Campo
-  - Local
-  - Genotipos.BGM.
-  - Genotipos
-  - Bloco
-
-
-
-- [ ] Transformar as várias colunas do objeto com as informações de HCN em uma única coluna, e adicionar uma coluna com o número da amostra de avaliação de HCN.
-
-  - Usar a função melt do pacote data.table do R
-
-```
-RawPhenoData %>% mutate("FlowerPresence" = flower.visual.rating.0.1.CO_334.0000111,
-                        "FlowerVisRate" = flowering.ability.visual.assessment.0.3.CO_334.0000233,
-                     .keep = "unused") %>% melt(data = .,
-                                                id.vars = c("studyYear", "locationName", "germplasmName",
-                                                            "replicate", "blockNumber", "plotNumber",
-                                                            "plantNumber"),
-                                                variable.name = "Trait",
-                                                value.name = "Value") -> PhenoData
-```
-  - Argumentos da Função melt:
-   - data: dados, se estiver utilizando o pipe (%>%) use o ponto (.), se não informe o objeto a ser transformado.
-   - id.vars: indica a função melt quais são colunas que devem permanecer intactas no novo objeto.
-   - variable.name: é o nome da nova coluna que indicará a origem da observação da nova coluna de característica.
-   - value.name: Nome da coluna que juntará todas as informações.
-
-
-```{r}
-suppressMessages(library(tidyverse)); library(here)
+```{r Ajuste dos dados fenotipicos}
+suppressWarnings(suppressMessages(library(tidyverse)))
+library(reshape2); library(here)
 DadosPhen <- read.csv2(here::here("data", "Dados fenotípicos BAG.CSV"), header = T, na.strings = "-")
+
+
+colnames(DadosPhen)[c(8:34)] <- c("PCR","PTR","PPA","IC","AP","APsF",
+                                  "NMa","DMCsg","HCNLab","DRY","PA",
+                                  "PRNC","Vigor","RF","NR","PR","TAC","DMCoven",
+                                  paste("HCN",1:9,sep=""))
+
+DadosPar <- DadosPhen[,c(1:25)]
+
+DadosParFin <- DadosPar %>% reshape2::melt(data = ., id.vars = c(1:7),
+                                           variable.name = "Trait", value.name = "Value") %>%
+  filter(!is.na(Value))
+
+saveRDS(DadosParFin, file = here::here("output", "DadosParcelaCaroline.RDS"))
+
+DadosHCN <- DadosPhen[,c(1:7,26:34)]
+
+DadosHCNFin <- DadosHCN %>% reshape2::melt(data = ., id.vars = c(1:7),
+                                           variable.name = "HCN",  value.name = "Value") %>%
+  filter(!is.na(Value))
+
+saveRDS(DadosHCNFin, file = here::here("output", "DadosHCNCaroline.RDS"))
+
+
 ```
+
+### Atividades para proxima semana
+
+
+-[ ] Criar uma coluna no arquivo csv com o tipo de delineamento do experimento, nome da coluna -> Delineamento
+   DBC -> Delineamento em Blocos Casualizados
+   DBA -> Delineamento em Blocos Aumentados
+   
+-[ ] Criar outra coluna no arquivo csv de nome controle
+    Nos ensaios de delineamento em Blocos Aumentados e exigido a presenca de controles em todos os blocos. Os controles sao utilizados para relizar a predicao da variancia do residuo.
+    0 -> clones que nao aparecem em todas os blocos
+    1 -> Clones que aparecem em todos os blocos
+    
+-[ ] Identificar as parcelas com Blocos F e M para fazermos a devida correção    
+
 
 Next - [Dados Moleculares - Seleção](GenoData.html)
 
