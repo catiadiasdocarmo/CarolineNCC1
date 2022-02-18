@@ -13,48 +13,164 @@ editor_options:
 ```{r Ajuste dos dados fenotipicos}
 suppressWarnings(suppressMessages(library(tidyverse)))
 library(reshape2); library(here)
-DadosPhen <- read.csv2(here::here("data", "Dados fenotípicos BAG.CSV"), header = T, na.strings = "-")
+DadosPhen <- read.csv(here::here("data", "Dados fenotípicos BAGSel.CSV"), header = T, na.strings = "NA")
 
-
-colnames(DadosPhen)[c(8:34)] <- c("PCR","PTR","PPA","IC","AP","APsF",
+colnames(DadosPhen)[c(9:35)] <- c("PCR","PTR","PPA","IC","AP","APsF",
                                   "NMa","DMCsg","HCNLab","DRY","PA",
                                   "PRNC","Vigor","RF","NR","PR","TAC","DMCoven",
                                   paste("HCN",1:9,sep=""))
 
-DadosPar <- DadosPhen[,c(1:25)]
+DadosPar <- DadosPhen[,c(1:26)]
 
-DadosParFin <- DadosPar %>% reshape2::melt(data = ., id.vars = c(1:7),
+DadosParFin <- DadosPar %>% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = "Trait", value.name = "Value") %>%
-  filter(!is.na(Value))
+  filter(!is.na(Value)) %>% mutate(Ano = Ano,
+                                   Campo = Campo,
+                                   Local = Local,
+                                   trial = match(paste(Ano, Campo, Local, sep = "."), unique(paste(Ano, Campo, Local, sep = "."))),
+                                   studyDesign = Delineamento,
+                                   clone = Genotipos.BGM.,
+                                   rep = Bloco,
+                                   check = ifelse(Controle == "1", clone, "999"),
+                                   check = ifelse(clone %in% unique(check), clone, "999"),
+                                   new = ifelse(check != "999", 0, 1),
+                                   y = Value, .keep = "unused")
 
 saveRDS(DadosParFin, file = here::here("output", "DadosParcelaCaroline.RDS"))
 
-DadosHCN <- DadosPhen[,c(1:7,26:34)]
+DadosHCN <- DadosPhen[,c(1:8,27:35)]
 
-DadosHCNFin <- DadosHCN %>% reshape2::melt(data = ., id.vars = c(1:7),
+DadosHCNFin <- DadosHCN %>% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = "HCN",  value.name = "Value") %>%
-  filter(!is.na(Value))
+  filter(!is.na(Value)) %>% mutate(Ano = Ano,
+                                   Campo = Campo,
+                                   Local = Local,
+                                   trial = match(paste(Ano, Campo, Local, sep = "."), unique(paste(Ano, Campo, Local, sep = "."))),
+                                   studyDesign = Delineamento,
+                                   clone = Genotipos.BGM.,
+                                   rep = Bloco,
+                                   check = ifelse(Controle == "1", clone, "999"),
+                                   check = ifelse(clone %in% unique(check), clone, "999"),
+                                   new = ifelse(check != "999", 0, 1),
+                                   y = Value, .keep = "unused")
 
 saveRDS(DadosHCNFin, file = here::here("output", "DadosHCNCaroline.RDS"))
+```
 
+## Selecionar os ensaios utilizando Herdabilidade e R2 estimados funções de Modelos mistos
+
+```{r Modelos mistos Selecao de dados fenotipicos, message = TRUE}
+suppressWarnings(suppressMessages(library(tidyverse)))
+library(MuMIn)
+library(reshape2); library(here)
+
+source(here::here("code", "MixedModelsFunctions.R"))
+
+DadosParFin <- readRDS(file = here::here("output", "DadosParcelaCaroline.RDS"))
+
+Trials <- unique(DadosParFin$trial)
+Results <- tibble()
+
+for(i in Trials){
+  traits <- DadosParFin %>% filter(trial %in% i) %>% .$Trait %>% unique %>% as.character
+  results <- tibble()
+
+  for(j in traits) {
+  try(MixedModels <- analyzeTrial.lme4(DadosParFin %>% filter(trial %in% i & Trait %in% j)))
+  try(result <- tibble(Trial = i,
+                       Trait = j,
+                       VarG = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[1,2],
+                       VarE = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[2,2],
+                       H2 = VarG/(VarG + VarE),
+                       Real = suppressWarnings(MuMIn::r.squaredGLMM(MixedModels)[2])))
+  try(results <- rbind(results, result))
+  rm(MixedModels); rm(result)
+  }
+  
+  Results <- rbind(Results, results)
+  rm(traits); rm(results)
+}
 
 ```
 
-### Atividades para proxima semana
+## Seleção ensaios Dados Fenotipicos
+
+```{r, echo = FALSE}
+library(reactable)
+TrialsList <- unique(DadosParFin[,c("Ano", "Campo", "Local", "trial")])
+
+Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao"))
+
+Results2 %>% reactable(groupBy = c("Trait"), columns = list(
+  VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
+  VarE = colDef(format = colFormat(digits = 2, locales = "en-US")),
+  H2 = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  Real = colDef(format = colFormat(digits = 3, locales = "en-US"))))
+```
+
+```{r}
+DataSelPar <- DadosParFin %>% mutate(Trait.Trial = paste(Trait, trial, sep = ".")) %>%
+  .[.$Trait.Trial %in% (Results2 %>% mutate(Trait.Trial = paste(Trait, Trial, sep = ".")) %>%
+                        filter(Selecionado == "Sim") %>% .$Trait.Trial),]
+
+saveRDS(object = DataSelPar, file = here::here("data", "DadosFenCarSel.rds"))
+```
 
 
--[ ] Criar uma coluna no arquivo csv com o tipo de delineamento do experimento, nome da coluna -> Delineamento
-   DBC -> Delineamento em Blocos Casualizados
-   DBA -> Delineamento em Blocos Aumentados
-   
--[ ] Criar outra coluna no arquivo csv de nome controle
-    Nos ensaios de delineamento em Blocos Aumentados e exigido a presenca de controles em todos os blocos. Os controles sao utilizados para relizar a predicao da variancia do residuo.
-    0 -> clones que nao aparecem em todas os blocos
-    1 -> Clones que aparecem em todos os blocos
-    
--[ ] Identificar as parcelas com Blocos F e M para fazermos a devida correção    
+## Selecao de ensaios de avaliacao de HCN
+
+```{r Modelos mistos Selecao de dados fenotipicos, message = TRUE}
+suppressWarnings(suppressMessages(library(tidyverse)))
+library(MuMIn)
+library(reshape2); library(here)
+
+source(here::here("code", "MixedModelsFunctions.R"))
+
+DadosHCNFin <- readRDS(file = here::here("output", "DadosHCNCaroline.RDS"))
+
+Trials <- unique(DadosHCNFin$trial)
+Results <- tibble()
+
+for(i in Trials){
+
+  try(MixedModels <- analyzeTrial.lme4(DadosParFin %>% filter(trial %in% i)))
+  try(results <- tibble(Trial = i,
+                       Trait = j,
+                       VarG = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[1,2],
+                       VarE = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[2,2],
+                       H2 = VarG/(VarG + VarE),
+                       Real = suppressWarnings(MuMIn::r.squaredGLMM(MixedModels)[2])))
+  
+  Results <- rbind(Results, results)
+  rm(MixedModels); rm(results)
+}
+
+```
 
 
+## Seleção ensaios Dados Fenotipicos
+
+```{r, echo = FALSE}
+library(reactable)
+TrialsList <- unique(DadosHCNFin[,c("Ano", "Campo", "Local", "trial")])
+
+Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao"))
+
+Results2 %>% reactable(columns = list(
+  VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
+  VarE = colDef(format = colFormat(digits = 2, locales = "en-US")),
+  H2 = colDef(format = colFormat(digits = 3, locales = "en-US")),
+  Real = colDef(format = colFormat(digits = 3, locales = "en-US"))))
+```
+
+```{r}
+DataSelHCN <- DadosHCNFin %>% 
+  .[.$trial %in% (Results2 %>% filter(Selecionado == "Sim") %>% .$Trial),]
+
+saveRDS(object = DataSelHCN, file = here::here("data", "DadosHCNCarSel.rds"))
+```
 Next - [Dados Moleculares - Seleção](GenoData.html)
 
 [Home](index.html)
