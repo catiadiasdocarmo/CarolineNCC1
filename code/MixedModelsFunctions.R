@@ -18,6 +18,11 @@ analyzeTrial.lme4 <- function(x){
   }
 }
 
+analyzeTrial.lme4HCN <- function(x){
+    modfit <- lmer(y ~ rep + (1 | clone), data=x, REML = T)
+    return(modfit)
+}
+
 analyzeTrialrdMod.lme4 <- function(x, trait){
   modfit <- lm(y ~ control + block_number, data=x)
   return(modfit)
@@ -87,4 +92,20 @@ getVarComp.sommer <- function(model){
   unlist(model$sigma) %>%
     data.frame(effect = c("Clone", "Residual"), VarEstimate = .) %>%
     spread(key = effect, value = VarEstimate, fill=NA)
+}
+
+####
+
+analyzeTrial.sommerConj <- function(x){
+    #### Blocos Completos
+    modfit <- mmer(y ~ 1,
+                   random = ~ repTrial + clone,
+                   rcov = ~ vs(ds(trial), units),
+                   data = x,
+                   iters=3,
+                   #tolparinv = 1e-6,
+                   verbose = F,
+                   #method = "EM",
+                   getPEV = T)
+  return(modfit)
 }

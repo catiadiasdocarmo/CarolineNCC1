@@ -129,34 +129,36 @@ source(here::here("code", "MixedModelsFunctions.R"))
 
 DadosHCNFin <- readRDS(file = here::here("output", "DadosHCNCaroline.RDS"))
 
-Trials <- unique(DadosHCNFin$trial)
+Trials <- which(table(DadosHCNFin$trial) > 30) %>% names %>% as.integer
 Results <- tibble()
 
 for(i in Trials){
 
-  try(MixedModels <- analyzeTrial.lme4(DadosParFin %>% filter(trial %in% i)))
+  try(MixedModels <- analyzeTrial.lme4HCN(DadosHCNFin %>% filter(trial %in% i)))
+  print(i)
   try(results <- tibble(Trial = i,
-                       Trait = j,
+                       Trait = "HCN",
                        VarG = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[1,2],
                        VarE = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[2,2],
                        H2 = VarG/(VarG + VarE),
                        Real = suppressWarnings(MuMIn::r.squaredGLMM(MixedModels)[2])))
-  
+
   Results <- rbind(Results, results)
   rm(MixedModels); rm(results)
 }
+Results
 
 ```
 
 
-## Seleção ensaios Dados Fenotipicos
+## Seleção ensaios Dados HCN
 
 ```{r, echo = FALSE}
 library(reactable)
 TrialsList <- unique(DadosHCNFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
-  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao"))
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
 
 Results2 %>% reactable(columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -171,6 +173,29 @@ DataSelHCN <- DadosHCNFin %>%
 
 saveRDS(object = DataSelHCN, file = here::here("data", "DadosHCNCarSel.rds"))
 ```
+
+## Estimação BLUPS e obtenção de médias corrigidas
+
+```{r}
+library(here)
+library(furrr)
+library(tidyverse)
+source(here::here("code", "MixedModelsFunctions.R"))
+
+DataSelPar <- readRDS(here::here("data", "DadosFenCarSel.rds")) %>%
+  mutate(trial = as.factor(trial),
+         repTrial = as.factor(paste(trial, rep, sep =":")), .keep = "unused")
+DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
+  mutate(trial = as.factor(trial),
+         repTrial = as.factor(paste(trial, rep, sep =":")), .keep = "unused")
+
+NCT <- RhpcBLASctl::get_num_procs()
+
+plan(sequential)
+RhpcBLASctl::blas_set_num_threads(NCT -2)
+MixedModels <- analyzeTrial.sommerConj(DataSelHCN)
+```
+
 Next - [Dados Moleculares - Seleção](GenoData.html)
 
 [Home](index.html)
