@@ -120,7 +120,7 @@ saveRDS(object = DataSelPar, file = here::here("data", "DadosFenCarSel.rds"))
 
 ## Selecao de ensaios de avaliacao de HCN
 
-```{r Modelos mistos Selecao de dados fenotipicos, message = TRUE}
+```{r Modelos mistos Selecao de dados fenotipicos HCN, message = TRUE}
 suppressWarnings(suppressMessages(library(tidyverse)))
 library(MuMIn)
 library(reshape2); library(here)
@@ -176,7 +176,7 @@ saveRDS(object = DataSelHCN, file = here::here("data", "DadosHCNCarSel.rds"))
 
 ## Estimação BLUPS e obtenção de médias corrigidas
 
-```{r}
+```{r, eval = FALSE}
 library(here)
 library(furrr)
 library(tidyverse)
@@ -191,10 +191,10 @@ DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
          rep = as.character(rep),
          repTrial = as.factor(paste(trial, rep, sep =":")))
 
-NCT <- 4
+#NCT <- 4
 
-plan(sequential)
-RhpcBLASctl::blas_set_num_threads(NCT)
+#plan(sequential)
+#RhpcBLASctl::blas_set_num_threads(NCT)
 MM <- analyzeTrial.sommerConj(DataSelHCN)
 blups <- MM$U$clone$y + MM$Beta$Estimate
 names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
@@ -206,7 +206,7 @@ traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names
 
 for(i in traits[7:18]){
   print(paste("Trait", i, sep = " "))
-  DataMM <- DataSelPar%>% filter(Trait == i) %>% mutate(trial = as.character(trial))
+  DataMM <- DataSelPar%>% filter(Trait == i)
   MM <- analyzeTrial.sommerConj(DataMM)
   blups <- MM$U$clone$y + MM$Beta$Estimate
   names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
@@ -219,6 +219,92 @@ for(i in traits[7:18]){
 }
 
 ```
+
+### Atividades Caroline
+
+ - [ ] estimar os seguintes índices:
+ 
+    - [ ] **Número de observações por trait**
+    
+    - [ ] **Número de Ensaios por trait**
+    
+    - [ ] **Número médio de Blocos por trait**
+    
+    - [ ] **Deviance de Clone** - Quiquadrado (Chisq)
+    
+    - [ ] **Deviance de RepTrial**  - Quiquadrado (Chisq)
+    
+    - [ ] **Deviance de interação Trial e Clone**  - Quiquadrado (Chisq)
+    
+    - [ ] **Probabilidades das Deviances** - PrChisq
+    
+    - [ ] **Variâncias do Resíduo, Clone, e interação Trial e Clone**
+  
+  Exemplo:
+```{r, eval = FALSE}
+library(here)
+library(furrr)
+library(tidyverse)
+source(here::here("code", "MixedModelsFunctions.R"))
+
+DataSelPar <- readRDS(here::here("data", "DadosFenCarSel.rds")) %>%
+  mutate(trial = as.character(trial),
+         rep = as.character(rep),
+         repTrial = as.factor(paste(trial, rep, sep =":")))
+
+traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names %>% .[1]
+x <- DataSelPar %>% filter(Trait == traits)
+
+# obter numero de observacoes, Ensaios, médios de repetições
+nrow(x) # Observações
+length(unique(x$trial)) # Ensaios
+x %>% group_by(clone) %>% summarise(n = n()) %>% .$n %>% mean # repetições
+# Modelo Completo
+      modfit <- mmer(y ~ 1,
+                   random = ~ repTrial + clone + trial:clone,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = "EM",
+                   getPEV = T)
+                   
+  #Modelo Reduzido de clone
+  #Obs.: você retira o efeito de clone do modelo
+    modrd  <- mmer(y ~ 1,
+                   random = ~ repTrial + clone,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = "EM",
+                   getPEV = T)
+    
+# deviance da Interação
+anova(modfit, modrd)
+    modrd2  <- mmer(y ~ 1,
+                   random = ~ repTrial,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = "EM",
+                   getPEV = T)
+
+# deviance do clone                   
+anova(modrd, modrd2)
+
+#deviance do repTrial
+modrd3 <- mmer(y ~ 1,
+                   random = ~ clone + trial:clone,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = "EM",
+                   getPEV = T)
+anova(modfit, modrd3)
+
+# Obter estimativas de variância
+modfit$sigma
+```
+  
 
 Next - [Dados Moleculares - Seleção](GenoData.html)
 
