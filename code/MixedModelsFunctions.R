@@ -98,14 +98,22 @@ getVarComp.sommer <- function(model){
 
 analyzeTrial.sommerConj <- function(x){
     #### Blocos Completos
+  if(length(unique(x$trial)) > 1){
+    modfit <- mmer(y ~ 1,
+                   random = ~ repTrial + clone + trial:clone,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = "EM",
+                   getPEV = T)
+  } else {
     modfit <- mmer(y ~ 1,
                    random = ~ repTrial + clone,
-                   rcov = ~ vs(ds(trial), units),
                    data = x,
-                   iters=3,
-                   #tolparinv = 1e-6,
+                   tolparinv = 1e-5,
                    verbose = F,
-                   #method = "EM",
+                   method = "EM",
                    getPEV = T)
+    }
   return(modfit)
 }

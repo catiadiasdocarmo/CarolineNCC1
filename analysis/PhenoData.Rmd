@@ -183,13 +183,15 @@ library(tidyverse)
 source(here::here("code", "MixedModelsFunctions.R"))
 
 DataSelPar <- readRDS(here::here("data", "DadosFenCarSel.rds")) %>%
-  mutate(trial = as.factor(trial),
-         repTrial = as.factor(paste(trial, rep, sep =":")), .keep = "unused")
+  mutate(trial = as.character(trial),
+         rep = as.character(rep),
+         repTrial = as.factor(paste(trial, rep, sep =":")))
 DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
-  mutate(trial = as.factor(trial),
-         repTrial = as.factor(paste(trial, rep, sep =":")), .keep = "unused")
+  mutate(trial = as.character(trial),
+         rep = as.character(rep),
+         repTrial = as.factor(paste(trial, rep, sep =":")))
 
-NCT <- 8
+NCT <- 4
 
 plan(sequential)
 RhpcBLASctl::blas_set_num_threads(NCT)
@@ -202,7 +204,7 @@ saveRDS(object = Blups, file = here::here("output", "MixedModels", "Blups_HCNPic
 
 traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names
 
-for(i in traits){
+for(i in traits[7:18]){
   print(paste("Trait", i, sep = " "))
   DataMM <- DataSelPar%>% filter(Trait == i) %>% mutate(trial = as.character(trial))
   MM <- analyzeTrial.sommerConj(DataMM)
