@@ -189,11 +189,33 @@ DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
   mutate(trial = as.factor(trial),
          repTrial = as.factor(paste(trial, rep, sep =":")), .keep = "unused")
 
-NCT <- RhpcBLASctl::get_num_procs()
+NCT <- 8
 
 plan(sequential)
-RhpcBLASctl::blas_set_num_threads(NCT -2)
-MixedModels <- analyzeTrial.sommerConj(DataSelHCN)
+RhpcBLASctl::blas_set_num_threads(NCT)
+MM <- analyzeTrial.sommerConj(DataSelHCN)
+blups <- MM$U$clone$y + MM$Beta$Estimate
+names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
+Blups <- tibble(id = names(blups),
+                blups = blups)
+saveRDS(object = Blups, file = here::here("output", "MixedModels", "Blups_HCNPic.rds"))
+
+traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names
+
+for(i in traits){
+  print(paste("Trait", i, sep = " "))
+  DataMM <- DataSelPar%>% filter(Trait == i) %>% mutate(trial = as.character(trial))
+  MM <- analyzeTrial.sommerConj(DataMM)
+  blups <- MM$U$clone$y + MM$Beta$Estimate
+  names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
+  Blups <- tibble(id = names(blups),
+                  blups = blups)
+  file <- here::here("output", "MixedModels",
+                     paste("Blups_", i, ".rds", sep = ""))
+  saveRDS(object = Blups, file = file)
+  rm(DataMM); rm(MM); rm(blups); rm(Blups); rm(file)
+}
+
 ```
 
 Next - [Dados Moleculares - Seleção](GenoData.html)
