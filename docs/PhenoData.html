@@ -37,6 +37,12 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+<script src="site_libs/react-17.0.0/react.min.js"></script>
+<script src="site_libs/react-17.0.0/react-dom.min.js"></script>
+<script src="site_libs/reactwidget-1.0.0/react-tools.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/reactable-binding-0.2.3/reactable.js"></script>
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -377,7 +383,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-02-03
+<strong>Last updated:</strong> 2022-03-03
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -468,34 +474,59 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomrollcardosoCarolineNCC1treec5efb0604514da56098299101fe89716b872b45etargetblankc5efb06a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/rollcardoso/CarolineNCC1/tree/c5efb0604514da56098299101fe89716b872b45e" target="_blank">c5efb06</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treecb8865d93e7c3b0cb76e095909eae19eca08e029targetblankcb8865da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/cb8865d93e7c3b0cb76e095909eae19eca08e029" target="_blank">cb8865d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomrollcardosoCarolineNCC1treec5efb0604514da56098299101fe89716b872b45etargetblankc5efb06a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treecb8865d93e7c3b0cb76e095909eae19eca08e029targetblankcb8865da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/rollcardoso/CarolineNCC1/tree/c5efb0604514da56098299101fe89716b872b45e" target="_blank">c5efb06</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/cb8865d93e7c3b0cb76e095909eae19eca08e029" target="_blank">cb8865d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Untracked files:
-    Untracked:  data/NovoCodinome.CSV
-    Untracked:  output/DadosHCNCaroline.RDS
-    Untracked:  output/DadosParcelaCaroline.RDS
+    Ignored:    output/.DS_Store
+    Ignored:    output/BarPlotCaule1.tiff
+    Ignored:    output/BarPlotCaule1TXT.tiff
+    Ignored:    output/BarPlotCaule2.tiff
+    Ignored:    output/BarPlotCaule2TXT.tiff
+    Ignored:    output/BarPlotCaule3.tiff
+    Ignored:    output/BarPlotCaule3TXT.tiff
+    Ignored:    output/BarPlotFoliar1.tiff
+    Ignored:    output/BarPlotFoliar1TXT.tiff
+    Ignored:    output/BarPlotFoliar2.tiff
+    Ignored:    output/BarPlotFoliar2TXT.tiff
+    Ignored:    output/BarPlotFoliar3.tiff
+    Ignored:    output/BarPlotFoliar3TXT.tiff
+    Ignored:    output/BarPlotRaiz1.tiff
+    Ignored:    output/BarPlotRaiz1TXT.tiff
+    Ignored:    output/BarPlotRaiz2.tiff
+    Ignored:    output/BarPlotRaiz2TXT.tiff
+    Ignored:    output/BarPlotsCauleTXT.tiff
+    Ignored:    output/BarPlotsFoliarTXT.tiff
+    Ignored:    output/BarPlotsRaizTXT.tiff
+    Ignored:    output/BarPlotsTXT.tiff
+    Ignored:    output/BoxPlotFoliar.tiff
+    Ignored:    output/BoxPlotFoliarTXT.tiff
+    Ignored:    output/BoxPlotRaiz.tiff
+    Ignored:    output/BoxPlotRaiz2.tiff
+    Ignored:    output/BoxPlotRaiz2TXT.tiff
+    Ignored:    output/BoxPlotRaizTXT.tiff
+    Ignored:    output/BoxPlotsFoliarTXT.tiff
+    Ignored:    output/BoxPlotsTXT.tiff
+    Ignored:    output/PCAPlots.tiff
+    Ignored:    output/PCAPlotsTXT.tiff
 
 Unstaged changes:
     Modified:   analysis/PhenoData.Rmd
-    Modified:   data/Dados fenotípicos BAG.CSV
-    Deleted:    data/DadosSelCaroline.CSV
 
 </code></pre>
 <p>
@@ -539,7 +570,109 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/rollcardoso/CarolineNCC1/blob/0d3b308023d928fc22c3a11183f62b80b7636c9b/analysis/PhenoData.Rmd" target="_blank">0d3b308</a>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/cb8865d93e7c3b0cb76e095909eae19eca08e029/analysis/PhenoData.Rmd" target="_blank">cb8865d</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-03-03
+</td>
+<td>
+Update Phenotypic data and mixed models analysis
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/fe6c8c6852c2f735b16f37508afae0eb9587ada7/analysis/PhenoData.Rmd" target="_blank">fe6c8c6</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-03-03
+</td>
+<td>
+Blups estimated using heterogenous residual variance per trial
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/a922880c3e92c9b592a772b0f601c0befbbd04fe/analysis/PhenoData.Rmd" target="_blank">a922880</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-03-02
+</td>
+<td>
+Update PhenoData
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/be8e3bf2bfa8d0d21a4ec55667afe896025c3088/analysis/PhenoData.Rmd" target="_blank">be8e3bf</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-02-17
+</td>
+<td>
+Selecao de Ensaios para rodar o primeiro e segundo capitulo de Caroline
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/3404cd4743c6ed0046825ddda007a3622edf3526/analysis/PhenoData.Rmd" target="_blank">3404cd4</a>
+</td>
+<td>
+rollcardoso
+</td>
+<td>
+2022-02-11
+</td>
+<td>
+Atualização de arquivos
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/3404cd4743c6ed0046825ddda007a3622edf3526/docs/PhenoData.html" target="_blank">3404cd4</a>
+</td>
+<td>
+rollcardoso
+</td>
+<td>
+2022-02-11
+</td>
+<td>
+Atualização de arquivos
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/0d3b308023d928fc22c3a11183f62b80b7636c9b/analysis/PhenoData.Rmd" target="_blank">0d3b308</a>
 </td>
 <td>
 GitHub
@@ -556,7 +689,7 @@ Merge branch ‘main’ into main
 Rmd
 </td>
 <td>
-<a href="https://github.com/rollcardoso/CarolineNCC1/blob/839e0f593771f158861b93f14d0d23410b38b76b/analysis/PhenoData.Rmd" target="_blank">839e0f5</a>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/839e0f593771f158861b93f14d0d23410b38b76b/analysis/PhenoData.Rmd" target="_blank">839e0f5</a>
 </td>
 <td>
 LucianoRogerio
@@ -573,7 +706,7 @@ Atividades Carolina para os dados fenotípicos
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/rollcardoso/CarolineNCC1/839e0f593771f158861b93f14d0d23410b38b76b/docs/PhenoData.html" target="_blank">839e0f5</a>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/839e0f593771f158861b93f14d0d23410b38b76b/docs/PhenoData.html" target="_blank">839e0f5</a>
 </td>
 <td>
 LucianoRogerio
@@ -590,7 +723,7 @@ Atividades Carolina para os dados fenotípicos
 Rmd
 </td>
 <td>
-<a href="https://github.com/rollcardoso/CarolineNCC1/blob/56ad5784e4a8038e4af2721ae51cf8e56a175fd7/analysis/PhenoData.Rmd" target="_blank">56ad578</a>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/56ad5784e4a8038e4af2721ae51cf8e56a175fd7/analysis/PhenoData.Rmd" target="_blank">56ad578</a>
 </td>
 <td>
 rollcardoso
@@ -607,13 +740,13 @@ First Commit Caroline
 Rmd
 </td>
 <td>
-<a href="https://github.com/rollcardoso/CarolineNCC1/blob/3fe13eaed28deac3cc79481000af2d7325fd2718/analysis/PhenoData.Rmd" target="_blank">3fe13ea</a>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/3fe13eaed28deac3cc79481000af2d7325fd2718/analysis/PhenoData.Rmd" target="_blank">3fe13ea</a>
 </td>
 <td>
 LucianoRogerio
 </td>
 <td>
-2021-11-23
+2021-11-22
 </td>
 <td>
 Improvement for the layout of the website
@@ -624,13 +757,13 @@ Improvement for the layout of the website
 html
 </td>
 <td>
-<a href="https://rawcdn.githack.com/rollcardoso/CarolineNCC1/3fe13eaed28deac3cc79481000af2d7325fd2718/docs/PhenoData.html" target="_blank">3fe13ea</a>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/3fe13eaed28deac3cc79481000af2d7325fd2718/docs/PhenoData.html" target="_blank">3fe13ea</a>
 </td>
 <td>
 LucianoRogerio
 </td>
 <td>
-2021-11-23
+2021-11-22
 </td>
 <td>
 Improvement for the layout of the website
@@ -641,7 +774,7 @@ Improvement for the layout of the website
 Rmd
 </td>
 <td>
-<a href="https://github.com/rollcardoso/CarolineNCC1/blob/9b0fab381678b0a4066ee0e2abf72a1c08e401d8/analysis/PhenoData.Rmd" target="_blank">9b0fab3</a>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/9b0fab381678b0a4066ee0e2abf72a1c08e401d8/analysis/PhenoData.Rmd" target="_blank">9b0fab3</a>
 </td>
 <td>
 LucianoRogerio
@@ -664,42 +797,331 @@ First Commit adding data and results of the Core Collections
 <h2>Ajuste dos dados fenotípicos para rodar a análise de modelos mistos</h2>
 <pre class="r"><code>suppressWarnings(suppressMessages(library(tidyverse)))
 library(reshape2); library(here)</code></pre>
-<pre><code>Warning: package &#39;reshape2&#39; was built under R version 4.1.2</code></pre>
 <pre><code>
 Attaching package: &#39;reshape2&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:tidyr&#39;:
 
     smiths</code></pre>
-<pre><code>Warning: package &#39;here&#39; was built under R version 4.1.2</code></pre>
-<pre><code>here() starts at C:/Users/Caroll/Documents/GitHub/CarolineNCC1</code></pre>
-<pre class="r"><code>DadosPhen &lt;- read.csv2(here::here(&quot;data&quot;, &quot;Dados fenotípicos BAG.CSV&quot;), header = T, na.strings = &quot;-&quot;)
+<pre><code>here() starts at /Users/lbd54/Documents/GitHub/CarolineNCC1</code></pre>
+<pre class="r"><code>DadosPhen &lt;- read.csv(here::here(&quot;data&quot;, &quot;Dados fenotípicos BAGSel.CSV&quot;), header = T, na.strings = &quot;NA&quot;)
 
-
-colnames(DadosPhen)[c(8:34)] &lt;- c(&quot;PCR&quot;,&quot;PTR&quot;,&quot;PPA&quot;,&quot;IC&quot;,&quot;AP&quot;,&quot;APsF&quot;,
+colnames(DadosPhen)[c(9:35)] &lt;- c(&quot;PCR&quot;,&quot;PTR&quot;,&quot;PPA&quot;,&quot;IC&quot;,&quot;AP&quot;,&quot;APsF&quot;,
                                   &quot;NMa&quot;,&quot;DMCsg&quot;,&quot;HCNLab&quot;,&quot;DRY&quot;,&quot;PA&quot;,
                                   &quot;PRNC&quot;,&quot;Vigor&quot;,&quot;RF&quot;,&quot;NR&quot;,&quot;PR&quot;,&quot;TAC&quot;,&quot;DMCoven&quot;,
                                   paste(&quot;HCN&quot;,1:9,sep=&quot;&quot;))
 
-DadosPar &lt;- DadosPhen[,c(1:25)]
+DadosPar &lt;- DadosPhen[,c(1:26)]
 
-DadosParFin &lt;- DadosPar %&gt;% reshape2::melt(data = ., id.vars = c(1:7),
+DadosParFin &lt;- DadosPar %&gt;% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = &quot;Trait&quot;, value.name = &quot;Value&quot;) %&gt;%
-  filter(!is.na(Value))
+  filter(!is.na(Value)) %&gt;% mutate(Ano = Ano,
+                                   Campo = Campo,
+                                   Local = Local,
+                                   trial = match(paste(Ano, Campo, Local, sep = &quot;.&quot;), unique(paste(Ano, Campo, Local, sep = &quot;.&quot;))),
+                                   studyDesign = Delineamento,
+                                   clone = Genotipos.BGM.,
+                                   rep = Bloco,
+                                   check = ifelse(Controle == &quot;1&quot;, clone, &quot;999&quot;),
+                                   check = ifelse(clone %in% unique(check), clone, &quot;999&quot;),
+                                   new = ifelse(check != &quot;999&quot;, 0, 1),
+                                   y = Value, .keep = &quot;unused&quot;)
 
 saveRDS(DadosParFin, file = here::here(&quot;output&quot;, &quot;DadosParcelaCaroline.RDS&quot;))
 
-DadosHCN &lt;- DadosPhen[,c(1:7,26:34)]
+DadosHCN &lt;- DadosPhen[,c(1:8,27:35)]
 
-DadosHCNFin &lt;- DadosHCN %&gt;% reshape2::melt(data = ., id.vars = c(1:7),
+DadosHCNFin &lt;- DadosHCN %&gt;% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = &quot;HCN&quot;,  value.name = &quot;Value&quot;) %&gt;%
-  filter(!is.na(Value))
+  filter(!is.na(Value)) %&gt;% mutate(Ano = Ano,
+                                   Campo = Campo,
+                                   Local = Local,
+                                   trial = match(paste(Ano, Campo, Local, sep = &quot;.&quot;), unique(paste(Ano, Campo, Local, sep = &quot;.&quot;))),
+                                   studyDesign = Delineamento,
+                                   clone = Genotipos.BGM.,
+                                   rep = Bloco,
+                                   check = ifelse(Controle == &quot;1&quot;, clone, &quot;999&quot;),
+                                   check = ifelse(clone %in% unique(check), clone, &quot;999&quot;),
+                                   new = ifelse(check != &quot;999&quot;, 0, 1),
+                                   y = Value, .keep = &quot;unused&quot;)
 
 saveRDS(DadosHCNFin, file = here::here(&quot;output&quot;, &quot;DadosHCNCaroline.RDS&quot;))</code></pre>
-<div id="atividades-para-proxima-semana" class="section level3">
-<h3>Atividades para proxima semana</h3>
-<p>-[ ] Criar uma coluna no arquivo csv com o tipo de delineamento do experimento, nome da coluna -&gt; Delineamento DBC -&gt; Delineamento em Blocos Casualizados DBA -&gt; Delineamento em Blocos Aumentados</p>
-<p>-[ ] Criar outra coluna no arquivo csv de nome controle Nos ensaios de delineamento em Blocos Aumentados e exigido a presenca de controles em todos os blocos. Os controles sao utilizados para relizar a predicao da variancia do residuo. 0 -&gt; clones que nao aparecem em todas os blocos 1 -&gt; Clones que aparecem em todos os blocos</p>
-<p>-[ ] Identificar as parcelas com Blocos F e M para fazermos a devida correção</p>
+</div>
+<div id="selecionar-os-ensaios-utilizando-herdabilidade-e-r2-estimados-funções-de-modelos-mistos" class="section level2">
+<h2>Selecionar os ensaios utilizando Herdabilidade e R2 estimados funções de Modelos mistos</h2>
+<pre class="r"><code>suppressWarnings(suppressMessages(library(tidyverse)))
+library(MuMIn)
+library(reshape2); library(here)
+
+source(here::here(&quot;code&quot;, &quot;MixedModelsFunctions.R&quot;))</code></pre>
+<pre><code>Loading required package: Matrix</code></pre>
+<pre><code>
+Attaching package: &#39;Matrix&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:tidyr&#39;:
+
+    expand, pack, unpack</code></pre>
+<pre><code>Loading required package: MASS</code></pre>
+<pre><code>
+Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:dplyr&#39;:
+
+    select</code></pre>
+<pre><code>Loading required package: lattice</code></pre>
+<pre><code>Loading required package: crayon</code></pre>
+<pre><code>
+Attaching package: &#39;crayon&#39;</code></pre>
+<pre><code>The following object is masked from &#39;package:ggplot2&#39;:
+
+    %+%</code></pre>
+<pre class="r"><code>DadosParFin &lt;- readRDS(file = here::here(&quot;output&quot;, &quot;DadosParcelaCaroline.RDS&quot;))
+
+Trials &lt;- unique(DadosParFin$trial)
+Results &lt;- tibble()
+
+for(i in Trials){
+  traits &lt;- DadosParFin %&gt;% filter(trial %in% i) %&gt;% .$Trait %&gt;% unique %&gt;% as.character
+  results &lt;- tibble()
+
+  for(j in traits) {
+  try(MixedModels &lt;- analyzeTrial.lme4(DadosParFin %&gt;% filter(trial %in% i &amp; Trait %in% j)))
+  try(result &lt;- tibble(Trial = i,
+                       Trait = j,
+                       VarG = as.data.frame(VarCorr(MixedModels))[,c(&quot;grp&quot;,&quot;vcov&quot;)] %&gt;% .[1,2],
+                       VarE = as.data.frame(VarCorr(MixedModels))[,c(&quot;grp&quot;,&quot;vcov&quot;)] %&gt;% .[2,2],
+                       H2 = VarG/(VarG + VarE),
+                       Real = suppressWarnings(MuMIn::r.squaredGLMM(MixedModels)[2])))
+  try(results &lt;- rbind(results, result))
+  rm(MixedModels); rm(result)
+  }
+  
+  Results &lt;- rbind(Results, results)
+  rm(traits); rm(results)
+}</code></pre>
+<pre><code>Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, :
+Model failed to converge with max|grad| = 0.103866 (tol = 0.002, component 1)</code></pre>
+<pre><code>Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
+ - Rescale variables?</code></pre>
+<pre><code>boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<pre><code>boundary (singular) fit: see help(&#39;isSingular&#39;)
+boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<pre><code>Error in `contrasts&lt;-`(`*tmp*`, value = contr.funs[1 + isOF[nn]]) : 
+  contrasts can be applied only to factors with 2 or more levels
+Error in VarCorr(MixedModels) : object &#39;MixedModels&#39; not found
+Error in rbind(results, result) : object &#39;result&#39; not found</code></pre>
+<pre><code>Warning in rm(MixedModels): object &#39;MixedModels&#39; not found</code></pre>
+<pre><code>Warning in rm(result): object &#39;result&#39; not found</code></pre>
+<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
+<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
+<pre><code>boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient
+fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
+</div>
+<div id="seleção-ensaios-dados-fenotipicos" class="section level2">
+<h2>Seleção ensaios Dados Fenotipicos</h2>
+<div id="htmlwidget-d8cf4676368b49e0f32b" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d8cf4676368b49e0f32b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Trial":[1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,16,16,16,16,16,16,16,16,16,16,17,17,17,17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,20,20,20,20,20,20,20,20,20,21,21,21,21,21,21,21,21,21,21,22,22,22,22,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,24,24,24,24,24,24,25,25,25,25,25,25,25,25,25,25,25,25,26,26,26,26,26,26,26,26,26,26,26,27,27,27,27,27,27,27,27,27,28,28,28,28,28,28,28,28,28,28,28,29,29,29,29,29,29,29,29,29,29,29,29,30,30,30,30,30,30,30,30,30,30,30,30,31,31,31,31,31,31,31,31,31,31,32,32,32,32,32,32,32,33,33,33,33,33,33,33],"Ano":[2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2011,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2012,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2013,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2014,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2015,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2016,2017,2017,2017,2017,2017,2017,2017,2017,2017,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2018,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019],"Campo":["Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","area Citros","area Citros","area Citros","area Citros","area Citros","area Citros","area Citros","area Citros","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde1","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","Agroverde2","BAG-C","BAG-C","BAG-C","BAG-C","BAG-C","BAG-C","BAG-C","BAG-C","BAG-C","BAG-C","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG2","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG3","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","Val DFPC","Val DFPC","Val DFPC","Val DFPC","Val DFPC","Val DFPC","Val DFPC","Val DFPC","Val DFPC","Val DFPC","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-1","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG1-2","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG-4","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BR.BAG.19.Rec","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG1","BAG-Rec1","BAG-Rec1","BAG-Rec1","BAG-Rec1","BAG-Rec1","BAG-Rec1","BAG-Rec1","BAG-Rec2","BAG-Rec2","BAG-Rec2","BAG-Rec2","BAG-Rec2","BAG-Rec2","BAG-Rec2"],"Local":["CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF1","CNPMF1","CNPMF1","CNPMF1","CNPMF1","CNPMF1","CNPMF1","CNPMF1","CNPMF1","CNPMF2","CNPMF2","CNPMF2","CNPMF2","CNPMF2","CNPMF2","CNPMF2","CNPMF2","CNPMF2","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","Coopamido","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","NovoRumo","NovoRumo","NovoRumo","NovoRumo","NovoRumo","NovoRumo","NovoRumo","NovoRumo","NovoRumo","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","NovoHorizonte ","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB-Candial","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB","UFRB"],"Trait":["PCR","PTR","PPA","IC","AP","NMa","DMCsg","HCNLab","DRY","PCR","PTR","PPA","IC","AP","NMa","DMCsg","HCNLab","DRY","PCR","PTR","PPA","IC","AP","NMa","DMCsg","HCNLab","DRY","PCR","PTR","PPA","IC","AP","NMa","DMCsg","HCNLab","DRY","PCR","PTR","PPA","IC","AP","NMa","DMCsg","DRY","PCR","PTR","PPA","IC","AP","NMa","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","NMa","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","NMa","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","NMa","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","Vigor","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","Vigor","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","Vigor","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","Vigor","RF","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","Vigor","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","NR","PR","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","NR","PR","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","PR","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","NR","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PRNC","RF","TAC","DMCoven","PCR","PTR","PPA","IC","AP","DMCsg","DRY","PRNC","RF","NR","TAC","DMCoven","PTR","PPA","IC","AP","APsF","DMCsg","DRY","PA","RF","NR","PTR","PPA","IC","AP","DMCsg","DRY","PA","PTR","PPA","IC","AP","DMCsg","DRY","PA"],"VarG":[214.680805873474,218.961042057673,195.579258480358,105.165202121857,0.0874860419732986,0.546416665946495,4.86396103008723,95.2762962343066,14.9101822370968,109.261361955976,114.748027354425,114.479852125506,142.052828925083,0.0476490135119125,0.49830249456405,13.4245917867783,1064.18354786958,13.9197647573706,110.269433183787,108.536614981445,32.7512105374092,149.646505944902,0.0559825221755664,9.60956055207891,6.59442284723204,238.561154630815,11.1058338865822,64.9610851164168,63.1937787243057,56.3640384984319,162.717495113329,0.0488801011627446,0.949167371801983,18.3633771147991,595.914864013825,6.59791126743497,97.2271034330135,98.0703448001702,19.4962804075345,138.38545461659,0.0261486329456177,2.33544741458842,6.32848962388773,9.17364582835846,139.594722886813,139.318196259623,201.587383565967,69.847146818666,0.262387739778718,6.5599635135217,2.9921272991211,12.3443862627366,2.20945351155151,3.60672191551498,47.3300508142687,42.7054719225282,44.517494909119,88.6676135425086,0.0970728475423861,2.50002326689891,2.17243146576745,2.95814442633039,1.35392006568028,2.35564356976748,64.1241771981028,57.0972538541689,89.5604553538774,58.7218153046066,0.0697856866245771,2.26427619289368,7.41993591763878,4.12991302583107,0.766745009878281,1.04877906776168,74.9416911982608,97.2311523016557,125.504380570586,133.263615241155,0.0761502172798385,1.77939681049063,5.35735525568657,7.91553732505879,1.04891364967083,4.1947621859474,143.966128189548,132.471512670753,140.616990278671,157.293238435555,0.0330663979133122,5.4190522334563,11.47473300194,0.479719313194749,5.16318227612531,92.5273509066844,78.0229586295245,73.8033997709827,134.748055962032,0.0790475136881315,8.3261066771719,6.95352436671018,1.62078653678999,92.5273509066844,32.7417721063771,47.1172807599382,23.7931394768181,73.1308884955645,0.133681520604761,4.99577013192328,4.98695453006768,1.79586506799281,8.01197687672076,0.194498725088277,43.3590858148224,86.7066108337573,70.1208892655846,80.1810194043067,0.163888238257175,5.85958144817883,10.2136574530381,1.9673910158973,12.0226700347572,0.0841900739841406,28.8685314552398,58.3674173622403,30.5436089931442,85.1932965000129,0.0665532187313627,3.98002997494391,5.66361590170558,0.428506394165011,12.3715656270549,221.151076761655,251.688539164984,101.965279691277,111.194927491584,0.214904571236,8.40622939067396,22.7080914852026,1.61658887955765,14.9757434910109,37.1884649572662,78.5579734955639,63.2157127952751,104.184183597876,0.122281037164929,5.93960709452313,8.37511480711809,1.28931539073371,9.00638386201764,0.119284406923408,37.5761264995491,58.4217787378008,66.4692257980111,175.436977618559,0.068190916383733,7.2950651142029,5.23418022823985,0.856520351335311,3.03331591509645,0.181580681010382,0.687044170739972,21.6491183225197,43.1004627433612,67.8411504107286,162.646552972665,0.0803485712418712,7.28003386613542,4.30590440480259,0.849314645068014,4.46174373395662,0.199790582972018,100.221307194543,103.897854965655,135.136314848124,116.788006659268,0.0658193965552029,5.63071890537391,9.59783221977454,1.67708598817765,18.1446733906192,33.9080354044525,77.3065861798011,95.1952809439685,142.142339042368,0.123402116533747,5.11738562559279,8.41524800750054,1.5730744898994,6.41566270911172,69.7508551745567,119.367506687302,87.4099729358087,95.7921527372914,0.101763663425126,8.68320227436677,12.0890311808153,0.914976568318072,10.8472361969799,0.317715822869906,47.8285509619752,101.937734860268,108.373516407273,146.664846208853,0.0753966598185347,9.13724750349047,7.85419674315531,0.827604979486283,3.89183240233842,0.630243846594632,16.1322804845205,26.8102886014511,42.0812501015255,85.4870341742798,0.0403341307270103,4.07681153511028,2.9818785462156,1.47825018935833,1.87456928310725,0.783116482371742,8.09409300516235,27.7089334732609,51.5640388437787,142.733780044968,0.0635064466770311,6.23562108698402,2.04964881094106,1.63553027608666,5.10223160581883,0.0343011138807407,1.58167873577413,0.0149746909377897,12.585888757995,50.1303719294115,112.268897733293,127.564711497256,0.062466061551855,6.09084885270189,4.05209082142205,1.50775821132887,3.15716004463642,0,1.69651378427548,0,3.38180202926762,18.0802004994898,65.3523318375952,173.27486761541,0.0672041624608995,9.90456392851956,1.60692513195057,0.857421664546469,4.01184847751506,0,0.0032990731163192,33.0127233004835,52.8156396924024,136.384464261599,164.677588857947,0.0853386647420093,12.4307990890763,4.33992793512667,1.08027951448023,8.63348177544072,68.0386342032942,77.7556052101996,46.0741148769514,109.925170389145,0.0979011879204399,8.56284723914137,7.08325565146392,0.199357655639023,0.536193548842482,0.0740512168748979,2.78836795684964,97.3157826983952,126.976781971599,101.145333483925,113.193394933678,0.0985643966110418,5.35497570688,4.18456470032821,0.393886180065622,1.06425178172195,0.0442335364392966,3.89385474606094,9.22062125617323,202.865020104436,108.59351009362,102.199809420191,92.0757321324996,0.0243509619552446,7.506121265914,4.52318445514284,0,0.367764194712213,1.8248198196117,11.381352112052,16.2079079945914,52.0714077632185,53.9277054736198,154.91769518584,0.13233923702904,0.107178408732525,6.99865219135792,3.41718832498809,0.348311124803965,0.0137347585697398,2.02142796824888,26.81605947425,148.3602806717,102.600978703167,0.130875900728577,3.92565378707174,0.0608423869595897,0.718007884037111,41.5642879284425,154.22864849617,134.299765215781,0.149002341283191,4.66661507688151,8.14428789648281,0.499285746849274],"VarE":[85.0774556499734,89.1268174220356,84.1557140060862,89.0599627714256,0.0737994450375744,0.460934938859381,5.0903314176736,87.6497960234005,6.20616423809805,44.5409931082431,44.2524874512818,57.7872145599724,63.8049723099178,0.102220499171092,0.466536110884881,3.99195819773621,81.5940331799149,6.82465209539141,95.3336094286722,94.1026650602735,99.3143067052661,42.5349547149803,0.0274908321429574,10.0022744873461,4.75192401089032,185.098811366497,11.4269938521676,64.0688828236427,69.9930239083327,50.6237146580675,50.0188195975559,0.0271177462926023,3.52226971942531,3.71950919030288,67.9117329054708,10.5286321864453,138.079464036909,148.988503499859,127.837094281669,37.2790635294174,0.0956068818120407,12.4770074545463,5.58426347647316,15.7426520178335,138.810865742356,142.047835482872,156.158708848683,68.3860922303864,0.0081194362008751,0.202553323262189,2.81473517019307,13.0862994132848,1.57347556324495e-13,1.06138283619809,154.28220388164,182.28286708405,141.197507748483,138.510838236009,0.077527724091299,2.06461768410343,8.00411678565762,15.8633167526613,1.63174993684047,7.52864118738,196.763939289985,220.332854702264,165.444624361774,285.073754991105,0.0748578177091189,1.97748976581777,2.96917205697098,17.7066749139008,0.452414887794063,9.59375038416392,117.524005395266,139.07594030116,154.233350080207,194.690957852116,0.0507253059422628,3.06424397280143,2.76947259733274,12.0116194105724,0.963617277612738,10.4993610872394,57.6935295683395,63.7183853372926,17.3162353925553,41.1798162102437,0.0919165309795044,4.70900793667946,7.03679711328418,1.53719719197102,17.7402076406139,24.1313934710462,30.1673733451702,22.2189245392243,50.7442141119649,0.0501704873418586,2.54051788848672,2.97903690159642,0.678025405541758,24.1313934710462,10.3413670663906,9.08257349391575,9.13328636620356,40.2770931818865,0.055066569308703,2.46514019165362,1.07585867516198,0.46690776908237,4.15310712803427,0.266842320881646,13.4323552014789,28.6228208909848,18.8054700164175,29.1776219338153,0.11216399282755,1.92656705151722,3.34468723510421,0.559745789409928,8.81200786552469,0.12172199356503,14.7369351387005,20.4913530596525,14.9567764131938,33.63500879109,0.0269221954766635,2.92095331766613,2.10163430356065,1.05786388373955,12.0833538325038,11.8956506850199,14.2997828587815,9.61583368300355,22.0976873623871,0.241481370679463,2.73030550856814,1.9355087275545,1.14781449716966,4.60864704898253,17.9176314440044,30.0976689345981,14.6699402491511,34.0796188444778,0.0421452097949346,1.06112607639669,3.13269993628601,0.498791018272642,12.4282654389103,0.542282510580709,10.2852802405076,12.8784804236935,14.3190699213123,17.5241150588483,0.0194986437906064,0.549640396019587,1.22104863273246,0.876921132405235,4.56055559230924,0.505616253037077,0.509629545998579,10.8554277146356,12.4723412141586,12.2949783674947,20.9278288296055,0.0131817670349071,0.649596176214652,1.33186065165254,0.755338416805004,4.9727555578898,0.43374852553722,25.2842241516102,28.0754311573442,41.9085429459317,41.3829454759814,0.0570253915024204,4.43988256728268,2.2951717479687,0.366304556487174,11.6323514269197,15.651613235964,15.5126152921742,21.486246425721,24.15100698809,0.0251941292707547,0.588530164737221,1.53311683064276,0.498156478409384,9.03667437440801,18.1092960162698,18.2213008261228,7.94944177153185,25.8199440370746,0.0503560387112682,1.15907457532068,1.77493439381702,0.70995062805862,5.88109406014952,0.822806031586114,42.0360122583845,34.5906712318606,41.2427258537469,28.987305848004,0.022058989246413,1.00923479165712,3.00766412098109,1.4043572646033,13.2170785871728,0.510254368317793,7.11970075744824,6.18632418778496,4.86937362704177,14.9608231856831,0.0107211948670736,0.318530582222702,0.738987942126769,0.493124702348357,2.88913397858019,0.190611660852315,5.60053099844544,5.52685777912966,16.528638702683,14.823046115177,0.0183799197585235,1.00482246535682,0.453406952742349,0.637245358458611,3.67279739468559,0.186176723964846,0.844255920156382,0.0615793668864926,22.2094323827138,26.3495452937969,28.279173440846,31.3508476756019,0.0388205586829939,1.4313793615472,2.31036134389395,1.08861378040767,13.5142037312912,0.148948373447852,0.871431521355113,0.150924815351813,5.96161853488395,8.37667724898993,15.0853670015993,45.5829776303243,0.0233218714241742,0.961250882676246,0.794003802279452,0.721421241260697,4.83086282286007,0.0664293541915948,0.045617480731372,8.32439478221157,9.8350279044247,16.4727133251443,12.1271012919911,0.0156492491163304,1.1588838584977,0.922645522604772,0.770573430293253,5.4398722832128,17.9232377781928,20.026749545565,34.9708470591997,34.0674758915928,0.0165466825108751,0.629551956737256,2.33168839037819,1.00807632472862,3.06565639776755,0.448691020525578,0.638166016016308,52.4946426788263,60.5864771604111,42.6253953431975,60.5881306445616,0.0593032682295161,3.09875710114604,14.443454921662,0.571732622326566,5.19047779377855,0.442147938037348,5.2132745792078,11.7288335356254,213.537106040015,164.93689887783,102.922230643142,135.488613463825,0.169622688090304,10.9718197718825,16.9267239228656,25.6271916666666,1.13205996087826,2.97958883491016,0.684641472721891,5.50498711090432,29.5972592215248,20.8748448803799,28.2106767572523,0.0460209604091052,0.0388181335067988,1.54662806783431,5.44189417292969,0.284296175518356,0.345966158078052,0.856645748381755,10.1271986405097,9.70518984270942,17.0046675447867,0.0118872227134892,0.574463283086819,4.65824864832894,0.14175700158649,30.1161809965516,18.9962495720018,20.513745358402,0.0184889325154083,0.966489997312777,6.2745048797461,0.200566142441382],"H2":[0.716179780274985,0.710709738538381,0.699159124588312,0.54146022828525,0.542429722566425,0.542428942724316,0.488629508889037,0.520845851230895,0.706096684604585,0.710401098281977,0.721683369985582,0.664548682044497,0.690053172980897,0.317936668098047,0.516462019398772,0.77079512295572,0.928787196983573,0.671012584068723,0.536321991069138,0.535614886507195,0.24799214224276,0.778672955398868,0.670663382735814,0.489987832997836,0.58119348277383,0.563095816875765,0.49287350950114,0.503457345247069,0.47447477884584,0.526827013704866,0.764878790602662,0.643177442511967,0.212273448655734,0.831565985582078,0.897696577358248,0.385244768461444,0.413193326809466,0.39695135582059,0.132327657929926,0.787782621539814,0.214763438006597,0.157667816389765,0.531236530344611,0.368178526560698,0.501407761152203,0.495149309235475,0.563492901362888,0.505284744097479,0.969984396267966,0.970047642297846,0.515274352532494,0.48541303290049,0.999999999999929,0.772630887126388,0.234757807186158,0.189811934747781,0.239708662585514,0.390299400530086,0.555970960656684,0.547693300247402,0.213474295222178,0.157168691537735,0.45347277647469,0.238322107025911,0.245791866878807,0.20580770469098,0.351210475704028,0.170804455840131,0.482466785812793,0.533805074333123,0.714203369122024,0.189128129231063,0.628912590827645,0.0985460338633987,0.389376873513891,0.411460998612858,0.448650170567294,0.406347787695751,0.600196281725153,0.367367624913183,0.65921849860474,0.397223619509412,0.521191319572222,0.285472097107135,0.713906439147058,0.675220865170746,0.890357235984004,0.792516841725773,0.264567314962425,0.535053321408502,0.619869504601512,0.237847879159142,0.225433103784857,0.793145438005822,0.721163871165251,0.768606678719373,0.726434885444434,0.611737629881656,0.766209104479838,0.700073644538986,0.705053991996397,0.793145438005822,0.75996718751341,0.838387952878136,0.72261531179403,0.644847808891966,0.708253634068829,0.669592571852306,0.822547942886651,0.793656808393596,0.658604319837749,0.421594234433147,0.763479232766371,0.751816856608648,0.788527606794495,0.733193265966042,0.593685613817317,0.752564820515249,0.753311535291668,0.778505940701584,0.57705091925585,0.408864205902048,0.662039274205394,0.740151248237524,0.671282423662495,0.716944471195716,0.711986347375267,0.576733750276711,0.729353948938391,0.288290475485762,0.505892716085769,0.94895594194627,0.946239057602296,0.913822031415399,0.834216716458026,0.470883415764387,0.75483347977889,0.921459985114003,0.584787622952291,0.764677535429496,0.674852101416655,0.722999484781076,0.811647721040699,0.753517419292105,0.743683197943318,0.848426436133221,0.727776297573649,0.721050707183685,0.42017873656686,0.180305882545382,0.785102842957194,0.819376807670168,0.822758113736426,0.909183168400973,0.777640077657588,0.929934859211305,0.810843479134442,0.494115526465335,0.39944261792398,0.264233834602414,0.574128236569332,0.666033554130338,0.775567537968886,0.846573841849522,0.885998097206466,0.859064264304282,0.918079888627171,0.763760880718577,0.529282413281696,0.47291791497749,0.315356353362525,0.798540957674013,0.787264286719527,0.763288561621591,0.73836570547672,0.535793154890126,0.55912439000414,0.807014968279354,0.820736883879798,0.609351454747481,0.684186355929894,0.83287277797948,0.815855629335013,0.85476865091363,0.830452450973082,0.896856142578441,0.845892580782261,0.759487722020619,0.415190444942738,0.793884989146699,0.867566983423816,0.916637053657168,0.787686054908009,0.668970961656776,0.882235117643791,0.871974985492987,0.563087731166241,0.648435081699618,0.278570569804156,0.532229270893949,0.746641213927899,0.724343258255378,0.834973238252037,0.773650994497896,0.900533528537297,0.723098633042541,0.370797033721268,0.227473999059574,0.552603974608611,0.693802404046434,0.812516386839469,0.896287349552739,0.851058812214682,0.79000829507361,0.927529968380259,0.801393588175752,0.749857470325473,0.393510926296283,0.804245505094275,0.591041638166188,0.833707651574802,0.757262611807195,0.905919365879391,0.775543590971414,0.861220868846915,0.818858628992296,0.71961800858266,0.581448973618837,0.155576243925087,0.651987361616485,0.195609368900623,0.361712102242107,0.655471053702959,0.798793585677828,0.802720087077814,0.616725697895908,0.809713382686823,0.636875644191314,0.580717330231416,0.189376231427159,0,0.660650279644052,0,0.361944750966554,0.683383756442263,0.81245899349064,0.791723355499806,0.742373873865034,0.911534394854052,0.669293084456042,0.543069650180378,0.453689862898144,0,0.067442876834524,0.798621791544379,0.843017987171093,0.892234610207974,0.931409617687705,0.845038395997739,0.914723260066595,0.82467788240575,0.583665772870163,0.613462983980859,0.791497819148788,0.795190557687154,0.568500666497315,0.763408224159083,0.855421665352826,0.931513857990468,0.752341768573914,0.165108535025924,0.148866154001539,0.141659142071902,0.813757569290187,0.649592860132096,0.676981102584866,0.703518263481488,0.651354593401334,0.62434822679229,0.633445109809473,0.22463819478633,0.407910636257106,0.170151525957345,0.0909441225879187,0.427561156429064,0.440136573854082,0.487185360898137,0.397007084155511,0.498239045344108,0.404614052747228,0.125537473515225,0.406220652537004,0.210871970892903,0,0.245204875079123,0.379821940811424,0.943258591353319,0.746464620026145,0.63759345763469,0.720934048617451,0.84595135937746,0.741977408243983,0.734116076234419,0.819007917713337,0.385727114042708,0.550596119625076,0.0381838297709662,0.702354479862096,0.725871534961784,0.938600190091329,0.857827217374551,0.916734641083185,0.872344813672464,0.0128928190841459,0.835121201206454,0.579855134205875,0.890337649010907,0.867493829948567,0.889612562516896,0.828426776248086,0.564838403802407,0.713416302062614],"Real":[0.716214044182785,0.711131169984911,0.699282308751037,0.542880209168305,0.542915192503012,0.542910547162162,0.490634262537514,0.521429793432324,0.706478750277599,0.712288224008083,0.722155173508332,0.664975619303766,0.690367952447479,0.319553319711138,0.599566636994027,0.770857961057002,0.928881529259414,0.671915953196795,0.650918212519168,0.646786190437284,0.36963925801428,0.80107354188463,0.694461577242331,0.515026350756015,0.635550098514548,0.616293819109774,0.636166628858266,0.562532620743095,0.531653507775988,0.590824764110106,0.77714827685654,0.680635496332883,0.428209251345358,0.855142235422031,0.904181127496023,0.479183784530209,0.535077926309611,0.521965813367405,0.418949478456979,0.806752603728178,0.348432973721134,0.322270574596236,0.575882932272514,0.532409341181482,0.505181991814937,0.499047537196073,0.565759404713432,0.510322346701433,0.969986106320145,0.970049067754625,0.578616187470618,0.492338206549674,0.999999999999929,0.772714852119003,0.278328001155707,0.223350717566258,0.239784099331961,0.411426097335447,0.564719263011256,0.557182936933336,0.224168193835056,0.200054936599281,0.456828394157564,0.240868927803006,0.261326763622646,0.224338271118821,0.360229909528987,0.202634022108655,0.50257739240641,0.548305912820136,0.714208973841721,0.205255124198994,0.632023586529004,0.10339720579001,0.491203230284087,0.498004097756453,0.45646729697376,0.435506555432477,0.60973396850979,0.373419615836009,0.659879211475129,0.480374959314884,0.524422478732539,0.286925285058009,0.764535127501676,0.738448424462142,0.899610765675416,0.814235213115797,0.361168508900626,0.564978089829715,0.705349547581967,0.319399635018212,0.363582240698472,0.822984916439972,0.760113507141545,0.796624709292404,0.757973494337667,0.687308380758993,0.80844933223692,0.749370871971263,0.757615878661845,0.822984916439972,0.797834339602805,0.866470039077916,0.752264921719524,0.683644440265648,0.756916256252146,0.707784604483286,0.855679005767421,0.815752279480857,0.674638100383063,0.481547526415736,0.79867308807198,0.790951400806074,0.820724782764801,0.796804273011027,0.670128414844165,0.839312645687406,0.796748601946,0.824464241513266,0.671682024530274,0.558036313261207,0.726057761159126,0.79129741679846,0.747468406486496,0.766550851526388,0.786459670430748,0.684238008953603,0.794114686076234,0.418896116301784,0.565238298822896,0.949549506207739,0.946688093572497,0.917888067489844,0.841230807562487,0.52519166826754,0.75497631703947,0.922039415325595,0.584947990670186,0.764959644653581,0.743411808399582,0.793337263803413,0.848217851264808,0.784243396454298,0.803171306918512,0.883997100676529,0.805368536256188,0.784871902177142,0.552553113560204,0.299367993023089,0.829934843633182,0.868645541555007,0.865658670552831,0.923030141971815,0.825030892163178,0.942778547167014,0.869107565383989,0.590123596532451,0.590142961329364,0.396247970442142,0.691519684751574,0.780099707220103,0.856369402310785,0.888320707080275,0.903343909864933,0.88760224435461,0.932646280375416,0.855658635978814,0.645923570908251,0.623429576033471,0.614582043495704,0.81899734120468,0.818669758021041,0.806014077115556,0.819945984737393,0.666784441239444,0.620507375164569,0.835234369275673,0.866148679245266,0.636410946773912,0.759326178623748,0.877670694334726,0.850991037680566,0.875749669342271,0.869940172782275,0.915906283145234,0.89103531549848,0.819255635664262,0.558086738651568,0.814093552765262,0.883878066435677,0.924549350198362,0.82553704114134,0.723268330643246,0.900705250440171,0.888552923946077,0.673600713733435,0.713274225713575,0.341172555800064,0.690084255227387,0.837671021968932,0.793133790907888,0.851011316492358,0.814285863358563,0.910743546555141,0.830166135602704,0.481073029859532,0.413506006854771,0.632042748269793,0.69466891913261,0.812668463936385,0.899903654776982,0.85331817049436,0.807889345117785,0.927560331229843,0.801607224867775,0.750807885656296,0.415092533330915,0.807588412728168,0.669757029458333,0.882635390583448,0.828821254291791,0.932980381092781,0.820743967167284,0.878187221238342,0.874060535141781,0.776055020529116,0.713944457545261,0.300562629578661,0.744861902062504,0.270806286137915,0.463426583544623,0.71425145264885,0.826574088970632,0.843838150702052,0.702202373049937,0.836134436300307,0.710603387825503,0.633054980671848,0.328152151636184,0.235946110198493,0.700656749350226,0.110090318941308,0.537405250695121,0.777777122676968,0.855030721240009,0.819605766392995,0.782451277311484,0.917946431418273,0.773884353357544,0.61724234617001,0.580833732959099,0.104911951086122,0.12638374786877,0.826610905388197,0.890913971824762,0.914440929106445,0.935848988123447,0.866944997047664,0.923614220205012,0.882356944529312,0.6715238902273,0.753211607710324,0.852985209576421,0.858055971696693,0.658474939852062,0.786952404801173,0.883546947129233,0.942185283323066,0.840554596195764,0.359918754976369,0.262476609042563,0.306173836567916,0.862776015888252,0.706077903537711,0.729350543952935,0.743516974834756,0.693481161891376,0.708105819848679,0.695352495092922,0.293360019037936,0.523469974843245,0.290710171747309,0.229622370132313,0.492969065665386,0.524342509821724,0.488752248146505,0.399035083437868,0.505017921431549,0.414201298283175,0.151488080474242,0.427787684533465,0.215143603790132,0.00122175521039656,0.277263110371374,0.386623297251875,0.943276523285671,0.747553321707126,0.79469994098201,0.822642550509158,0.869977255704008,0.805090232388776,0.798509312184529,0.854594603084939,0.607470259456248,0.636082843081187,0.200667307757615,0.801823055907571,0.849866872469704,0.954324958148649,0.88779143578976,0.934044633228001,0.897462182825132,0.206922862886358,0.872076141084789,0.678904600619026,0.919641941008529,0.879612787459136,0.910138391579152,0.860687073970522,0.611318409682624,0.758724294153631],"Selecionado":["Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Nao","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Nao","Sim","Nao","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Nao","Nao","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Nao","Sim","Sim","Sim","Sim","Sim","Sim","Nao","Sim","Sim","Nao","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Nao","Sim","Sim","Sim","Sim","Sim","Sim","Nao","Sim","Sim","Sim","Sim","Sim","Sim","Sim","Sim"]},"columns":[{"accessor":"Trial","name":"Trial","type":"numeric"},{"accessor":"Ano","name":"Ano","type":"numeric"},{"accessor":"Campo","name":"Campo","type":"character"},{"accessor":"Local","name":"Local","type":"character"},{"accessor":"Trait","name":"Trait","type":"character"},{"accessor":"VarG","name":"VarG","type":"numeric","format":{"cell":{"digits":2,"locales":"en-US"},"aggregated":{"digits":2,"locales":"en-US"}}},{"accessor":"VarE","name":"VarE","type":"numeric","format":{"cell":{"digits":2,"locales":"en-US"},"aggregated":{"digits":2,"locales":"en-US"}}},{"accessor":"H2","name":"H2","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Real","name":"Real","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Selecionado","name":"Selecionado","type":"character"}],"pivotBy":["Trait"],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"1217e893d03a298558bc79f4ccc5aec4","key":"1217e893d03a298558bc79f4ccc5aec4"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>DataSelPar &lt;- DadosParFin %&gt;% mutate(Trait.Trial = paste(Trait, trial, sep = &quot;.&quot;)) %&gt;%
+  .[.$Trait.Trial %in% (Results2 %&gt;% mutate(Trait.Trial = paste(Trait, Trial, sep = &quot;.&quot;)) %&gt;%
+                        filter(Selecionado == &quot;Sim&quot;) %&gt;% .$Trait.Trial),]
+
+saveRDS(object = DataSelPar, file = here::here(&quot;data&quot;, &quot;DadosFenCarSel.rds&quot;))</code></pre>
+</div>
+<div id="selecao-de-ensaios-de-avaliacao-de-hcn" class="section level2">
+<h2>Selecao de ensaios de avaliacao de HCN</h2>
+<pre class="r"><code>suppressWarnings(suppressMessages(library(tidyverse)))
+library(MuMIn)
+library(reshape2); library(here)
+
+source(here::here(&quot;code&quot;, &quot;MixedModelsFunctions.R&quot;))
+
+DadosHCNFin &lt;- readRDS(file = here::here(&quot;output&quot;, &quot;DadosHCNCaroline.RDS&quot;))
+
+Trials &lt;- which(table(DadosHCNFin$trial) &gt; 30) %&gt;% names %&gt;% as.integer
+Results &lt;- tibble()
+
+for(i in Trials){
+
+  try(MixedModels &lt;- analyzeTrial.lme4HCN(DadosHCNFin %&gt;% filter(trial %in% i)))
+  print(i)
+  try(results &lt;- tibble(Trial = i,
+                       Trait = &quot;HCN&quot;,
+                       VarG = as.data.frame(VarCorr(MixedModels))[,c(&quot;grp&quot;,&quot;vcov&quot;)] %&gt;% .[1,2],
+                       VarE = as.data.frame(VarCorr(MixedModels))[,c(&quot;grp&quot;,&quot;vcov&quot;)] %&gt;% .[2,2],
+                       H2 = VarG/(VarG + VarE),
+                       Real = suppressWarnings(MuMIn::r.squaredGLMM(MixedModels)[2])))
+
+  Results &lt;- rbind(Results, results)
+  rm(MixedModels); rm(results)
+}</code></pre>
+<pre><code>[1] 3
+[1] 11
+[1] 12
+[1] 13
+[1] 14
+[1] 15
+[1] 16
+[1] 17
+[1] 19</code></pre>
+<pre><code>fixed-effect model matrix is rank deficient so dropping 1 column / coefficient</code></pre>
+<pre><code>[1] 20</code></pre>
+<pre class="r"><code>Results</code></pre>
+<pre><code># A tibble: 10 × 6
+   Trial Trait  VarG  VarE    H2  Real
+   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     3 HCN    3.80 0.254 0.937 0.937
+ 2    11 HCN    3.36 0.414 0.890 0.890
+ 3    12 HCN    3.72 0.353 0.913 0.913
+ 4    13 HCN    3.49 0.404 0.896 0.896
+ 5    14 HCN    3.74 0.362 0.912 0.919
+ 6    15 HCN    2.58 0.717 0.782 0.782
+ 7    16 HCN    3.33 0.468 0.877 0.877
+ 8    17 HCN    3.00 0.561 0.843 0.845
+ 9    19 HCN    3.11 0.649 0.827 0.828
+10    20 HCN    2.39 0.530 0.818 0.818</code></pre>
+</div>
+<div id="seleção-ensaios-dados-hcn" class="section level2">
+<h2>Seleção ensaios Dados HCN</h2>
+<div id="htmlwidget-e55255c032fd6a098c86" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-e55255c032fd6a098c86">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Trial":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"Ano":[2011,2013,2013,2013,2014,2015,2015,2015,2015,2015,2016,2016,2016,2017,2018,2019,2019,2019,2020,2020],"Campo":["Agroverde2","Agroverde1","Agroverde2","BAG-C","BAG2","BAG1-1","BAG1-2","BAG2","BAG3","BAG-4","BAG1-1","BAG1-2","BAG-4","BAG-4","BAG1","BAG1","BAG-Rec1","BAG-Rec2","BR.BAG.19","BR.BAG.19.Rec"],"Local":["CNPMF","UFRB","CNPMF","CNPMF","UFRB","CNPMF","CNPMF","UFRB","NovoHorizonte ","CNPMF","CNPMF","CNPMF","CNPMF","CNPMF","UFRB","UFRB","UFRB","UFRB","UFRB-Candial","UFRB-Candial"],"Trait":[null,null,"HCN",null,null,null,null,null,null,null,"HCN","HCN","HCN","HCN","HCN","HCN","HCN",null,"HCN","HCN"],"VarG":["NA","NA",3.80033188684525,"NA","NA","NA","NA","NA","NA","NA",3.36033375521586,3.71734840316462,3.49275661394414,3.74186231431517,2.5781527202255,3.33073186717924,3.00411397911416,"NA",3.11037448849522,2.38865878215005],"VarE":["NA","NA",0.253881643958477,"NA","NA","NA","NA","NA","NA","NA",0.414469746050672,0.353249725471565,0.404333915804512,0.361836976889353,0.71715916336914,0.467728095418143,0.561287332065975,"NA",0.649229809125169,0.530360748710906],"H2":["NA","NA",0.93737832454322,"NA","NA","NA","NA","NA","NA","NA",0.890200974458245,0.913219208993761,0.896247235542,0.911826634650136,0.782369867040677,0.876863755305108,0.842573869509183,"NA",0.827314324133501,0.818308598793624],"Real":["NA","NA",0.937420808930629,"NA","NA","NA","NA","NA","NA","NA",0.890222274465593,0.91335269419059,0.896247279571708,0.918842462439066,0.782464985617052,0.876863885560828,0.844686005845038,"NA",0.82811229582866,0.818308598793624],"Selecionado":[null,null,"Sim",null,null,null,null,null,null,null,"Sim","Sim","Sim","Sim","Sim","Sim","Sim",null,"Sim","Sim"]},"columns":[{"accessor":"Trial","name":"Trial","type":"numeric"},{"accessor":"Ano","name":"Ano","type":"numeric"},{"accessor":"Campo","name":"Campo","type":"character"},{"accessor":"Local","name":"Local","type":"character"},{"accessor":"Trait","name":"Trait","type":"character"},{"accessor":"VarG","name":"VarG","type":"numeric","format":{"cell":{"digits":2,"locales":"en-US"},"aggregated":{"digits":2,"locales":"en-US"}}},{"accessor":"VarE","name":"VarE","type":"numeric","format":{"cell":{"digits":2,"locales":"en-US"},"aggregated":{"digits":2,"locales":"en-US"}}},{"accessor":"H2","name":"H2","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Real","name":"Real","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Selecionado","name":"Selecionado","type":"character"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"48425615c4598853fc4419886b9c7289","key":"48425615c4598853fc4419886b9c7289"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>DataSelHCN &lt;- DadosHCNFin %&gt;% 
+  .[.$trial %in% (Results2 %&gt;% filter(Selecionado == &quot;Sim&quot;) %&gt;% .$Trial),]
+
+saveRDS(object = DataSelHCN, file = here::here(&quot;data&quot;, &quot;DadosHCNCarSel.rds&quot;))</code></pre>
+</div>
+<div id="estimação-blups-e-obtenção-de-médias-corrigidas" class="section level2">
+<h2>Estimação BLUPS e obtenção de médias corrigidas</h2>
+<pre class="r"><code>library(here)
+library(furrr)
+library(tidyverse)
+source(here::here(&quot;code&quot;, &quot;MixedModelsFunctions.R&quot;))
+
+DataSelPar &lt;- readRDS(here::here(&quot;data&quot;, &quot;DadosFenCarSel.rds&quot;)) %&gt;%
+  mutate(trial = as.character(trial),
+         rep = as.character(rep),
+         repTrial = as.factor(paste(trial, rep, sep =&quot;:&quot;)))
+DataSelHCN &lt;- readRDS(here::here(&quot;data&quot;, &quot;DadosHCNCarSel.rds&quot;)) %&gt;%
+  mutate(trial = as.character(trial),
+         rep = as.character(rep),
+         repTrial = as.factor(paste(trial, rep, sep =&quot;:&quot;)))
+
+#NCT &lt;- 4
+
+#plan(sequential)
+#RhpcBLASctl::blas_set_num_threads(NCT)
+MM &lt;- analyzeTrial.sommerConj(DataSelHCN)
+blups &lt;- MM$U$clone$y + MM$Beta$Estimate
+names(blups) &lt;- names(blups) %&gt;% gsub(pattern = &quot;clone&quot;, replacement = &quot;&quot;, x = .)
+Blups &lt;- tibble(id = names(blups),
+                blups = blups)
+saveRDS(object = Blups, file = here::here(&quot;output&quot;, &quot;MixedModels&quot;, &quot;Blups_HCNPic.rds&quot;))
+
+traits &lt;- table(DataSelPar$Trait) %&gt;% .[order(.)] %&gt;% names
+
+for(i in traits[7:18]){
+  print(paste(&quot;Trait&quot;, i, sep = &quot; &quot;))
+  DataMM &lt;- DataSelPar%&gt;% filter(Trait == i)
+  MM &lt;- analyzeTrial.sommerConj(DataMM)
+  blups &lt;- MM$U$clone$y + MM$Beta$Estimate
+  names(blups) &lt;- names(blups) %&gt;% gsub(pattern = &quot;clone&quot;, replacement = &quot;&quot;, x = .)
+  Blups &lt;- tibble(id = names(blups),
+                  blups = blups)
+  file &lt;- here::here(&quot;output&quot;, &quot;MixedModels&quot;,
+                     paste(&quot;Blups_&quot;, i, &quot;.rds&quot;, sep = &quot;&quot;))
+  saveRDS(object = Blups, file = file)
+  rm(DataMM); rm(MM); rm(blups); rm(Blups); rm(file)
+}</code></pre>
+<div id="atividades-caroline" class="section level3">
+<h3>Atividades Caroline</h3>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="" />
+estimar os seguintes índices:</p><ul class="task-list">
+<li><p><input type="checkbox" disabled="" />
+<strong>Número de observações por trait</strong></p></li>
+<li><p><input type="checkbox" disabled="" />
+<strong>Número de Ensaios por trait</strong></p></li>
+<li><p><input type="checkbox" disabled="" />
+<strong>Número médio de Blocos por trait</strong></p></li>
+<li><p><input type="checkbox" disabled="" />
+<strong>Deviance de Clone</strong> - Quiquadrado (Chisq)</p></li>
+<li><p><input type="checkbox" disabled="" />
+<strong>Deviance de RepTrial</strong> - Quiquadrado (Chisq)</p></li>
+<li><p><input type="checkbox" disabled="" />
+<strong>Deviance de interação Trial e Clone</strong> - Quiquadrado (Chisq)</p></li>
+<li><p><input type="checkbox" disabled="" />
+<strong>Probabilidades das Deviances</strong> - PrChisq</p></li>
+<li><p><input type="checkbox" disabled="" />
+<strong>Variâncias do Resíduo, Clone, e interação Trial e Clone</strong></p></li>
+</ul></li>
+</ul>
+<p>Exemplo:</p>
+<pre class="r"><code>library(here)
+library(furrr)
+library(tidyverse)
+source(here::here(&quot;code&quot;, &quot;MixedModelsFunctions.R&quot;))
+
+DataSelPar &lt;- readRDS(here::here(&quot;data&quot;, &quot;DadosFenCarSel.rds&quot;)) %&gt;%
+  mutate(trial = as.character(trial),
+         rep = as.character(rep),
+         repTrial = as.factor(paste(trial, rep, sep =&quot;:&quot;)))
+
+traits &lt;- table(DataSelPar$Trait) %&gt;% .[order(.)] %&gt;% names %&gt;% .[1]
+x &lt;- DataSelPar %&gt;% filter(Trait == traits)
+
+# obter numero de observacoes, Ensaios, médios de repetições
+nrow(x) # Observações
+length(unique(x$trial)) # Ensaios
+x %&gt;% group_by(clone) %&gt;% summarise(n = n()) %&gt;% .$n %&gt;% mean # repetições
+# Modelo Completo
+      modfit &lt;- mmer(y ~ 1,
+                   random = ~ repTrial + clone + trial:clone,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = &quot;EM&quot;,
+                   getPEV = T)
+                   
+  #Modelo Reduzido de clone
+  #Obs.: você retira o efeito de clone do modelo
+    modrd  &lt;- mmer(y ~ 1,
+                   random = ~ repTrial + clone,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = &quot;EM&quot;,
+                   getPEV = T)
+    
+# deviance da Interação
+anova(modfit, modrd)
+    modrd2  &lt;- mmer(y ~ 1,
+                   random = ~ repTrial,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = &quot;EM&quot;,
+                   getPEV = T)
+
+# deviance do clone                   
+anova(modrd, modrd2)
+
+#deviance do repTrial
+modrd3 &lt;- mmer(y ~ 1,
+                   random = ~ clone + trial:clone,
+                   data = x,
+                   tolparinv = 1e-5,
+                   verbose = F,
+                   method = &quot;EM&quot;,
+                   getPEV = T)
+anova(modfit, modrd3)
+
+# Obter estimativas de variância
+modfit$sigma</code></pre>
 <p>Next - <a href="GenoData.html">Dados Moleculares - Seleção</a></p>
 <p><a href="index.html">Home</a></p>
 <br>
@@ -710,42 +1132,46 @@ saveRDS(DadosHCNFin, file = here::here(&quot;output&quot;, &quot;DadosHCNCarolin
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.0 (2021-05-18)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 8.1 x64 (build 9600)
+<pre><code>R version 4.1.2 (2021-11-01)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Big Sur 11.6.1
 
 Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
 
 locale:
-[1] LC_COLLATE=Portuguese_Brazil.1252  LC_CTYPE=Portuguese_Brazil.1252   
-[3] LC_MONETARY=Portuguese_Brazil.1252 LC_NUMERIC=C                      
-[5] LC_TIME=Portuguese_Brazil.1252    
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] here_1.0.1      reshape2_1.4.4  forcats_0.5.1   stringr_1.4.0  
- [5] dplyr_1.0.7     purrr_0.3.4     readr_2.1.1     tidyr_1.1.4    
- [9] tibble_3.1.6    ggplot2_3.3.5   tidyverse_1.3.1
+ [1] reactable_0.2.3 lme4_1.1-28     sommer_4.1.5    crayon_1.5.0   
+ [5] lattice_0.20-45 MASS_7.3-55     Matrix_1.4-0    MuMIn_1.43.17  
+ [9] here_1.0.1      reshape2_1.4.4  forcats_0.5.1   stringr_1.4.0  
+[13] dplyr_1.0.8     purrr_0.3.4     readr_2.1.2     tidyr_1.2.0    
+[17] tibble_3.1.6    ggplot2_3.3.5   tidyverse_1.3.1
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7       lubridate_1.8.0  assertthat_0.2.1 rprojroot_2.0.2 
- [5] digest_0.6.29    utf8_1.2.2       plyr_1.8.6       R6_2.5.1        
- [9] cellranger_1.1.0 backports_1.4.1  reprex_2.0.1     evaluate_0.14   
-[13] httr_1.4.2       pillar_1.6.4     rlang_0.4.12     readxl_1.3.1    
-[17] rstudioapi_0.13  whisker_0.4      jquerylib_0.1.4  rmarkdown_2.11  
-[21] munsell_0.5.0    broom_0.7.11     compiler_4.1.0   httpuv_1.6.5    
-[25] modelr_0.1.8     xfun_0.29        pkgconfig_2.0.3  htmltools_0.5.2 
-[29] tidyselect_1.1.1 workflowr_1.7.0  fansi_1.0.2      crayon_1.4.2    
-[33] tzdb_0.2.0       dbplyr_2.1.1     withr_2.4.3      later_1.3.0     
-[37] grid_4.1.0       jsonlite_1.7.2   gtable_0.3.0     lifecycle_1.0.1 
-[41] DBI_1.1.2        git2r_0.29.0     magrittr_2.0.1   scales_1.1.1    
-[45] cli_3.1.0        stringi_1.7.6    fs_1.5.2         promises_1.2.0.1
-[49] xml2_1.3.3       ellipsis_0.3.2   generics_0.1.1   vctrs_0.3.8     
-[53] tools_4.1.0      glue_1.6.0       hms_1.1.1        fastmap_1.1.0   
-[57] yaml_2.2.1       colorspace_2.0-2 rvest_1.0.2      knitr_1.37      
-[61] haven_2.4.3     </code></pre>
+ [1] nlme_3.1-155      fs_1.5.2          lubridate_1.8.0   httr_1.4.2       
+ [5] rprojroot_2.0.2   tools_4.1.2       backports_1.4.1   bslib_0.3.1      
+ [9] utf8_1.2.2        R6_2.5.1          DBI_1.1.2         colorspace_2.0-2 
+[13] withr_2.4.3       tidyselect_1.1.1  compiler_4.1.2    git2r_0.29.0     
+[17] cli_3.2.0         rvest_1.0.2       xml2_1.3.3        sass_0.4.0       
+[21] scales_1.1.1      digest_0.6.29     minqa_1.2.4       rmarkdown_2.11   
+[25] pkgconfig_2.0.3   htmltools_0.5.2   dbplyr_2.1.1      fastmap_1.1.0    
+[29] htmlwidgets_1.5.4 rlang_1.0.1       readxl_1.3.1      rstudioapi_0.13  
+[33] jquerylib_0.1.4   generics_0.1.2    jsonlite_1.7.3    crosstalk_1.2.0  
+[37] magrittr_2.0.2    Rcpp_1.0.8        munsell_0.5.0     fansi_1.0.2      
+[41] lifecycle_1.0.1   stringi_1.7.6     whisker_0.4       yaml_2.3.4       
+[45] plyr_1.8.6        grid_4.1.2        promises_1.2.0.1  haven_2.4.3      
+[49] splines_4.1.2     hms_1.1.1         knitr_1.37        pillar_1.7.0     
+[53] boot_1.3-28       stats4_4.1.2      reprex_2.0.1      glue_1.6.1       
+[57] evaluate_0.15     modelr_0.1.8      vctrs_0.3.8       nloptr_2.0.0     
+[61] tzdb_0.2.0        httpuv_1.6.5      cellranger_1.1.0  gtable_0.3.0     
+[65] reactR_0.4.4      assertthat_0.2.1  xfun_0.29         broom_0.7.12     
+[69] later_1.3.0       workflowr_1.7.0   ellipsis_0.3.2   </code></pre>
 </div>
 </div>
 </div>
