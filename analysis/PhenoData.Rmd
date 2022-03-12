@@ -13,9 +13,10 @@ editor_options:
 ```{r Ajuste dos dados fenotipicos}
 suppressWarnings(suppressMessages(library(tidyverse)))
 library(reshape2); library(here)
-DadosPhen <- read.csv(here::here("data", "Dados fenotípicos BAGSel.CSV"), header = T, na.strings = "NA")
+DadosPhen <- read.table(here::here("data", "Dados fenotípicos BAGSel.CSV"),
+                        header = T, na.strings = "NA", sep = ";")
 
-colnames(DadosPhen)[c(9:35)] <- c("PCR","PTR","PPA","IC","AP","APsF",
+colnames(DadosPhen)[c(1,9:35)] <- c("Ano","PCR","PTR","PPA","IC","AP","APsF",
                                   "NMa","DMCsg","HCNLab","DRY","PA",
                                   "PRNC","Vigor","RF","NR","PR","TAC","DMCoven",
                                   paste("HCN",1:9,sep=""))
@@ -24,7 +25,7 @@ DadosPar <- DadosPhen[,c(1:26)]
 
 DadosParFin <- DadosPar %>% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = "Trait", value.name = "Value") %>%
-  filter(!is.na(Value)) %>% mutate(Ano = Ano,
+  filter(!is.na(Value)) %>% dplyr::mutate(Ano = Ano,
                                    Campo = Campo,
                                    Local = Local,
                                    trial = match(paste(Ano, Campo, Local, sep = "."), unique(paste(Ano, Campo, Local, sep = "."))),
@@ -100,8 +101,11 @@ library(reactable)
 TrialsList <- unique(DadosParFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
-  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao"))
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao"))
+```
 
+
+```{r, echo = FALSE}
 Results2 %>% reactable(groupBy = c("Trait"), columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
   VarE = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -158,8 +162,10 @@ library(reactable)
 TrialsList <- unique(DadosHCNFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
-  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
+```
 
+```{r, echo = FALSE}
 Results2 %>% reactable(columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
   VarE = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -184,17 +190,19 @@ source(here::here("code", "MixedModelsFunctions.R"))
 
 DataSelPar <- readRDS(here::here("data", "DadosFenCarSel.rds")) %>%
   mutate(trial = as.character(trial),
+         env = as.factor(paste(Ano, Local, sep = ":")),
          rep = as.character(rep),
          repTrial = as.factor(paste(trial, rep, sep =":")))
 DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
   mutate(trial = as.character(trial),
+         env = as.factor(paste(Ano, Local, sep = ":")),
          rep = as.character(rep),
          repTrial = as.factor(paste(trial, rep, sep =":")))
 
-NCT <- 4
+#NCT <- 8
 
-plan(sequential)
-RhpcBLASctl::blas_set_num_threads(NCT)
+#plan(sequential)
+#RhpcBLASctl::blas_set_num_threads(NCT)
 MM <- analyzeTrial.sommerConj(DataSelHCN)
 blups <- MM$U$clone$y + MM$Beta$Estimate
 names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
@@ -204,9 +212,9 @@ saveRDS(object = Blups, file = here::here("output", "MixedModels", "Blups_HCNPic
 
 traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names
 
-for(i in traits[7:18]){
+for(i in traits){
   print(paste("Trait", i, sep = " "))
-  DataMM <- DataSelPar%>% filter(Trait == i) %>% mutate(trial = as.character(trial))
+  DataMM <- DataSelPar%>% filter(Trait == i)
   MM <- analyzeTrial.sommerConj(DataMM)
   blups <- MM$U$clone$y + MM$Beta$Estimate
   names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
