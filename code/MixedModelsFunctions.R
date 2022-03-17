@@ -100,7 +100,7 @@ analyzeTrial.sommerConj <- function(x){
     #### Blocos Completos
   if(length(unique(x$trial)) > 1){
     modfit <- mmer(y ~ 1,
-                   random = ~ repTrial + clone + env:clone,
+                   random = ~ repTrial + clone + LocYear:clone,
                    data = x,
                    tolparinv = 1e-5,
                    verbose = F,

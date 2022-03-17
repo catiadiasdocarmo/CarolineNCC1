@@ -102,10 +102,7 @@ TrialsList <- unique(DadosParFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
   dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao"))
-```
 
-
-```{r, echo = FALSE}
 Results2 %>% reactable(groupBy = c("Trait"), columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
   VarE = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -163,9 +160,7 @@ TrialsList <- unique(DadosHCNFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
   dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
-```
 
-```{r, echo = FALSE}
 Results2 %>% reactable(columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
   VarE = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -190,16 +185,15 @@ source(here::here("code", "MixedModelsFunctions.R"))
 
 DataSelPar <- readRDS(here::here("data", "DadosFenCarSel.rds")) %>%
   mutate(trial = as.character(trial),
-         env = as.factor(paste(Ano, Local, sep = ":")),
          rep = as.character(rep),
-         repTrial = as.factor(paste(trial, rep, sep =":")))
+         repTrial = as.factor(paste(trial, rep, sep = ":")),
+         LocYear = as.factor(paste(Local, Ano, sep = ":")))
 DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
   mutate(trial = as.character(trial),
-         env = as.factor(paste(Ano, Local, sep = ":")),
          rep = as.character(rep),
          repTrial = as.factor(paste(trial, rep, sep =":")))
 
-#NCT <- 8
+#NCT <- 4
 
 #plan(sequential)
 #RhpcBLASctl::blas_set_num_threads(NCT)
