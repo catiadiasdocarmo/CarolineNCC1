@@ -14,7 +14,7 @@ editor_options:
 suppressWarnings(suppressMessages(library(tidyverse)))
 library(reshape2); library(here)
 DadosPhen <- read.table(here::here("data", "Dados fenotípicos BAGSel.CSV"),
-                        header = T, na.strings = "NA", sep = ";")
+                        header = T, na.strings = "NA", sep = ",")
 
 colnames(DadosPhen)[c(1,9:35)] <- c("Ano","PCR","PTR","PPA","IC","AP","APsF",
                                   "NMa","DMCsg","HCNLab","DRY","PA",
@@ -25,17 +25,19 @@ DadosPar <- DadosPhen[,c(1:26)]
 
 DadosParFin <- DadosPar %>% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = "Trait", value.name = "Value") %>%
-  filter(!is.na(Value)) %>% dplyr::mutate(Ano = Ano,
-                                   Campo = Campo,
-                                   Local = Local,
-                                   trial = match(paste(Ano, Campo, Local, sep = "."), unique(paste(Ano, Campo, Local, sep = "."))),
-                                   studyDesign = Delineamento,
-                                   clone = Genotipos.BGM.,
-                                   rep = Bloco,
-                                   check = ifelse(Controle == "1", clone, "999"),
-                                   check = ifelse(clone %in% unique(check), clone, "999"),
-                                   new = ifelse(check != "999", 0, 1),
-                                   y = Value, .keep = "unused")
+  filter(!is.na(Value)) %>%
+  dplyr::mutate(Ano = Ano,
+                Campo = Campo,
+                Local = Local,
+                trial = match(paste(Ano, Campo, Local, sep = "."),
+                              unique(paste(Ano, Campo, Local, sep = "."))),
+                studyDesign = Delineamento,
+                clone = Genotipos.BGM.,
+                rep = Bloco,
+                check = ifelse(Controle == "1", clone, "999"),
+                check = ifelse(clone %in% unique(check), clone, "999"),
+                new = ifelse(check != "999", 0, 1),
+                y = Value, .keep = "unused")
 
 saveRDS(DadosParFin, file = here::here("output", "DadosParcelaCaroline.RDS"))
 
@@ -43,17 +45,19 @@ DadosHCN <- DadosPhen[,c(1:8,27:35)]
 
 DadosHCNFin <- DadosHCN %>% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = "HCN",  value.name = "Value") %>%
-  filter(!is.na(Value)) %>% mutate(Ano = Ano,
-                                   Campo = Campo,
-                                   Local = Local,
-                                   trial = match(paste(Ano, Campo, Local, sep = "."), unique(paste(Ano, Campo, Local, sep = "."))),
-                                   studyDesign = Delineamento,
-                                   clone = Genotipos.BGM.,
-                                   rep = Bloco,
-                                   check = ifelse(Controle == "1", clone, "999"),
-                                   check = ifelse(clone %in% unique(check), clone, "999"),
-                                   new = ifelse(check != "999", 0, 1),
-                                   y = Value, .keep = "unused")
+  filter(!is.na(Value)) %>%
+  mutate(Ano = Ano,
+         Campo = Campo,
+         Local = Local,
+         trial = match(paste(Ano, Campo, Local, sep = "."),
+                       unique(paste(Ano, Campo, Local, sep = "."))),
+         studyDesign = Delineamento,
+         clone = Genotipos.BGM.,
+         rep = Bloco,
+         check = ifelse(Controle == "1", clone, "999"),
+         check = ifelse(clone %in% unique(check), clone, "999"),
+         new = ifelse(check != "999", 0, 1),
+         y = Value, .keep = "unused")
 
 saveRDS(DadosHCNFin, file = here::here("output", "DadosHCNCaroline.RDS"))
 ```
