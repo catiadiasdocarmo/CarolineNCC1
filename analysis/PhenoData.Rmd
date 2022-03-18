@@ -191,17 +191,18 @@ DataSelPar <- readRDS(here::here("data", "DadosFenCarSel.rds")) %>%
 DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
   mutate(trial = as.character(trial),
          rep = as.character(rep),
-         repTrial = as.factor(paste(trial, rep, sep =":")))
+         repTrial = as.factor(paste(trial, rep, sep =":")),
+         LocYear = as.factor(paste(Local, Ano, sep = ":")))
 
 #NCT <- 4
 
 #plan(sequential)
 #RhpcBLASctl::blas_set_num_threads(NCT)
-MM <- analyzeTrial.sommerConj(DataSelHCN)
-blups <- MM$U$clone$y + MM$Beta$Estimate
-names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
-Blups <- tibble(id = names(blups),
-                blups = blups)
+MM <- analyzeTrial.lme4HCN(DataSelHCN)
+blups <- ranef(MM)$clone + fixef(MM)[1]
+Blups <- tibble(id = rownames(blups),
+                blups = blups$`(Intercept)`)
+colnames(Blups)[2] <- "HCNPic"
 saveRDS(object = Blups, file = here::here("output", "MixedModels", "Blups_HCNPic.rds"))
 
 traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names
@@ -209,17 +210,32 @@ traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names
 for(i in traits){
   print(paste("Trait", i, sep = " "))
   DataMM <- DataSelPar%>% filter(Trait == i)
-  MM <- analyzeTrial.sommerConj(DataMM)
-  blups <- MM$U$clone$y + MM$Beta$Estimate
-  names(blups) <- names(blups) %>% gsub(pattern = "clone", replacement = "", x = .)
-  Blups <- tibble(id = names(blups),
-                  blups = blups)
+  MM <- analyzeTrial.lme4Conj(DataMM)
+  blups <- ranef(MM)$clone + fixef(MM)[1]
+  Blups <- tibble(id = rownames(blups),
+                  blups = blups$`(Intercept)`)
+  colnames(Blups)[2] <- i
   file <- here::here("output", "MixedModels",
                      paste("Blups_", i, ".rds", sep = ""))
   saveRDS(object = Blups, file = file)
   rm(DataMM); rm(MM); rm(blups); rm(Blups); rm(file)
 }
 
+
+BlupsTraits <- readRDS(here::here("output", "MixedModels", "Blups_HCNPic.rds"))
+IDClones <- tibble(id = unique(c(DataSelPar$Genotipos, DataSelHCN$Genotipos)) %>% .[order(.)])
+BlupsTraits <- IDClones %>% left_join(BlupsTraits, by = "id")
+
+for(i in traits){
+  filename <- paste("Blups_", i, ".rds", sep = "")
+  BlupsTraits <- BlupsTraits %>%
+    left_join(readRDS(here::here("output", "MixedModels", filename)))
+  colnames(BlupsTraits)[colnames(BlupsTraits) == "blups"] <- i
+}
+
+BlupsTraits2 <- BlupsTraits[!rowSums(is.na(BlupsTraits)) == (ncol(BlupsTraits) - 1),]
+saveRDS(object = BlupsTraits2,
+        file = here::here("output", "BlupsFenCar.rds"))
 ```
 
 ### Atividades Caroline
