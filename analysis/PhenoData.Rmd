@@ -10,6 +10,31 @@ editor_options:
 
 ## Ajuste dos dados fenotípicos para rodar a análise de modelos mistos
 
+Traits
+
+| Trait | Abbreviation |
+| :---: | :----------: |
+| Produtividade de Raizes Comerciais | PCR |
+| Produtividade Total de Raizes | PTR |
+| Produtividade de parte Aerea | PPA |
+| Indice de Colheita | IC |
+| Altura de Planta | AP |
+| Altura de Planta sem Folha | APsF |
+| Numero de manivas por haste | NMa |
+| Teor de Materia Seca Balanca Hidrostatica | DMCsg |
+| HCN Laboratorio | HCNLab |
+| Produtividade de Materia seca | DRY |
+| Porte de Planta | PA |
+| Produtividade de Raizes nao Comerciais | PNCR |
+| Vigor | Vigor |
+| Retencao Foliar | RF |
+| Numero de Raizes por planta | NR |
+| Peso de Raizes | PR |
+| Teor de amido Corrigido | TAC |
+| Teor de Materia Seca forno | DMCoven |
+|     |     |
+
+
 ```{r Ajuste dos dados fenotipicos}
 suppressWarnings(suppressMessages(library(tidyverse)))
 library(reshape2); library(here)
@@ -64,12 +89,12 @@ saveRDS(DadosHCNFin, file = here::here("output", "DadosHCNCaroline.RDS"))
 
 ## Selecionar os ensaios utilizando Herdabilidade e R2 estimados funções de Modelos mistos
 
-```{r Modelos mistos Selecao de dados fenotipicos, message = TRUE}
+```{r Modelos mistos Selecao de dados fenotipicos, warning = FALSE, message = FALSE}
 suppressWarnings(suppressMessages(library(tidyverse)))
 library(MuMIn)
 library(reshape2); library(here)
 
-source(here::here("code", "MixedModelsFunctions.R"))
+suppressMessages(source(here::here("code", "MixedModelsFunctions.R")))
 
 DadosParFin <- readRDS(file = here::here("output", "DadosParcelaCaroline.RDS"))
 
@@ -100,12 +125,12 @@ for(i in Trials){
 
 ## Seleção ensaios Dados Fenotipicos
 
-```{r, echo = FALSE}
+```{r Obtencao da Herdabilidade e Confiabilidade do modelo para cada ensaio, echo = FALSE}
 library(reactable)
 TrialsList <- unique(DadosParFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
-  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao"))
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao"))
 
 Results2 %>% reactable(groupBy = c("Trait"), columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -114,7 +139,7 @@ Results2 %>% reactable(groupBy = c("Trait"), columns = list(
   Real = colDef(format = colFormat(digits = 3, locales = "en-US"))))
 ```
 
-```{r}
+```{r Filtrando dados fenotipicos}
 DataSelPar <- DadosParFin %>% mutate(Trait.Trial = paste(Trait, trial, sep = ".")) %>%
   .[.$Trait.Trial %in% (Results2 %>% mutate(Trait.Trial = paste(Trait, Trial, sep = ".")) %>%
                         filter(Selecionado == "Sim") %>% .$Trait.Trial),]
@@ -125,7 +150,7 @@ saveRDS(object = DataSelPar, file = here::here("data", "DadosFenCarSel.rds"))
 
 ## Selecao de ensaios de avaliacao de HCN
 
-```{r Modelos mistos Selecao de dados fenotipicos HCN, message = TRUE}
+```{r Modelos mistos Selecao de dados fenotipicos HCN, warning = FALSE}
 suppressWarnings(suppressMessages(library(tidyverse)))
 library(MuMIn)
 library(reshape2); library(here)
@@ -140,7 +165,6 @@ Results <- tibble()
 for(i in Trials){
 
   try(MixedModels <- analyzeTrial.lme4HCN(DadosHCNFin %>% filter(trial %in% i)))
-  print(i)
   try(results <- tibble(Trial = i,
                        Trait = "HCN",
                        VarG = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[1,2],
@@ -158,12 +182,12 @@ Results
 
 ## Seleção ensaios Dados HCN
 
-```{r, echo = FALSE}
+```{r Obtencao da Herdabilidade e Confiabilidade do modelo para cada ensaio HCN}
 library(reactable)
 TrialsList <- unique(DadosHCNFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
-  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
 
 Results2 %>% reactable(columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -172,7 +196,7 @@ Results2 %>% reactable(columns = list(
   Real = colDef(format = colFormat(digits = 3, locales = "en-US"))))
 ```
 
-```{r}
+```{r Filtrando dados HCN}
 DataSelHCN <- DadosHCNFin %>% 
   .[.$trial %in% (Results2 %>% filter(Selecionado == "Sim") %>% .$Trial),]
 
@@ -181,7 +205,7 @@ saveRDS(object = DataSelHCN, file = here::here("data", "DadosHCNCarSel.rds"))
 
 ## Estimação BLUPS e obtenção de médias corrigidas
 
-```{r, eval = FALSE}
+```{r Obtendo BLUPs e médias corrigidas dos acessos, warning = FALSE}
 library(here)
 library(furrr)
 library(tidyverse)
@@ -242,91 +266,51 @@ saveRDS(object = BlupsTraits2,
         file = here::here("output", "BlupsFenCar.rds"))
 ```
 
-### Atividades Caroline
+## Juntar as estimativas de caracteristicas quantitativos e qualitativos
 
- - [ ] estimar os seguintes índices:
- 
-    - [ ] **Número de observações por trait**
-    
-    - [ ] **Número de Ensaios por trait**
-    
-    - [ ] **Número médio de Blocos por trait**
-    
-    - [ ] **Deviance de Clone** - Quiquadrado (Chisq)
-    
-    - [ ] **Deviance de RepTrial**  - Quiquadrado (Chisq)
-    
-    - [ ] **Deviance de interação Trial e Clone**  - Quiquadrado (Chisq)
-    
-    - [ ] **Probabilidades das Deviances** - PrChisq
-    
-    - [ ] **Variâncias do Resíduo, Clone, e interação Trial e Clone**
-  
-  Exemplo:
-```{r, eval = FALSE}
-library(here)
-library(furrr)
-library(tidyverse)
-source(here::here("code", "MixedModelsFunctions.R"))
+```{r Agrupar as caracteristicas}
+library(tidyverse); library(data.table)
+Blups <- readRDS(here::here("output", "BlupsFenCar.rds"))
+DataPhen <- read.table(here::here("data", "DadosCarolineNBlups.csv"),
+                       sep = ",", header = TRUE)
+head(DataPhen)
+head(Blups)
+nrow(DataPhen)
+nrow(Blups)
 
-DataSelPar <- readRDS(here::here("data", "DadosFenCarSel.rds")) %>%
-  mutate(trial = as.character(trial),
-         rep = as.character(rep),
-         repTrial = as.factor(paste(trial, rep, sep =":")))
+# Removendo caracteres duplicados
 
-traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names %>% .[1]
-x <- DataSelPar %>% filter(Trait == traits)
+Blups <- Blups %>% dplyr::select(-HCNLab, -DMCoven, -APsF, -PR)
 
-# obter numero de observacoes, Ensaios, médios de repetições
-nrow(x) # Observações
-length(unique(x$trial)) # Ensaios
-x %>% group_by(clone) %>% summarise(n = n()) %>% .$n %>% mean # repetições
-# Modelo Completo
-      modfit <- mmer(y ~ 1,
-                   random = ~ repTrial + clone + trial:clone,
-                   data = x,
-                   tolparinv = 1e-5,
-                   verbose = F,
-                   method = "EM",
-                   getPEV = T)
-                   
-  #Modelo Reduzido de clone
-  #Obs.: você retira o efeito de clone do modelo
-    modrd  <- mmer(y ~ 1,
-                   random = ~ repTrial + clone,
-                   data = x,
-                   tolparinv = 1e-5,
-                   verbose = F,
-                   method = "EM",
-                   getPEV = T)
-    
-# deviance da Interação
-anova(modfit, modrd)
-    modrd2  <- mmer(y ~ 1,
-                   random = ~ repTrial,
-                   data = x,
-                   tolparinv = 1e-5,
-                   verbose = F,
-                   method = "EM",
-                   getPEV = T)
+# Conferindo nomes dos clones em ambos os objetos
+DataPhen$Acessos[!DataPhen$Acessos %in% Blups$id]
 
-# deviance do clone                   
-anova(modrd, modrd2)
+sum(DataPhen$Acessos %in% Blups$id)
 
-#deviance do repTrial
-modrd3 <- mmer(y ~ 1,
-                   random = ~ clone + trial:clone,
-                   data = x,
-                   tolparinv = 1e-5,
-                   verbose = F,
-                   method = "EM",
-                   getPEV = T)
-anova(modfit, modrd3)
+# Juntando os objetos em um unico
 
-# Obter estimativas de variância
-modfit$sigma
+AllDataInfo <- inner_join(DataPhen, Blups, by = c("Acessos" = "id"))
+head(AllDataInfo)
+
+
+# Imputando dados perdidos
+traits <- colnames(AllDataInfo)[-1]
+sum(is.na(AllDataInfo))
+for(i in traits){
+  if(class(AllDataInfo[,i]) == "integer"){
+  # Imputando a moda para dados qualitativos
+        AllDataInfo[,i][is.na(AllDataInfo[,i])] <- table(AllDataInfo[,i]) %>%
+      .[order(., decreasing = T)] %>% .[1] %>% names %>% as.integer
+  } else {
+  # Imputando a media para dados quantitativos
+    AllDataInfo[,i][is.na(AllDataInfo[,i])] <- mean(AllDataInfo[,i], na.rm = TRUE)
+  }
+}
+
+rownames(AllDataInfo) <- AllDataInfo$Acessos
+saveRDS(AllDataInfo, file = here::here("output", "DataSelPreparedCar.rds"))
 ```
-  
+
 
 Next - [Dados Moleculares - Seleção](GenoData.html)
 

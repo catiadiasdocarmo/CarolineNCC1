@@ -5,6 +5,20 @@ navbar:
   left:
   - text: Home
     href: index.html
+  - text: Analises
+    menu:
+    - text: 'Dados Fenotipicos'
+      href: PhenoData.html
+    - text: 'Dados Genotipicos'
+      href: GenoData.html
+    - text: 'Colecoes Nucleares Phenotipicas'
+      href: CCPheno.html
+    - text: 'Colecoes Nucleares Genotipicas'
+      href: CCGeno.html
+    - text: 'Analises Discriminantes'
+      href: AnDis.html
+    - text: 'Estimativas de Diversidade Genetica'
+      href: DivGen.html
   - text: About
     href: about.html
   - text: License
