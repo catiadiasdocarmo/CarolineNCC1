@@ -307,7 +307,9 @@ for(i in traits){
   }
 }
 
-rownames(AllDataInfo) <- AllDataInfo$Acessos
+acessos <- AllDataInfo$Acessos %>% gsub(pattern = " ", replacement = "")
+rownames(AllDataInfo) <- AllDataInfo$Acessos <- acessos
+
 saveRDS(AllDataInfo, file = here::here("output", "DataSelPreparedCar.rds"))
 ```
 
