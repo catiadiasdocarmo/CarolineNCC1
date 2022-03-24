@@ -87,11 +87,11 @@ CCSize
 
 
 
-```{r Obtendo os resultados de DARwin e separando os resultados, eval = FALSE}
+```{r Obtendo os resultados de DARwin e separando os resultados}
 SelDARwin <- read.table(here::here("output","MatrizGowerCaroline.DON"),
                              sep = "\t", header = T, skip = 2,
-                             nrows = 1686)
-ClonesSel <- SelDARwin %>% filter(CC338 == "Kept") %>%
+                             nrows = 1628)
+ClonesSel <- SelDARwin %>% filter(CCSel == "Kept") %>%
   select(Name)
 DataCarCCPheno3 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
