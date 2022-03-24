@@ -77,17 +77,17 @@ write.table(DataCarCCPheno2, file = here::here("output", "CCPhenData", "DadosCCP
 ```{r Preparando a matriz de distancias de Gower para DARwin, eval = FALSE}
 library(phangorn)
 DistCar <- as.dist(DistCar)
-writeDist(x = DistCar, file = here::here("output", "MatrizGowerCaroline.phy"),
-          upper = F, diag = F)
+cat(nrow(DistCar), "\n", file = here::here("output", "MatrizGowerCaroline.phy"))
+write.table(x = as.matrix(DistCar), file = here::here("output", "MatrizGowerCaroline.phy"),
+          append = TRUE, quote = FALSE, sep = "\t", col.names = FALSE)
 
 CCSize
 ```
 
-Obs.: o arquivo tipo phyllip criado pela função `writeDist` está com separação por espaço e deve ser trocado para tabulação para que o software DARwin possa aceitá-lo.
 
 
 
-```{r Obtendo os resultados de DARwin e separando os resultados}
+```{r Obtendo os resultados de DARwin e separando os resultados, eval = FALSE}
 SelDARwin <- read.table(here::here("output","MatrizGowerCaroline.DON"),
                              sep = "\t", header = T, skip = 2,
                              nrows = 1686)
