@@ -11,35 +11,6 @@ editor_options:
 
 ```{r lendo dados fenotipicos, eval = FALSE}
 DataCar <- readRDS(file = here::here("output", "DataSelPreparedCar.rds"))
-DataCar <- DataCar %>% mutate(CorFolhaApical = as.character(CorFolhaApical),
-                              CorPeciolo = as.character(CorPeciolo),
-                              CorFolhaDesenv = as.character(CorFolhaDesenv),
-                              CorNerv = as.character(CorNerv),
-                              CorCortexCaule = as.character(CorCortexCaule),
-                              CorExternaCaule = as.character(CorExternaCaule),
-                              CorEpidCaule = as.character(CorEpidCaule),
-                              CorRamosTerm = as.character(CorRamosTerm),
-                              CorExternaRzs = as.character(CorExternaRzs),
-                              CorCortexRzs = as.character(CorCortexRzs),
-                              CorPolpaRzs = as.character(CorPolpaRzs),
-                              Pubescencia = as.character(Pubescencia),
-                              FormaLobuloCentral = as.character(FormaLobuloCentral),
-                              PosicaoPeciolo = as.character(PosicaoPeciolo),
-                              Sinuosidade = as.character(Sinuosidade),
-                              HabCrescCaule = as.character(HabCrescCaule),
-                              TipoPlan = as.character(TipoPlan),
-                              MargEstip = as.character(MargEstip),
-                              HabRamif = as.character(HabRamif),
-                              NiveisRam = as.character(NiveisRam),
-                              ProemCicatrizesFolhas = as.character(ProemCicatrizesFolhas),
-                              FormaRzs = as.character(FormaRzs),
-                              TxtEpidermeRzs = as.character(TxtEpidermeRzs),
-                              PresPedunculoRzs = as.character(PresPedunculoRzs),
-                              PosicaoRzs = as.character(PosicaoRzs),
-                              Flowering = as.character(Flowering),
-                              DestqPelicRz = as.character(DestqPelicRz),
-                              DestqCortexRz = as.character(DestqCortexRz),
-                              ConstrRzs = as.character(ConstrRzs))
 ```
 
 ### Coleção Nuclear 1 - Distância de Gower e pacote CoreHunter
@@ -75,7 +46,6 @@ write.table(DataCarCCPheno2, file = here::here("output", "CCPhenData", "DadosCCP
 ### Coleção Nuclear - Distância de Gower e Algoritmo MLST DARwin
 
 ```{r Preparando a matriz de distancias de Gower para DARwin, eval = FALSE}
-library(phangorn)
 DistCar <- as.dist(DistCar)
 cat(nrow(DistCar), "\n", file = here::here("output", "MatrizGowerCaroline.phy"))
 write.table(x = as.matrix(DistCar), file = here::here("output", "MatrizGowerCaroline.phy"),
@@ -87,7 +57,7 @@ CCSize
 
 
 
-```{r Obtendo os resultados de DARwin e separando os resultados}
+```{r Obtendo os resultados de DARwin e separando os resultados, eval = FALSE}
 SelDARwin <- read.table(here::here("output","MatrizGowerCaroline.DON"),
                              sep = "\t", header = T, skip = 2,
                              nrows = 1628)

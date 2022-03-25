@@ -9,35 +9,7 @@ editor_options:
 
 ## Coleções Nucleares Genotípicas
 
-```{r}
-library(tidyverse); library(data.table)
 
-GBSDataCar <- readRDS("data/DadosGBSCaroline.RDS")
-
-Freq <- colMeans(GBSDataCar, na.rm = T)
-
-MAF <- Freq
-for(i in 1:length(MAF)){
-  if(MAF[i] >0.5){MAF[i] <- 1 - MAF[i]} else {MAF[i] <- MAF[i]}
-}
-
-GBSDataCar2 <- as.data.frame(GBSDataCar[,(MAF >= 0.05)])
-GBSDataCar3 <- GBSDataCar2
-
-GBSDataCar3[GBSDataCar3==0] <- "0/0"
-GBSDataCar3[GBSDataCar3==1] <- "0/1"
-GBSDataCar3[GBSDataCar3==2] <- "1/1"
-
-GBSDataCar3[1:10,1:20]
-
-M_Darwin_Car <- apply(GBSDataCar3, 1, function(x) do.call(cbind, strsplit(x, split = "/")))
-
-dim(M_Darwin_Car)
-
-rownames(M_Darwin_Car) <- rep(colnames(GBSDataCar3), each=2)
-
-M_Darwin_Car[1:10,1:10]
-```
 
 ### Coleção Nuclear 1 - Shannon Weaver optimization with Modified Rogers Distance
 

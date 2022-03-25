@@ -46,7 +46,7 @@ colnames(DadosPhen)[c(1,9:35)] <- c("Ano","PCR","PTR","PPA","IC","AP","APsF",
                                   "PRNC","Vigor","RF","NR","PR","TAC","DMCoven",
                                   paste("HCN",1:9,sep=""))
 
-DadosPar <- DadosPhen[,c(1:26)]
+DadosPar <- DadosPhen[,c(1:26)] %>% dplyr::select(-Genotipos)
 
 DadosParFin <- DadosPar %>% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = "Trait", value.name = "Value") %>%
@@ -64,9 +64,9 @@ DadosParFin <- DadosPar %>% reshape2::melt(data = ., id.vars = c(1:8),
                 new = ifelse(check != "999", 0, 1),
                 y = Value, .keep = "unused")
 
-saveRDS(DadosParFin, file = here::here("output", "DadosParcelaCaroline.RDS"))
+saveRDS(DadosParFin, file = here::here("output", "DadosParcelaCaroline.rds"))
 
-DadosHCN <- DadosPhen[,c(1:8,27:35)]
+DadosHCN <- DadosPhen[,c(1:8,27:35)] %>% dplyr::select(-Genotipos)
 
 DadosHCNFin <- DadosHCN %>% reshape2::melt(data = ., id.vars = c(1:8),
                                            variable.name = "HCN",  value.name = "Value") %>%
@@ -84,7 +84,7 @@ DadosHCNFin <- DadosHCN %>% reshape2::melt(data = ., id.vars = c(1:8),
          new = ifelse(check != "999", 0, 1),
          y = Value, .keep = "unused")
 
-saveRDS(DadosHCNFin, file = here::here("output", "DadosHCNCaroline.RDS"))
+saveRDS(DadosHCNFin, file = here::here("output", "DadosHCNCaroline.rds"))
 ```
 
 ## Selecionar os ensaios utilizando Herdabilidade e R2 estimados funções de Modelos mistos
@@ -130,7 +130,7 @@ library(reactable)
 TrialsList <- unique(DadosParFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
-  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao"))
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao"))
 
 Results2 %>% reactable(groupBy = c("Trait"), columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -175,7 +175,6 @@ for(i in Trials){
   Results <- rbind(Results, results)
   rm(MixedModels); rm(results)
 }
-Results
 
 ```
 
@@ -187,7 +186,7 @@ library(reactable)
 TrialsList <- unique(DadosHCNFin[,c("Ano", "Campo", "Local", "trial")])
 
 Results2 <- Results %>% right_join(TrialsList, by = c("Trial" = "trial")) %>%
-  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 | H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
+  dplyr::select(Trial, Ano, Campo, Local, everything()) %>% mutate(Selecionado = ifelse(Real > 0.25 & H2 > 0.15, "Sim", "Nao")) %>% arrange(Trial)
 
 Results2 %>% reactable(columns = list(
   VarG = colDef(format = colFormat(digits = 2, locales = "en-US")),
@@ -251,7 +250,7 @@ for(i in traits){
 
 
 BlupsTraits <- readRDS(here::here("output", "MixedModels", "Blups_HCNPic.rds"))
-IDClones <- tibble(id = unique(c(DataSelPar$Genotipos, DataSelHCN$Genotipos)) %>% .[order(.)])
+IDClones <- tibble(id = unique(c(DataSelPar$clone, DataSelHCN$clone)) %>% .[order(.)])
 BlupsTraits <- IDClones %>% left_join(BlupsTraits, by = "id")
 
 for(i in traits){
@@ -261,8 +260,7 @@ for(i in traits){
   colnames(BlupsTraits)[colnames(BlupsTraits) == "blups"] <- i
 }
 
-BlupsTraits2 <- BlupsTraits[!rowSums(is.na(BlupsTraits)) == (ncol(BlupsTraits) - 1),]
-saveRDS(object = BlupsTraits2,
+saveRDS(object = BlupsTraits,
         file = here::here("output", "BlupsFenCar.rds"))
 ```
 
@@ -273,31 +271,55 @@ library(tidyverse); library(data.table)
 Blups <- readRDS(here::here("output", "BlupsFenCar.rds"))
 DataPhen <- read.table(here::here("data", "DadosCarolineNBlups.csv"),
                        sep = ",", header = TRUE)
-head(DataPhen)
-head(Blups)
-nrow(DataPhen)
-nrow(Blups)
 
 # Removendo caracteres duplicados
 
-Blups <- Blups %>% dplyr::select(-HCNLab, -DMCoven, -APsF, -PR)
+Blups <- Blups %>% dplyr::select(-HCNLab, -DMCoven, -APsF, -PR, -TAC, -PRNC)
 
 # Conferindo nomes dos clones em ambos os objetos
 DataPhen$Acessos[!DataPhen$Acessos %in% Blups$id]
+Blups$id[!Blups$id %in% DataPhen$Acessos]
 
 sum(DataPhen$Acessos %in% Blups$id)
-
+sum(Blups$id %in% DataPhen$Acessos)
 # Juntando os objetos em um unico
 
-AllDataInfo <- inner_join(DataPhen, Blups, by = c("Acessos" = "id"))
-head(AllDataInfo)
-
+AllDataInfo <- inner_join(DataPhen, Blups, by = c("Acessos" = "id"))  %>%
+  mutate(CorFolhaApical = as.character(CorFolhaApical),
+         CorPeciolo = as.character(CorPeciolo),
+         CorFolhaDesenv = as.character(CorFolhaDesenv),
+         CorNerv = as.character(CorNerv),
+         CorCortexCaule = as.character(CorCortexCaule),
+         CorExternaCaule = as.character(CorExternaCaule),
+         CorEpidCaule = as.character(CorEpidCaule),
+         CorRamosTerm = as.character(CorRamosTerm),
+         CorExternaRzs = as.character(CorExternaRzs),
+         CorCortexRzs = as.character(CorCortexRzs),
+         CorPolpaRzs = as.character(CorPolpaRzs),
+         Pubescencia = as.character(Pubescencia),
+         FormaLobuloCentral = as.character(FormaLobuloCentral),
+         PosicaoPeciolo = as.character(PosicaoPeciolo),
+         Sinuosidade = as.character(Sinuosidade),
+         HabCrescCaule = as.character(HabCrescCaule),
+         TipoPlan = as.character(TipoPlan),
+         MargEstip = as.character(MargEstip),
+         HabRamif = as.character(HabRamif),
+         NiveisRam = as.character(NiveisRam),
+         ProemCicatrizesFolhas = as.character(ProemCicatrizesFolhas),
+         FormaRzs = as.character(FormaRzs),
+         TxtEpidermeRzs = as.character(TxtEpidermeRzs),
+         PresPedunculoRzs = as.character(PresPedunculoRzs),
+         PosicaoRzs = as.character(PosicaoRzs),
+         Flowering = as.character(Flowering),
+         DestqPelicRz = as.character(DestqPelicRz),
+         DestqCortexRz = as.character(DestqCortexRz),
+         ConstrRzs = as.character(ConstrRzs))
 
 # Imputando dados perdidos
 traits <- colnames(AllDataInfo)[-1]
 sum(is.na(AllDataInfo))
 for(i in traits){
-  if(class(AllDataInfo[,i]) == "integer"){
+  if(class(AllDataInfo[,i]) == "character"){
   # Imputando a moda para dados qualitativos
         AllDataInfo[,i][is.na(AllDataInfo[,i])] <- table(AllDataInfo[,i]) %>%
       .[order(., decreasing = T)] %>% .[1] %>% names %>% as.integer
@@ -306,9 +328,6 @@ for(i in traits){
     AllDataInfo[,i][is.na(AllDataInfo[,i])] <- mean(AllDataInfo[,i], na.rm = TRUE)
   }
 }
-
-acessos <- AllDataInfo$Acessos %>% gsub(pattern = " ", replacement = "")
-rownames(AllDataInfo) <- AllDataInfo$Acessos <- acessos
 
 saveRDS(AllDataInfo, file = here::here("output", "DataSelPreparedCar.rds"))
 ```

@@ -7,12 +7,79 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Introduction
+# Preparar os Dados Genotipicos
 
-```{r}
+A matrix de marcadores do arquivo `DadosGBSCaroline.rds` possui 1,446 clones e 72,023 marcadores SNPs em formato de haplótipos (A, T, C, G, K, M, R, S, Y, W), temos que transformar para dose alélica e para o formato de presença e ausência de marcador para o software DARwin6.
 
+## Tranformando a matrix para Dosagem alélica
+
+```{r Transformar Matriz para Dosagem Alelica}
+
+library(tidyverse); library(data.table)
+
+GBSdata <- readRDS(here::here("data", "DadosGBSAtualizadosRenomeados.rds"))
+
+rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "BRS-", replacement = "BRS")
+rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Poti-", replacement = "Poti")
+rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Gema-de-", replacement = "Gemade")
+rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Aipim-", replacement = "Aipim")
+rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Formosa-", replacement = "Formosa")
+
+rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Amansa-", replacement = "Amansa")
+sum(DataCar$Acessos %in% rownames(GBSdata))
+
+DataCar$Acessos[!DataCar$Acessos %in% rownames(GBSdata)]
+rownames(GBSdata)[rownames(GBSdata) %like% "Jose"]
+
+GBSDataCar <- readRDS("data/DadosGBSCaroline.rds")
+
+GBSDataCar <- GBSDataCar %>% as.matrix %>%
+  gsub(pattern = "A", replacement = "AA") %>%
+  gsub(pattern = "C", replacement = "CC") %>%
+  gsub(pattern = "T", replacement = "TT") %>%
+  gsub(pattern = "G", replacement = "GG") %>%
+  gsub(pattern = "M", replacement = "AC") %>%
+  gsub(pattern = "R", replacement = "AG") %>%
+  gsub(pattern = "W", replacement = "AT") %>%
+  gsub(pattern = "S", replacement = "CG") %>%
+  gsub(pattern = "Y", replacement = "CT") %>%
+  gsub(pattern = "K", replacement = "GT")
+
+library(scrime)
+
+GBSDosDataCar <- recodeSNPs(GBSDataCar, first.ref = FALSE, geno = 0:2, snp.in.col = TRUE)
 ```
 
+## Selecionar 
+
+```{r}
+Freq <- colMeans(GBSDosDataCar, na.rm = T)
+
+MAF <- Freq
+for(i in 1:length(MAF)){
+  if(MAF[i] >0.5){MAF[i] <- 1 - MAF[i]} else {MAF[i] <- MAF[i]}
+}
+
+GBSDataCar2 <- as.data.frame(GBSDosDataCar[,(MAF >= 0.05)])
+```
+
+
+GBSDataCar3 <- GBSDataCar2
+
+GBSDataCar3[GBSDataCar3==0] <- "0/0"
+GBSDataCar3[GBSDataCar3==1] <- "0/1"
+GBSDataCar3[GBSDataCar3==2] <- "1/1"
+
+GBSDataCar3[1:10,1:20]
+
+M_Darwin_Car <- apply(GBSDataCar3, 1, function(x) do.call(cbind, strsplit(x, split = "/")))
+
+dim(M_Darwin_Car)
+
+rownames(M_Darwin_Car) <- rep(colnames(GBSDataCar3), each=2)
+
+M_Darwin_Car[1:10,1:10]
+```
 Back - [Dados Fenotípicos - Seleção](PhenoData.html)
 
 Next - [Coleções Nucleares Fenotípicas](CCPheno.html)
