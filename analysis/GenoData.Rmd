@@ -13,57 +13,29 @@ A matrix de marcadores do arquivo `DadosGBSCaroline.rds` possui 1,446 clones e 7
 
 ## Tranformando a matrix para Dosagem alélica
 
-```{r Transformar Matriz para Dosagem Alelica}
+```{r Transformar Matriz para Dosagem Alelica, eval = F}
 
 library(tidyverse); library(data.table)
 
-GBSdata <- readRDS(here::here("data", "DadosGBSAtualizadosRenomeados.rds"))
-
-rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "BRS-", replacement = "BRS")
-rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Poti-", replacement = "Poti")
-rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Gema-de-", replacement = "Gemade")
-rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Aipim-", replacement = "Aipim")
-rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Formosa-", replacement = "Formosa")
-
-rownames(GBSdata) <- rownames(GBSdata) %>% gsub(pattern = "Amansa-", replacement = "Amansa")
-sum(DataCar$Acessos %in% rownames(GBSdata))
-
-DataCar$Acessos[!DataCar$Acessos %in% rownames(GBSdata)]
-rownames(GBSdata)[rownames(GBSdata) %like% "Jose"]
-
 GBSDataCar <- readRDS("data/DadosGBSCaroline.rds")
-
-GBSDataCar <- GBSDataCar %>% as.matrix %>%
-  gsub(pattern = "A", replacement = "AA") %>%
-  gsub(pattern = "C", replacement = "CC") %>%
-  gsub(pattern = "T", replacement = "TT") %>%
-  gsub(pattern = "G", replacement = "GG") %>%
-  gsub(pattern = "M", replacement = "AC") %>%
-  gsub(pattern = "R", replacement = "AG") %>%
-  gsub(pattern = "W", replacement = "AT") %>%
-  gsub(pattern = "S", replacement = "CG") %>%
-  gsub(pattern = "Y", replacement = "CT") %>%
-  gsub(pattern = "K", replacement = "GT")
-
-library(scrime)
-
-GBSDosDataCar <- recodeSNPs(GBSDataCar, first.ref = FALSE, geno = 0:2, snp.in.col = TRUE)
 ```
 
-## Selecionar 
+## Controle de qualidade de Marcadores SNPs - MAF
 
-```{r}
-Freq <- colMeans(GBSDosDataCar, na.rm = T)
+```{r MAF, eval = F}
+Freq <- colMeans(GBSDataCar, na.rm = T)
 
 MAF <- Freq
 for(i in 1:length(MAF)){
   if(MAF[i] >0.5){MAF[i] <- 1 - MAF[i]} else {MAF[i] <- MAF[i]}
 }
 
-GBSDataCar2 <- as.data.frame(GBSDosDataCar[,(MAF >= 0.05)])
+GBSDataCar2 <- as.data.frame(GBSDataCar[,(MAF >= sqrt(1/nrow(GBSDataCar2)))])
+
 ```
 
-
+## Transformar a matriz de marcadores na versão aceita pelo softare Darwin6
+```{r Criar Matriz de Marcadores para Darwin, eval = F}
 GBSDataCar3 <- GBSDataCar2
 
 GBSDataCar3[GBSDataCar3==0] <- "0/0"
@@ -79,7 +51,11 @@ dim(M_Darwin_Car)
 rownames(M_Darwin_Car) <- rep(colnames(GBSDataCar3), each=2)
 
 M_Darwin_Car[1:10,1:10]
+
+write.table(t(M_Darwin_Car), file = "output/CarDarwinMatrix.txt", quote = F,
+            sep = "\t")
 ```
+
 Back - [Dados Fenotípicos - Seleção](PhenoData.html)
 
 Next - [Coleções Nucleares Fenotípicas](CCPheno.html)
