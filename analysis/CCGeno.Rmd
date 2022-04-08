@@ -9,14 +9,157 @@ editor_options:
 
 ## Coleções Nucleares Genotípicas
 
+```{r Lendo arquivo de Dados Genotípicos e Fenotípicos, eval = F}
+library(here)
+library(corehunter); library(tidyverse); library(data.table)
+DataCar <- readRDS(file = here::here("output", "DataSelPreparedCar.rds"))
+
+GBSDataCar2 <- readRDS(file = here::here("data", "DadosGBSCaroline2.rds"))
+
+CHCar <- genotypes(GBSDataCar2, format = "biparental")
+CCSize <- 331
+```
 
 
 ### Coleção Nuclear 1 - Shannon Weaver optimization with Modified Rogers Distance
 
-```{r}
+```{r SH/MR, eval = F}
+CCC4 <- sampleCore(CHCar, objective(type = "SH", measure = "MR"), size = CCSize)
+CloneSel <- CCC4$sel
+
+DataCarCCGeno4 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno4,
+            file= here::here("output", "CCGenData", "DadosGeno1CCGeno1.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+
+### Coleção Nuclear 2 - Shannon optimization with Cavalli-Sforza and Edwards Distance
+
+```{r SH/CE, eval = F}
+CCC5 <- sampleCore(CHCar, objective(type = "SH", measure = "CE"), size = CCSize)
+
+DataCarCCGeno5 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno5,
+            file = here::here("output", "CCGenData", "DadosGeno2CCGeno1.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+
+### Coleção Nuclear 3 - Expected Proportion of Heterozigous Loci optimization with Modified Rogers Distance
+
+```{r HE/MR, eval = F}
+CCC6 <- sampleCore(CHCar, objective(type = "HE", measure = "MR"), size = CCSize)
+CloneSel <- CCC6$sel 
+
+DataCarCCGeno6 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno6,
+            file = here::here("output", "CCGenData", "DadosGeno3CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
+```
+
+### Coleção Nuclear 4 - Expected Proportion of Heterozigous Loci optimization with Cavalli-Sforza and Edwards Distance
+
+```{r HE/CE, eval = F}
+CCC7 <- sampleCore(CHCar, objective(type = "HE", measure = "CE"), size = CCSize)
+CloneSel <- CCC7$sel
+
+DataCarCCGeno7 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno7,
+            file= here::here("output", "CCGenData", "DadosGeno4CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
+```
+
+### Coleção Nuclear 5 - Allele coverage optimization with Modified Rogers Distance
+
+```{r CV/MR, eval = F}
+CCC8 <- sampleCore(CHCar, objective(type = "CV", measure = "MR"), size = CCSize)
+CloneSel <- CCC8$sel
+
+DataCarCCGeno8 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno8,
+            file= here::here("output", "CCGenData", "DadosGeno5CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
+```
+
+### Coleção Nuclear 6 - Allele coverage optimization with Cavalli-Sforza and Edwards Distance
+
+```{r CV/CE, eval = F}
+CCC9 <- sampleCore(CHCar, objective(type = "CV", measure = "CE"), size = CCSize)
+CloneSel <- CCC9$sel
+
+DataCarCCGeno9 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno9, file= "DadosGeno6CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+```
+
+### Coleção Nuclear 7 - Allele Match Distance for MLST - DARwin software
+
+```{r AM/MLST DARwin, eval = F}
+CCSelAM.DARwin <- read.table(here::here("output", "CarDarwinMatrix.don"),
+                             sep = "\t", header = T,skip = 2,
+                             nrows = 1363)
+
+ClonesSel <- CCSelAM.DARwin %>% filter(CC338 == "Kept") %>%
+  select(Nº)
+DataCarCCGeno10 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+
+write.table(DataCarCCGeno10, file= "DadosGeno7CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+```
+
+### Coleção Nuclear 8 - Modified Rodgers distances for MLST - DARwin software
+
+```{r MR/MLST DARwin, eval = F}
+library(poppr); library(adegenet); library(here); library(tidyverse)
+GenIdCar <- df2genind(GBSDataCar2, ploidy = 2, type = "PA", ncode = 1)
+
+
+MRDist <- rogers.dist(GenIdCar)
+
+cat(nrow(as.matrix(MRDist)), "\n", file = here::here("output", "MatrizMDCaroline.phy"))
+write.table(x = as.matrix(MRDist), file = here::here("output", "MatrizMDCaroline.phy"),
+          append = TRUE, quote = FALSE, sep = "\t", col.names = FALSE)
 
 ```
 
+Rodar após concluir a análise de MLST no DARwin
+```{r MR/MLST results, eval = F}
+CCSelMR.DARwin <- read.table(here::here("output", "MatrizMDCaroline.DON"),
+                             sep = "\t", header = T,skip = 2,
+                             nrows = 1336)
+ClonesSel <- CCSelMR.DARwin %>% filter(Tree.Sample_338 == "Kept") %>%
+  select(Name)
+DataCarCCGeno11 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+
+write.table(DataCarCCGeno11, file= "DadosGeno8CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+
+```
+
+### Coleção Nuclear 9 - Cavalli-Sforza and Edwards Distance for MLST - DARwin software
+
+```{r CE/MLST DARwin, eval = F}
+library(poppr); library(adegenet); library(here); library(phangorn)
+library(data.table)
+CEDist <- edwards.dist(GenIdCar)
+
+cat(nrow(as.matrix(CEDist)), "\n", file = here::here("output", "MatrizCECaroline.phy"))
+write.table(x = as.matrix(CEDist), file = here::here("output", "MatrizCECaroline.phy"),
+          append = TRUE, quote = FALSE, sep = "\t", col.names = FALSE)
+```
+
+Rodar após concluir a análise de MLST no DARwin
+```{r CE/MLST results, eval = F}
+CCSelCE.DARwin <- read.table(here::here("output","MatrizCECaroline.DON"),
+                             sep = "\t", header = T, skip = 2,
+                             nrows = 1336)
+ClonesSel <- CCSelCE.DARwin %>% filter(Tree.Sample_338 == "Kept") %>%
+  select(Name)
+
+DataCarCCGeno12 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+
+write.table(DataCarCCGeno12, file= "DadosGeno9CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+
+```
 
 Back - [Coleções Nucleares Fenotípicas](CCPheno.html)
 

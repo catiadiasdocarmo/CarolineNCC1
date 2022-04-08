@@ -44,7 +44,7 @@ write.table(DataCarCCPheno2, file = here::here("output", "CCPhenData", "DadosCCP
             quote = F, sep = ";", dec = ".")
 ```
 
-### Coleção Nuclear - Distância de Gower e Algoritmo MLST DARwin software
+### Coleção Nuclear 3 - Distância de Gower e Algoritmo MLST DARwin software
 
 ```{r Preparando a matriz de distancias de Gower para DARwin, eval = FALSE}
 DistCar <- as.dist(DistCar)
