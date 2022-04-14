@@ -53,8 +53,16 @@ rownames(M_Darwin_Car) <- rep(colnames(GBSDataCar3), each=2)
 
 M_Darwin_Car[1:10,1:10]
 
-write.table(t(M_Darwin_Car), file = "output/CarDarwinMatrix.txt", quote = F,
-            sep = "\t")
+M_Darwin_Car2 <- rbind(matrix(data = colnames(M_Darwin_Car),
+                              nrow = 1,
+                              ncol = ncol(M_Darwin_Car)),
+                       M_Darwin_Car)
+row.names(M_Darwin_Car2)[1] <- "N"
+
+M_Darwin_Car2[1:11,1:20]
+
+write.table(t(M_Darwin_Car2), file = "output/CarDarwinMatrix.txt", quote = F,
+            sep = "\t", row.names = F)
 ```
 
 Back - [Dados Fenotípicos - Seleção](PhenoData.html)
