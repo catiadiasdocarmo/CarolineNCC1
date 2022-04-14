@@ -90,7 +90,7 @@ CloneSel <- CCC9$sel
 
 DataCarCCGeno9 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno9, file= "DadosGeno6CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno9, file= here::here("output", "CCGenData", "DadosGeno6CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 7 - Allele Match Distance for MLST - DARwin software
