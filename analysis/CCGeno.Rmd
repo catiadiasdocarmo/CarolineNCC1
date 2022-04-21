@@ -90,7 +90,7 @@ CloneSel <- CCC9$sel
 
 DataCarCCGeno9 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno9, file= here::here("output", "CCGenData", "DadosGeno6CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno9, file = here::here("output", "CCGenData", "DadosGeno6CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 7 - Allele Match Distance for MLST - DARwin software
@@ -100,11 +100,11 @@ CCSelAM.DARwin <- read.table(here::here("output", "CarDarwinMatrix.don"),
                              sep = "\t", header = T,skip = 2,
                              nrows = 1363)
 
-ClonesSel <- CCSelAM.DARwin %>% filter(CC338 == "Kept") %>%
-  select(Nº)
-DataCarCCGeno10 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+ClonesSel <- CCSelAM.DARwin %>% filter(CCSel == "Kept") %>%
+  select(N)
+DataCarCCGeno10 <- DataCar[DataCar$Acessos%in%ClonesSel$N,]
 
-write.table(DataCarCCGeno10, file= "DadosGeno7CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno10, file= here::here("output", "CCGenData", "DadosGeno7CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 8 - Modified Rodgers distances for MLST - DARwin software
@@ -127,11 +127,11 @@ Rodar após concluir a análise de MLST no DARwin
 CCSelMR.DARwin <- read.table(here::here("output", "MatrizMDCaroline.DON"),
                              sep = "\t", header = T,skip = 2,
                              nrows = 1336)
-ClonesSel <- CCSelMR.DARwin %>% filter(Tree.Sample_338 == "Kept") %>%
+ClonesSel <- CCSelMR.DARwin %>% filter(CCSel == "Kept") %>%
   select(Name)
-DataCarCCGeno11 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+DataCarCCGeno11 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
-write.table(DataCarCCGeno11, file= "DadosGeno8CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno11, file= here::here("output", "CCGenData", "DadosGeno8CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
 
 ```
 
@@ -152,12 +152,12 @@ Rodar após concluir a análise de MLST no DARwin
 CCSelCE.DARwin <- read.table(here::here("output","MatrizCECaroline.DON"),
                              sep = "\t", header = T, skip = 2,
                              nrows = 1336)
-ClonesSel <- CCSelCE.DARwin %>% filter(Tree.Sample_338 == "Kept") %>%
+ClonesSel <- CCSelCE.DARwin %>% filter(CCSel == "Kept") %>%
   select(Name)
 
-DataCarCCGeno12 <- DataCar[DataCar$Acessos%in%ClonesSel,]
+DataCarCCGeno12 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
-write.table(DataCarCCGeno12, file= "DadosGeno9CCGeno1.CSV", quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno12, file= here::here("output", "CCGenData", "DadosGeno9CCGeno1.CSV"), quote = F, sep = ";", dec = ".")
 
 ```
 
