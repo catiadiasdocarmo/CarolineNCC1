@@ -101,10 +101,10 @@ analyzeTrial.sommerConj <- function(x){
   if(length(unique(x$trial)) > 1){
     modfit <- mmer(y ~ 1,
                    random = ~ repTrial + clone + LocYear:clone,
+                   rcov = ~vs(ds(trial), units),
                    data = x,
                    tolparinv = 1e-5,
                    verbose = F,
-                   method = "EM",
                    getPEV = T)
   } else {
     modfit <- mmer(y ~ 1,
@@ -112,7 +112,6 @@ analyzeTrial.sommerConj <- function(x){
                    data = x,
                    tolparinv = 1e-5,
                    verbose = F,
-                   method = "EM",
                    getPEV = T)
     }
   return(modfit)

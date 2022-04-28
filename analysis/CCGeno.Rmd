@@ -29,8 +29,7 @@ CloneSel <- CCC4$sel
 
 DataCarCCGeno4 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno4,
-            file= here::here("output", "CCGenData", "DadosCCGeno1.CSV"),
+write.table(DataCarCCGeno4, file= here::here("output", "CCGenData", "DadosCCGeno1.CSV"),
             quote = F, sep = ";", dec = ".")
 ```
 
@@ -41,8 +40,7 @@ CCC5 <- sampleCore(CHCar, objective(type = "SH", measure = "CE"), size = CCSize)
 
 DataCarCCGeno5 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno5,
-            file = here::here("output", "CCGenData", "DadosCCGeno2.CSV"),
+write.table(DataCarCCGeno5, file = here::here("output", "CCGenData", "DadosCCGeno2.CSV"),
             quote = F, sep = ";", dec = ".")
 ```
 
@@ -54,8 +52,8 @@ CloneSel <- CCC6$sel
 
 DataCarCCGeno6 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno6,
-            file = here::here("output", "CCGenData", "DadosCCGeno3.CSV"), quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno6, file = here::here("output", "CCGenData", "DadosCCGeno3.CSV"),
+            quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 4 - Expected Proportion of Heterozigous Loci optimization with Cavalli-Sforza and Edwards Distance
@@ -66,8 +64,8 @@ CloneSel <- CCC7$sel
 
 DataCarCCGeno7 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno7,
-            file= here::here("output", "CCGenData", "DadosCCGeno4.CSV"), quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno7, file= here::here("output", "CCGenData", "DadosCCGeno4.CSV"),
+            quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 5 - Allele coverage optimization with Modified Rogers Distance
@@ -78,8 +76,8 @@ CloneSel <- CCC8$sel
 
 DataCarCCGeno8 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno8,
-            file= here::here("output", "CCGenData", "DadosCCGeno5.CSV"), quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno8, file= here::here("output", "CCGenData", "DadosCCGeno5.CSV"),
+            quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 6 - Allele coverage optimization with Cavalli-Sforza and Edwards Distance
@@ -90,7 +88,8 @@ CloneSel <- CCC9$sel
 
 DataCarCCGeno9 <- DataCar[DataCar$Acessos%in%CloneSel,]
 
-write.table(DataCarCCGeno9, file = here::here("output", "CCGenData", "DadosCCGeno6.CSV"), quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno9, file = here::here("output", "CCGenData", "DadosCCGeno6.CSV"),
+            quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 7 - Allele Match Distance for MLST - DARwin software
@@ -104,7 +103,8 @@ ClonesSel <- CCSelAM.DARwin %>% filter(CCSel == "Kept") %>%
   select(N)
 DataCarCCGeno10 <- DataCar[DataCar$Acessos%in%ClonesSel$N,]
 
-write.table(DataCarCCGeno10, file= here::here("output", "CCGenData", "DadosCCGeno7.CSV"), quote = F, sep = ";", dec = ".")
+write.table(DataCarCCGeno10, file= here::here("output", "CCGenData", "DadosCCGeno7.CSV"),
+            quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 8 - Modified Rodgers distances for MLST - DARwin software
@@ -131,8 +131,8 @@ ClonesSel <- CCSelMR.DARwin %>% filter(CCSel == "Kept") %>%
   select(Name)
 DataCarCCGeno11 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
-write.table(DataCarCCGeno11, file= here::here("output", "CCGenData", "DadosCCGeno8.CSV"), quote = F, sep = ";", dec = ".")
-
+write.table(DataCarCCGeno11, file= here::here("output", "CCGenData", "DadosCCGeno8.CSV"),
+            quote = F, sep = ";", dec = ".")
 ```
 
 ### Coleção Nuclear 9 - Cavalli-Sforza and Edwards Distance for MLST - DARwin software
@@ -157,8 +157,8 @@ ClonesSel <- CCSelCE.DARwin %>% filter(CCSel == "Kept") %>%
 
 DataCarCCGeno12 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
-write.table(DataCarCCGeno12, file= here::here("output", "CCGenData", "DadosCCGeno9.CSV"), quote = F, sep = ";", dec = ".")
-
+write.table(DataCarCCGeno12, file= here::here("output", "CCGenData", "DadosCCGeno9.CSV"),
+            quote = F, sep = ";", dec = ".")
 ```
 
 Back - [Coleções Nucleares Fenotípicas](CCPheno.html)

@@ -109,6 +109,9 @@ for(i in Trials){
   try(MixedModels <- analyzeTrial.lme4(DadosParFin %>% filter(trial %in% i & Trait %in% j)))
   try(result <- tibble(Trial = i,
                        Trait = j,
+                       NClones = nrow(unique(DadosParFin %>%
+                                                 filter(trial %in% i & Trait %in% j) %>% 
+                                                 dplyr::select(clone))),
                        VarG = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[1,2],
                        VarE = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[2,2],
                        H2 = VarG/(VarG + VarE),
@@ -167,6 +170,9 @@ for(i in Trials){
   try(MixedModels <- analyzeTrial.lme4HCN(DadosHCNFin %>% filter(trial %in% i)))
   try(results <- tibble(Trial = i,
                        Trait = "HCN",
+                       NClones = nrow(unique(DadosHCNFin %>%
+                                                 filter(trial %in% i) %>% 
+                                                 dplyr::select(clone))),
                        VarG = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[1,2],
                        VarE = as.data.frame(VarCorr(MixedModels))[,c("grp","vcov")] %>% .[2,2],
                        H2 = VarG/(VarG + VarE),
@@ -204,7 +210,7 @@ saveRDS(object = DataSelHCN, file = here::here("data", "DadosHCNCarSel.rds"))
 
 ## Estimação BLUPS e obtenção de médias corrigidas
 
-```{r Obtendo BLUPs e médias corrigidas dos acessos, warning = FALSE}
+```{r Obtendo BLUPs e médias corrigidas dos acessos, warning = FALSE, eval = F}
 library(here)
 library(furrr)
 library(tidyverse)
@@ -221,11 +227,11 @@ DataSelHCN <- readRDS(here::here("data", "DadosHCNCarSel.rds")) %>%
          repTrial = as.factor(paste(trial, rep, sep =":")),
          LocYear = as.factor(paste(Local, Ano, sep = ":")))
 
-#NCT <- 4
+NCT <- 4
 
-#plan(sequential)
-#RhpcBLASctl::blas_set_num_threads(NCT)
-MM <- analyzeTrial.lme4HCN(DataSelHCN)
+plan(sequential)
+RhpcBLASctl::blas_set_num_threads(NCT)
+MM <- analyzeTrial.sommerConj(DataSelHCN %>% filter(trial != 16))
 blups <- ranef(MM)$clone + fixef(MM)[1]
 Blups <- tibble(id = rownames(blups),
                 blups = blups$`(Intercept)`)
@@ -237,10 +243,11 @@ traits <- table(DataSelPar$Trait) %>% .[order(.)] %>% names
 for(i in traits){
   print(paste("Trait", i, sep = " "))
   DataMM <- DataSelPar%>% filter(Trait == i)
-  MM <- analyzeTrial.lme4Conj(DataMM)
-  blups <- ranef(MM)$clone + fixef(MM)[1]
-  Blups <- tibble(id = rownames(blups),
-                  blups = blups$`(Intercept)`)
+  MM <- analyzeTrial.sommerConj(DataMM)
+  blups <- MM$U$clone$y + MM$Beta$Estimate
+  Blups <- tibble(id = names(blups),
+                  blups = blups) %>%
+    dplyr::mutate(id = gsub(pattern = "clone", replacement = "",x = .$id))
   colnames(Blups)[2] <- i
   file <- here::here("output", "MixedModels",
                      paste("Blups_", i, ".rds", sep = ""))
@@ -315,7 +322,12 @@ AllDataInfo <- inner_join(DataPhen, Blups, by = c("Acessos" = "id"))  %>%
          DestqCortexRz = as.character(DestqCortexRz),
          ConstrRzs = as.character(ConstrRzs))
 
+# Conferindo o número de dados perdidos por característica
+
+TraitsSel <- names(colSums(is.na(AllDataInfo)))[colSums(is.na(AllDataInfo))/nrow(AllDataInfo) < 0.30]
+
 # Imputando dados perdidos
+AllDataInfo <- AllDataInfo[,TraitsSel]
 traits <- colnames(AllDataInfo)[-1]
 sum(is.na(AllDataInfo))
 for(i in traits){
