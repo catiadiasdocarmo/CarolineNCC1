@@ -11,12 +11,13 @@ editor_options:
 
 ### Shannon Weaver Index Quantitative traits
 
-```{r}
+```{r Preparing the Nuclear Core Collection data}
 suppressMessages(library(tidyverse)); suppressMessages(library(data.table)); suppressMessages(library(reactable))
 source(here::here("code", "Shannon-Weaver.R"))
 Alldataset <- readRDS(here::here("output", "AllDataCCCaroline.RDS"))
 
-QualityTrait <- colnames(Alldataset)[2:36]
+QualityTrait <- colnames(Alldataset)[sapply(X = Alldataset, class) == "character"] %>% 
+  setdiff(., c("Acessos", "Data", "Method"))
 
 
 AlldataSetQuant <- Alldataset %>% select(-all_of(QualityTrait))
@@ -27,7 +28,9 @@ QuantTrait <- data.frame(Trait = colnames(AlldataSetQuant)[2:17],
                          Max = apply(AlldataSetQuant[2:17], FUN = max, na.rm = TRUE, MARGIN = 2))
 DataMethod <- unique(data.frame(Data = AlldataSetQuant$Data,
                                 Method = AlldataSetQuant$Method))
+```
 
+```{r Estimating the Shannon-Weaver Index for the quantitative traits}
 QuantSHs <- NULL
 for(i in 1:nrow(DataMethod)){
   for(trait in QuantTrait$Trait){
@@ -54,7 +57,7 @@ write.table(Table1SH, file = here::here("output", "Shannon-WeaverCCQuantIndex.cs
 
 
 #### **Table 1.** Shannon-Weaver indexes for Cassava quantitative traits of the Bank of germplasm and 12 nuclear core collections.
-```{r, echo = FALSE}
+```{r table1, echo = FALSE}
 Table1SH %>% reactable(defaultPageSize = 16, columns = list(
   BAG = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Pheno - GW/CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
@@ -73,20 +76,19 @@ Table1SH %>% reactable(defaultPageSize = 16, columns = list(
 
 ### Shannon Weaver Index Qualitative traits
 
-```{r}
+```{r Estimating the Shannon-Weaver for the Qualitative traits}
 
 Trait <- c("CorFolhaApical" = 4, "CorPeciolo" = 6, "CorFolhaDesenv" = 5,
            "CorNerv" = 4, "CorCortexCaule" = 4, "CorExternaCaule" = 7,
            "CorEpidCaule" = 4, "CorRamosTerm" = 3, "CorExternaRzs" = 4,
            "CorCortexRzs" = 4, "CorPolpaRzs" = 5, "NLobulos" = 5,
            "Pubescencia" = 2, "FormaLobuloCentral" = 9, "PosicaoPeciolo" = 4,
-           "Sinuosidade" = 2, "ComprEstip" = 2, "HabCresCaule" = 2,
+           "Sinuosidade" = 2, "ComprEstip" = 2, "HabCrescCaule" = 2,
            "TipoPlan" = 4, "MargEstip" = 2, "HabRamif" = 4, "NiveisRam" = 4, 
            "ProemCicatrizesFolhas" = 2, "FormaRzs" = 4, "TxtEpidermeRzs" = 2,
            "PresPedunculoRzs" = 3, "PosicaoRzs" = 3, "Flowering" = 2,
            "DestqPelicRz" = 2, "DestqCortexRz" = 3, "ConstrRzs" = 3,
-           "ComprFilotaxia" = 3, "AnguloRamif" = 22, "PorteMod" = 5, 
-           "HCNMod" = 9)
+           "AnguloRamif" = 22)
 
 QualTrait <- data.frame(Trait = names(Trait),
                         NClas = Trait,
@@ -95,12 +97,14 @@ QualTrait <- data.frame(Trait = names(Trait),
 QualSHs <- NULL
 for(i in 1:nrow(DataMethod)){
   for(trait in QualTrait$Trait) {
+    Data <- AlldataSetQuali[(AlldataSetQuali$Data%in%DataMethod$Data[i] &
+                               AlldataSetQuali$Method%in%DataMethod$Method[i]),trait]
+    ShannonWeaver <- Shannon.Weaver.QL(Data,
+                                       nclass = QualTrait$NClas[QualTrait$Trait%in%trait])
     QualSH <- data.frame(Data = DataMethod$Data[i],
                          Method = DataMethod$Method[i],
                          Trait = trait,
-                         SH = Shannon.Weaver.QL(as.character(AlldataSetQuali[(AlldataSetQuali$Data%in%DataMethod$Data[i] &
-                                                                    AlldataSetQuali$Method%in%DataMethod$Method[i]),trait]),
-                                                nclass = QualTrait$NClas[QualTrait$Trait%in%trait]))
+                         SH = ShannonWeaver)
     QualSHs <- rbind(QualSHs, QualSH)
   }
 }
@@ -118,7 +122,7 @@ SHInd <- as.data.frame(rbind(Table1SH, Table2SH))
 
 
 #### **Table 2.** Shannon-Weaver indexes for Cassava quality traits of the Bank of germplasm and 12 nuclear core collections.
-```{r, echo = FALSE}
+```{r table2, echo = FALSE}
 Table2SH %>% reactable(defaultPageSize = 15, columns = list(
   BAG = colDef(format = colFormat(digits = 3, locales = "en-US")),
   'Pheno - GW/CH' = colDef(format = colFormat(digits = 3, locales = "en-US")),
@@ -137,7 +141,7 @@ Table2SH %>% reactable(defaultPageSize = 15, columns = list(
 
 
 ## Core Collection Selection - Phenotypic data
-```{r}
+```{r Selection of the most diverse Nuclear Collection estimated with Phenotypic data}
 SHBAG <- SHInd[, "BAG"]
 SHIndPhen <- SHInd[ , colnames(SHInd)%like%"Pheno"]
 
@@ -150,17 +154,16 @@ SHSelPhen <- data.frame(Method = colnames(SHRelPhen),
 ```
 
 #### **Table 3.** Mean improvement of the Shannon-Weaver diversity index in % of nuclear core collections estimated of Phenotypic data compared to the Bank of Germplasm
-```{r, echo = FALSE}
+```{r table3, echo = FALSE}
 reactable(SHSelPhen, columns = list(
   SHMeanImprov = colDef(format = colFormat(digits = 3, locales = "en-US")),
   SHsd = colDef(format = colFormat(digits = 3, locales = "en-US"))))
-
 ```
 
 The phenotypic Core Collection selected was GW/CH
 
 ## Core Collection Selection - Genotypic data
-```{r}
+```{r Selection of the most diverse Nuclear Collection estimated with Genotypic data}
 SHIndGen <- SHInd[ , colnames(SHInd)%like%"Geno"]
 
 SHRelGen <- (SHIndGen - SHBAG)*100/SHBAG
@@ -172,25 +175,107 @@ SHSelGen <- data.frame(Method = colnames(SHRelGen),
 ```
 
 #### **Table 4.** Mean improvement of the Shannon-Weaver diversity index in % of nuclear core collections estimated of Genotypic data compared to the Bank of Germplasm
-```{r, echo = FALSE}
+```{r table4, echo = FALSE}
 reactable(SHSelGen, columns = list(
   SHMeanImprov = colDef(format = colFormat(digits = 3, locales = "en-US")),
   SHsd = colDef(format = colFormat(digits = 3, locales = "en-US"))))
-
 ```
 
-The Genotypic Core Collection selected was AM/MLST
+The Genotypic Core Collection selected was CE/AC
+```{r kappa Index estimation}
+BAGClones <- Alldataset$Acessos[Alldataset$Data == "BAG"]
+
+CCMethods <- unique(Alldataset$Method) %>% setdiff("BAG")
+
+SelCC <- tibble(Clones = BAGClones)
+
+for(i in CCMethods){
+  Common <- BAGClones %in% Alldataset$Acessos[Alldataset$Method == i] %>%
+    as.numeric %>% as.data.frame
+  colnames(Common) <- i
+  SelCC <- cbind(SelCC, Common)
+}
+row.names(SelCC) <- SelCC$Clones
+SelCC$Clones <- NULL
+
+CoincObs <- matrix(data = NA, nrow = ncol(SelCC), ncol = ncol(SelCC))
+colnames(CoincObs) <- rownames(CoincObs) <- colnames(SelCC)
+
+for(i in colnames(SelCC)){
+  for(j in colnames(SelCC)){
+    if(i == j){ CoincObs[i, j] <- 1} else {
+      CoincObs[i, j] <- sum(SelCC[, i] == SelCC[, j])/nrow(SelCC)
+    }
+  }
+}
+
+CoincEsp <- matrix(data = (sum(SelCC[,1])/nrow(SelCC))**2 + (1-(sum(SelCC[,1])/nrow(SelCC)))**2,
+                   nrow = ncol(SelCC), ncol = ncol(SelCC))
+colnames(CoincEsp) <- rownames(CoincEsp) <- colnames(SelCC)
+
+Kappa <- round((CoincObs - CoincEsp)/(1 - CoincEsp), digits = 4)
+```
+
+#### **Table 5.** Kappa Index for coincidence of the clone selection for the 12 nuclear collections.
+```{r Table5, echo = FALSE}
+library(reactable)
+Kappa %>% reactable
+```
+
+#### **Fig 1.** Kappa index plot of the coincidence of selected clones by the 12 methods of nuclear collection.
+```{r Fig1, echo = F}
+library(corrplot)
+r <- rbind(c("MR/SH", "AM/MLST", "CE/EH", "MR/MLST"),
+           c("AM/MLST", "MR/SH", "MR/MLST", "CE/EH"),
+           c("AM/MLST", "CE/MLST", "MR/MLST", "CE/MLST"),
+           c("CE/MLST", "AM/MLST", "CE/MLST", "MR/MLST"))
+corrplot::corrplot(Kappa,cl.pos = "n", tl.col = c(rep("red", times = 3),
+                                                  rep("green", times = 9))) |>
+  corrplot::corrRect(c(1, 4, 8, 9, 10, 12, 12)) |>
+  corrplot::corrRect(namesMat = r)
+```
+
+### Venn diagram for each Nuclear Collection Group
+
+```{r}
+library(ggvenn)
+VennDPNC <- list(
+  `GW/CH` = rownames(SelCC)[SelCC$`GW/CH` == 1],
+  CH = rownames(SelCC)[SelCC$CH == 1],
+  `GW/MLST` = rownames(SelCC)[SelCC$`GW/MLST` == 1])
+VD1 <- ggvenn(VennDPNC, fill_color = c("red", "blue", "green"), fill_alpha = 0.6) 
+
+VennDGNC1 <- list(
+  `MR/SH` = rownames(SelCC)[SelCC$`MR/SH` == 1],
+  `CE/SH` = rownames(SelCC)[SelCC$`CE/SH` == 1],
+  `MR/EH` = rownames(SelCC)[SelCC$`MR/EH` == 1],
+  `CE/EH` = rownames(SelCC)[SelCC$`CE/EH` == 1])
+VD2 <- ggvenn(VennDGNC1, fill_color = c("red", "blue", "green", "yellow"), fill_alpha = 0.6) 
+
+VennDGNC2 <- list(
+  `AM/MLST` = rownames(SelCC)[SelCC$`AM/MLST` == 1],
+  `MR/MLST` = rownames(SelCC)[SelCC$`MR/MLST` == 1])
+VD3 <- ggvenn(VennDGNC2, fill_color = c("red", "blue"), fill_alpha = 0.6) 
+```
+
+
+
+#### Fig 2. Venn diagram for the three groups of Nuclear Collections
+```{r Fig2, fig.height = 12, echo = FALSE}
+library(ggpubr)
+ggarrange(VD1, VD3, VD2, ncol = 1, labels = "AUTO")
+```
+
 
 ## Comparison of the diversity Between BAG and the Core Collections samples
 
-```{r}
+```{r PCA analysis of the Gower Distance from the Bank of Germplasm accessions}
 suppressMessages(library(StatMatch)); library(here)
 suppressMessages(library(tidyverse))
 
-DataCar <- read.table(here::here("data", "DadosSelCaroline.CSV"), header = T, sep = ",", dec = ".",
-                      na.strings = "NA", colClasses =  c("factor",
-                                                        rep("character", times = 24),
-                                                        rep("numeric", times = 27)))
+DataCar <- readRDS(file = here::here("output", "DataSelPreparedCar.rds")) %>% 
+  mutate(ComprFilotaxia = as.character(ComprFilotaxia),
+         ComprEstip = as.character(ComprEstip))
 
 DistCar <- gower.dist(data.x = DataCar[,-1])
 row.names(DistCar) <- colnames(DistCar) <- DataCar$Acessos
@@ -204,27 +289,22 @@ for(i in 1:length(Perc)) {
 }
 ```
 
-#### **Fig 1.** Accumulated Variance explained by PCA
-```{r, echo = FALSE}
+#### **Fig 3.** Accumulated Variance explained by PCA
+```{r Fig3, echo = FALSE}
 barplot(PercAc[1:15], main = "Variance explained by PCA",
         ylab = "Cumulative variance (%)", xlab = "Number of retained PCs",
         col = c("gray"), ylim = c(0, 100))
 ```
 
-```{r}
+```{r Creating columns for the plot legend}
 PointPCA1 <- as.data.frame(PCA$x[,1:5])
 
 Alldataset <- readRDS(here::here("output", "AllDataCCCaroline.RDS"))
 CCPhen <- Alldataset %>% filter(Data == "Pheno", Method == "GW/CH") %>%
   select(Acessos) 
-CCPhen$Acessos <- CCPhen$Acessos %>% gsub(pattern = "\xed", replacement = "i") %>%
-  gsub(pattern = "\xc3", replacement = "A") %>%
-  gsub(pattern = "\xe1", replacement = "a") %>%
-  gsub(pattern = "\xe3", replacement = "a")
 
-CCGen  <- Alldataset %>% filter(Data == "Geno", Method == "AM/MLST") %>%
+CCGen  <- Alldataset %>% filter(Data == "Geno", Method == "CE/AC") %>%
   select(Acessos)
-CCGen$Acessos <- CCGen$Acessos %>% gsub(pattern = "\xed", replacement = "i")
 
 PointPCA1$Sample <- rep(NA, nrow(PointPCA1))
 
@@ -234,14 +314,14 @@ for(i in row.names(PointPCA1)){
   } else if(i%in%CCPhen$Acessos && !i%in%CCGen$Acessos){
     PointPCA1$Sample[row.names(PointPCA1)==i] <- "GW/CH"
   } else if(!i%in%CCPhen$Acessos && i%in%CCGen$Acessos){
-    PointPCA1$Sample[row.names(PointPCA1)==i] <- "AM/MLST"
+    PointPCA1$Sample[row.names(PointPCA1)==i] <- "CE/AC"
   } else {
     PointPCA1$Sample[row.names(PointPCA1)==i] <- "NS"
   }
 }
 ```
 
-```{r}
+```{r PCA ggplots}
 PC12 <- ggplot(data = PointPCA1, aes(x = PC1, y = PC2)) +
   geom_point(aes(color = Sample, shape = Sample)) +
   geom_rug(col = "steelblue", alpha = 0.2, size = 1.5) +
@@ -251,7 +331,8 @@ PC12 <- ggplot(data = PointPCA1, aes(x = PC1, y = PC2)) +
                alpha = 0.2, 
                show.legend = FALSE, 
                level = 0.95) +
-  xlab("PC1 - 31.07%") + ylab("PC2 - 12.42%")
+  xlab(paste0("PC1 - ", round(Perc[1], digits = 2), "%")) +
+  ylab(paste0("PC2 - ", round(Perc[2], digits = 2), "%"))
 
 PC34 <- ggplot(data = PointPCA1, aes(x = PC3, y = PC4)) +
   geom_point(aes(color = Sample, shape = Sample)) +
@@ -262,13 +343,14 @@ PC34 <- ggplot(data = PointPCA1, aes(x = PC3, y = PC4)) +
                alpha = 0.2, 
                show.legend = FALSE, 
                level = 0.95) +
-  xlab("PC3 - 8.25%") + ylab("PC4 - 6.12%")
+  xlab(paste0("PC3 - ", round(Perc[3], digits = 2), "%")) +
+  ylab(paste0("PC4 - ", round(Perc[4], digits = 2), "%"))
 ```
 
-#### **Fig 2.** Análise de Componentes Principais da Matriz de Distância de Gower dos acessos do Banco ativo de germoplasma da EMBRAPA Selecionados pelas Coleções Nucleares GW/CH e AM/MLST
-```{r, echo = FALSE}
+#### **Fig 4.** Análise de Componentes Principais da Matriz de Distância de Gower dos acessos do Banco ativo de germoplasma da EMBRAPA Selecionados pelas Coleções Nucleares GW/CH e AM/MLST
+```{r Fig4, echo = FALSE}
 library(ggpubr)
-ggarrange(PC12, PC34, common.legend = T, legend = "right", ncol = 1)
+ggarrange(PC12, PC34, common.legend = T, legend = "right", ncol = 1, labels = "AUTO")
 ```
 
 Back - [Análises Descritivas](AnDis.html)

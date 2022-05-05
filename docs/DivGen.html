@@ -15,7 +15,7 @@
 
 <title>Diversidade Genetica</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -44,7 +44,7 @@
 <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="site_libs/reactable-binding-0.2.3/reactable.js"></script>
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -81,6 +81,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -101,6 +102,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -326,7 +330,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -337,6 +341,33 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Analises
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="PhenoData.html">Dados Fenotipicos</a>
+    </li>
+    <li>
+      <a href="GenoData.html">Dados Genotipicos</a>
+    </li>
+    <li>
+      <a href="CCPheno.html">Colecoes Nucleares Phenotipicas</a>
+    </li>
+    <li>
+      <a href="CCGeno.html">Colecoes Nucleares Genotipicas</a>
+    </li>
+    <li>
+      <a href="AnDis.html">Analises Discriminantes</a>
+    </li>
+    <li>
+      <a href="DivGen.html">Estimativas de Diversidade Genetica</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="about.html">About</a>
@@ -383,7 +414,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-19
+<strong>Last updated:</strong> 2022-05-05
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -392,8 +423,8 @@ div.tocify {
 <strong>Knit directory:</strong> <code>CarolineNCC1/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -474,16 +505,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree9f19f1298f549099bd36f4d31792375f4404afcatargetblank9f19f12a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/9f19f1298f549099bd36f4d31792375f4404afca" target="_blank">9f19f12</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree7f56ebf79f5c9c1e0a2b63415a6a2cbfb55510eetargetblank7f56ebfa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/7f56ebf79f5c9c1e0a2b63415a6a2cbfb55510ee" target="_blank">7f56ebf</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree9f19f1298f549099bd36f4d31792375f4404afcatargetblank9f19f12a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1tree7f56ebf79f5c9c1e0a2b63415a6a2cbfb55510eetargetblank7f56ebfa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/9f19f1298f549099bd36f4d31792375f4404afca" target="_blank">9f19f12</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/7f56ebf79f5c9c1e0a2b63415a6a2cbfb55510ee" target="_blank">7f56ebf</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -493,55 +524,16 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
+    Ignored:    data/DadosGBSAtualizadosRenomeados.rds
+    Ignored:    data/DadosGBSDuplicados.rds
     Ignored:    output/.DS_Store
-
-Untracked files:
-    Untracked:  output/BarPlotCaule1.tiff
-    Untracked:  output/BarPlotCaule1TXT.tiff
-    Untracked:  output/BarPlotCaule2.tiff
-    Untracked:  output/BarPlotCaule2TXT.tiff
-    Untracked:  output/BarPlotCaule3.tiff
-    Untracked:  output/BarPlotCaule3TXT.tiff
-    Untracked:  output/BarPlotFoliar1.tiff
-    Untracked:  output/BarPlotFoliar1TXT.tiff
-    Untracked:  output/BarPlotFoliar2.tiff
-    Untracked:  output/BarPlotFoliar2TXT.tiff
-    Untracked:  output/BarPlotFoliar3.tiff
-    Untracked:  output/BarPlotFoliar3TXT.tiff
-    Untracked:  output/BarPlotRaiz1.tiff
-    Untracked:  output/BarPlotRaiz1TXT.tiff
-    Untracked:  output/BarPlotRaiz2.tiff
-    Untracked:  output/BarPlotRaiz2TXT.tiff
-    Untracked:  output/BarPlotsCauleTXT.tiff
-    Untracked:  output/BarPlotsFoliarTXT.tiff
-    Untracked:  output/BarPlotsRaizTXT.tiff
-    Untracked:  output/BarPlotsTXT.tiff
-    Untracked:  output/BoxPlotFoliar.tiff
-    Untracked:  output/BoxPlotFoliarTXT.tiff
-    Untracked:  output/BoxPlotRaiz.tiff
-    Untracked:  output/BoxPlotRaiz2.tiff
-    Untracked:  output/BoxPlotRaiz2TXT.tiff
-    Untracked:  output/BoxPlotRaizTXT.tiff
-    Untracked:  output/BoxPlotsFoliarTXT.tiff
-    Untracked:  output/BoxPlotsTXT.tiff
-    Untracked:  output/PCAPlots.tiff
-    Untracked:  output/PCAPlotsTXT.tiff
+    Ignored:    output/CarDarwinMatrix.txt
 
 Unstaged changes:
     Modified:   analysis/AnDis.Rmd
-    Modified:   analysis/CCGeno.Rmd
-    Modified:   analysis/CCPheno.Rmd
     Modified:   analysis/DivGen.Rmd
-    Modified:   code/Script Estimacao dados Descritores.R
     Modified:   output/AllDataCCCaroline.RDS
-    Deleted:    output/BoxplotFoliar.jpg
-    Modified:   output/CarDarwinMatrix.txt
-    Modified:   output/DadosCCGeno1.CSV
-    Modified:   output/DadosCCGeno2.CSV
-    Modified:   output/DadosCCGeno3.CSV
-    Modified:   output/DadosCCGeno4.CSV
-    Modified:   output/DadosCCGeno5.CSV
-    Modified:   output/DadosCCGeno6.CSV
     Modified:   output/Shannon-WeaverCCQualIndex.csv
     Modified:   output/Shannon-WeaverCCQuantIndex.csv
 
@@ -582,6 +574,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/05dacab070542675fe3306ca0a0a8601c231907f/analysis/DivGen.Rmd" target="_blank">05dacab</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-12-19
+</td>
+<td>
+Update diversity analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/05dacab070542675fe3306ca0a0a8601c231907f/docs/DivGen.html" target="_blank">05dacab</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2021-12-19
+</td>
+<td>
+Update diversity analysis
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -852,7 +878,8 @@ Final graphs for Descritive analysis
 source(here::here(&quot;code&quot;, &quot;Shannon-Weaver.R&quot;))
 Alldataset &lt;- readRDS(here::here(&quot;output&quot;, &quot;AllDataCCCaroline.RDS&quot;))
 
-QualityTrait &lt;- colnames(Alldataset)[2:36]
+QualityTrait &lt;- colnames(Alldataset)[sapply(X = Alldataset, class) == &quot;character&quot;] %&gt;% 
+  setdiff(., c(&quot;Acessos&quot;, &quot;Data&quot;, &quot;Method&quot;))
 
 
 AlldataSetQuant &lt;- Alldataset %&gt;% select(-all_of(QualityTrait))
@@ -862,9 +889,8 @@ QuantTrait &lt;- data.frame(Trait = colnames(AlldataSetQuant)[2:17],
                          Min = apply(AlldataSetQuant[2:17], FUN = min, na.rm = TRUE, MARGIN = 2),
                          Max = apply(AlldataSetQuant[2:17], FUN = max, na.rm = TRUE, MARGIN = 2))
 DataMethod &lt;- unique(data.frame(Data = AlldataSetQuant$Data,
-                                Method = AlldataSetQuant$Method))
-
-QuantSHs &lt;- NULL
+                                Method = AlldataSetQuant$Method))</code></pre>
+<pre class="r"><code>QuantSHs &lt;- NULL
 for(i in 1:nrow(DataMethod)){
   for(trait in QuantTrait$Trait){
     QuantSH &lt;- data.frame(Data = DataMethod$Data[i],
@@ -889,7 +915,7 @@ write.table(Table1SH, file = here::here(&quot;output&quot;, &quot;Shannon-Weaver
 <div id="table-1.-shannon-weaver-indexes-for-cassava-quantitative-traits-of-the-bank-of-germplasm-and-12-nuclear-core-collections." class="section level4">
 <h4><strong>Table 1.</strong> Shannon-Weaver indexes for Cassava quantitative traits of the Bank of germplasm and 12 nuclear core collections.</h4>
 <div id="htmlwidget-d8cf4676368b49e0f32b" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-d8cf4676368b49e0f32b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["RetFoliar","ComprLobulo","LargLobulo","RelComprLar","ComprPeciolo","EspEntreCasca","ComprMedRzs","DiamMedRzs","NRPl","AltPl","PPA","FRY","FRYC","FRYNC","IndColh","DMCsg"],"BAG":[0.466444027818092,0.790509535009375,0.817605818373428,0.505233331839662,0.693703215621474,0.0188128674784199,0.492184761694434,0.62409103166667,0.642146725499504,0.637821281986609,0.695313600640349,0.666914752208341,0.299549896543822,0.450578167772166,0.664525140305016,0.69541993656207],"Pheno - GW/CH":[0.46721680499695,0.83672550186118,0.873499294076172,0.593112031239041,0.741394958160588,0.0385920075989587,0.556677814808161,0.706194003457516,0.708276802391989,0.731390992006081,0.799723462667591,0.734887666814377,0.346751485883052,0.472046495900538,0.749839558352619,0.779674524374095],"Pheno - CH":[0.430111849567171,0.830838056447484,0.887829653964378,0.58179748225468,0.757956130799237,0.034384873143908,0.54005233465261,0.682190855410808,0.681260283332875,0.703703819243049,0.761440400552681,0.730590415367005,0.352700857003375,0.488821091047892,0.717386346079523,0.750516259474485],"Pheno - GW/MLST":[0.396338963448058,0.833190116121786,0.872177382619973,0.536605144071769,0.726736117134318,0.0250727649894403,0.527018703755339,0.67736015973516,0.670323562998501,0.696287511810903,0.750907295726225,0.697750528118881,0.307254891493895,0.471383262206438,0.722536732464118,0.728214196813631],"Geno - MR/SH":[0.412532676132452,0.763719907411584,0.826211945661978,0.423441964776787,0.680944468590083,0.0121253272187934,0.449085822285391,0.620455500163967,0.586692831154523,0.575971736856363,0.601906624495545,0.579726057275749,0.203328353026891,0.410425187878281,0.66507879686624,0.683716890511282],"Geno - CE/SH":[0.395162216693261,0.777423485111078,0.83575871232739,0.439715250943619,0.683231085437893,0.0216906675921706,0.455364711847134,0.594173930243919,0.607843869620658,0.584182609963563,0.612678391062143,0.580561456694994,0.193532763892062,0.417512993878659,0.675575716697028,0.67327088971723],"Geno - MR/EH":[0.407756262217968,0.771970254675085,0.839798142498561,0.427612690747409,0.681809176395072,0.0337711989472051,0.459987925327329,0.615645347730645,0.595531218374454,0.587821607374374,0.6349715193188,0.592734015816904,0.206625296615082,0.414871868763667,0.683985413475676,0.695089662231587],"Geno - CE/EH":[0.405684573201577,0.760327307345436,0.837392672300497,0.419087556279469,0.681357751422158,0.0216326684364444,0.470731654867692,0.630990674189043,0.600594965738011,0.587821607374374,0.634475278999149,0.589873414760147,0.199984426105318,0.414871868763667,0.675441770714863,0.694436004396276],"Geno - MR/AC":[0.409250195380988,0.768675990528643,0.785095093145859,0.444579374798672,0.69657120496774,0.0119290110766037,0.461514070274504,0.618966634724846,0.624271150773698,0.609738463428492,0.640624895703527,0.625792996302983,0.256739169395843,0.416036514245172,0.640419626901155,0.680880653195563],"Geno - CE/AC":[0.44241510516131,0.772594919395686,0.817925717238251,0.488612961753708,0.675373799418975,0.012192315586829,0.449510941633678,0.587444384369767,0.584995239328151,0.600708026523666,0.670962847011068,0.634983498576858,0.272669868317948,0.409562963116542,0.633229635383416,0.677288900118129],"Geno - AM/MLST":[0.407468033479442,0.787436465599413,0.838950246118431,0.525445590610693,0.696442789779295,0.0243115807513237,0.479279940947637,0.614889701612808,0.624116989943543,0.597187902975116,0.634613673533049,0.603613242782117,0.246274884299537,0.42852362798291,0.645381813770013,0.717997775525987],"Geno - MR/MLST":[0.461050485430832,0.796480181080126,0.823369161849875,0.504408502030706,0.693402640131776,0.0237883317862153,0.489429528028798,0.607145494763479,0.615799370449108,0.59142865576539,0.641650788045213,0.614183448774243,0.251462998580061,0.440520440688823,0.62309142615837,0.716270998841564],"Geno - CE/MLST":[0.461050485430832,0.796480181080126,0.823369161849875,0.504408502030706,0.693402640131776,0.0237883317862153,0.489429528028798,0.607145494763479,0.615799370449108,0.59142865576539,0.641650788045213,0.614183448774243,0.251462998580061,0.440520440688823,0.62309142615837,0.716270998841564]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"BAG","name":"BAG","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/CH","name":"Pheno - GW/CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - CH","name":"Pheno - CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/MLST","name":"Pheno - GW/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/SH","name":"Geno - MR/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/SH","name":"Geno - CE/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/EH","name":"Geno - MR/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/EH","name":"Geno - CE/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/AC","name":"Geno - MR/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/AC","name":"Geno - CE/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - AM/MLST","name":"Geno - AM/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/MLST","name":"Geno - MR/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/MLST","name":"Geno - CE/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":16,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"cede7b35e1e60c33a4cfd4f871f17c9c","key":"cede7b35e1e60c33a4cfd4f871f17c9c"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-d8cf4676368b49e0f32b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["ComprFilotaxia","ComprLobulo","LargLobulo","RelComprLar","ComprPeciolo","EspEntreCasca","ComprMedRzs","DiamMedRzs","HCNPic","NR","PA","DRY","DMCsg","PTR","PPA","IC"],"BAG":[0.663551798194327,0.790460364849811,0.817237217384814,0.504260259918077,0.701191729705613,0.0179812425732917,0.470860033661483,0.600405947942263,0.871836793698058,0.684085245712228,0.812851801160739,0.717222271486174,0.70825858452519,0.764982922793076,0.782051788589567,0.758589649365472],"Pheno - GW/CH":[0.759796193705306,0.845102191120222,0.862060751511319,0.570442428739848,0.775468748273758,0.0229283686235335,0.550477284074878,0.679145670142988,0.860054525178383,0.722578298603245,0.812874884194591,0.741878474516755,0.7634242335155,0.798481278182923,0.814479385694021,0.838672800605695],"Pheno - CH":[0.75085288654366,0.833938445667934,0.872617536292379,0.552586428533506,0.746384984034711,0.0229283686235335,0.519554169424795,0.670656144605375,0.857000271979152,0.734128603646687,0.816172273120781,0.77064189232312,0.772629221546867,0.804792878554286,0.830333973973967,0.84246288108159],"Pheno - GW/MLST":[0.745797130807915,0.83075434124023,0.869350759626381,0.570289649207162,0.754171274422829,0.0114667390654091,0.507794716926071,0.677233830652669,0.861134490497603,0.720253980921819,0.831419506332041,0.767694683284399,0.783879976077466,0.796345426463513,0.821008095372459,0.847484503361366],"Geno - MR/SH":[0.683370838740081,0.772988593862704,0.819229058813184,0.45176060653929,0.684412466653754,0.0205908894257417,0.425320712488787,0.593992981990494,0.840710757978724,0.678692393152322,0.812807234566015,0.719057854720716,0.726510327080123,0.746512843820124,0.750980105393128,0.789048014620571],"Geno - CE/SH":[0.679312695408628,0.78916009162159,0.822965628199447,0.460619378326684,0.702998718642139,0.0320473939461163,0.40449847057402,0.589926100131114,0.836783641316065,0.67889370149565,0.807204453063326,0.687941100582265,0.729121893229345,0.723368776387879,0.752608293961934,0.807849265270277],"Geno - MR/EH":[0.698489702013739,0.781187974439597,0.825491934666465,0.460619378326684,0.689650323048495,0.0320473939461163,0.426013978365323,0.613611615658434,0.839774367587594,0.668549647016434,0.803192963121936,0.718257279282337,0.724766454069285,0.740305135056449,0.761470717971161,0.810756269915745],"Geno - CE/EH":[0.685911207597394,0.791669790183206,0.825537599506501,0.458640064795072,0.699638347899945,0.0320473939461163,0.427694157186729,0.60972132277602,0.841392160554273,0.678623641863867,0.794961098056466,0.7219593801704,0.727900243787188,0.739865835946087,0.7499887830776,0.811032683997079],"Geno - MR/AC":[0.646617903799438,0.77116363192816,0.808329557622675,0.502597658827675,0.697833519181188,0.0229283686235335,0.418028389383189,0.577754625285638,0.85008722148672,0.674981928919941,0.84191191889135,0.727566864640046,0.720563656003219,0.735083346584495,0.818806518351055,0.73402341417676],"Geno - CE/AC":[0.699701845339916,0.793892452710842,0.809301770381137,0.531261260600072,0.671251709849842,0.0434987578035775,0.475804675457436,0.564213778918976,0.868094137789981,0.630529883515922,0.847744518456105,0.710529082950447,0.699563980270083,0.722348243632669,0.73724603946341,0.741686311742456],"Geno - AM/MLST":[0.68430419352802,0.770923159952167,0.851247213297271,0.525211612721452,0.695635702010325,0.0205908894257417,0.456554418662993,0.528534829418733,0.850641818117791,0.6777594371254,0.805985796246257,0.693097201768253,0.698398072422637,0.725496361470851,0.789242460871116,0.77946320488214],"Geno - MR/MLST":[0.675825326186742,0.763382474764339,0.851254821234463,0.523919829812661,0.698028902035879,0.0205908894257417,0.450829818938088,0.547298099208997,0.85628064045568,0.696033644834377,0.807170470490236,0.700958746554332,0.689915173294397,0.747277334928321,0.793306009730504,0.787189132732743],"Geno - CE/MLST":[0.669308883479267,0.793494258936955,0.841165025241371,0.51454270137874,0.729060699364128,0.0114667390654091,0.507162482666496,0.575763302005443,0.851170242523189,0.71292273998512,0.802945301082433,0.720029870908548,0.684423986054731,0.766590081243821,0.804307360676796,0.773390438126387]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"BAG","name":"BAG","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/CH","name":"Pheno - GW/CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - CH","name":"Pheno - CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/MLST","name":"Pheno - GW/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/SH","name":"Geno - MR/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/SH","name":"Geno - CE/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/EH","name":"Geno - MR/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/EH","name":"Geno - CE/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/AC","name":"Geno - MR/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/AC","name":"Geno - CE/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - AM/MLST","name":"Geno - AM/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/MLST","name":"Geno - MR/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/MLST","name":"Geno - CE/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":16,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"236733d98252ca01ebdb13177bf80cf3","key":"236733d98252ca01ebdb13177bf80cf3"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="shannon-weaver-index-qualitative-traits" class="section level3">
@@ -899,13 +925,12 @@ write.table(Table1SH, file = here::here(&quot;output&quot;, &quot;Shannon-Weaver
            &quot;CorEpidCaule&quot; = 4, &quot;CorRamosTerm&quot; = 3, &quot;CorExternaRzs&quot; = 4,
            &quot;CorCortexRzs&quot; = 4, &quot;CorPolpaRzs&quot; = 5, &quot;NLobulos&quot; = 5,
            &quot;Pubescencia&quot; = 2, &quot;FormaLobuloCentral&quot; = 9, &quot;PosicaoPeciolo&quot; = 4,
-           &quot;Sinuosidade&quot; = 2, &quot;ComprEstip&quot; = 2, &quot;HabCresCaule&quot; = 2,
+           &quot;Sinuosidade&quot; = 2, &quot;ComprEstip&quot; = 2, &quot;HabCrescCaule&quot; = 2,
            &quot;TipoPlan&quot; = 4, &quot;MargEstip&quot; = 2, &quot;HabRamif&quot; = 4, &quot;NiveisRam&quot; = 4, 
            &quot;ProemCicatrizesFolhas&quot; = 2, &quot;FormaRzs&quot; = 4, &quot;TxtEpidermeRzs&quot; = 2,
            &quot;PresPedunculoRzs&quot; = 3, &quot;PosicaoRzs&quot; = 3, &quot;Flowering&quot; = 2,
            &quot;DestqPelicRz&quot; = 2, &quot;DestqCortexRz&quot; = 3, &quot;ConstrRzs&quot; = 3,
-           &quot;ComprFilotaxia&quot; = 3, &quot;AnguloRamif&quot; = 22, &quot;PorteMod&quot; = 5, 
-           &quot;HCNMod&quot; = 9)
+           &quot;AnguloRamif&quot; = 22)
 
 QualTrait &lt;- data.frame(Trait = names(Trait),
                         NClas = Trait,
@@ -914,12 +939,14 @@ QualTrait &lt;- data.frame(Trait = names(Trait),
 QualSHs &lt;- NULL
 for(i in 1:nrow(DataMethod)){
   for(trait in QualTrait$Trait) {
+    Data &lt;- AlldataSetQuali[(AlldataSetQuali$Data%in%DataMethod$Data[i] &amp;
+                               AlldataSetQuali$Method%in%DataMethod$Method[i]),trait]
+    ShannonWeaver &lt;- Shannon.Weaver.QL(Data,
+                                       nclass = QualTrait$NClas[QualTrait$Trait%in%trait])
     QualSH &lt;- data.frame(Data = DataMethod$Data[i],
                          Method = DataMethod$Method[i],
                          Trait = trait,
-                         SH = Shannon.Weaver.QL(as.character(AlldataSetQuali[(AlldataSetQuali$Data%in%DataMethod$Data[i] &amp;
-                                                                    AlldataSetQuali$Method%in%DataMethod$Method[i]),trait]),
-                                                nclass = QualTrait$NClas[QualTrait$Trait%in%trait]))
+                         SH = ShannonWeaver)
     QualSHs &lt;- rbind(QualSHs, QualSH)
   }
 }
@@ -936,7 +963,7 @@ SHInd &lt;- as.data.frame(rbind(Table1SH, Table2SH))</code></pre>
 <div id="table-2.-shannon-weaver-indexes-for-cassava-quality-traits-of-the-bank-of-germplasm-and-12-nuclear-core-collections." class="section level4">
 <h4><strong>Table 2.</strong> Shannon-Weaver indexes for Cassava quality traits of the Bank of germplasm and 12 nuclear core collections.</h4>
 <div id="htmlwidget-e55255c032fd6a098c86" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e55255c032fd6a098c86">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["CorFolhaApical","CorPeciolo","CorFolhaDesenv","CorNerv","CorCortexCaule","CorExternaCaule","CorEpidCaule","CorRamosTerm","CorExternaRzs","CorCortexRzs","CorPolpaRzs","NLobulos","Pubescencia","FormaLobuloCentral","PosicaoPeciolo","Sinuosidade","ComprEstip","HabCresCaule","TipoPlan","MargEstip","HabRamif","NiveisRam","ProemCicatrizesFolhas","FormaRzs","TxtEpidermeRzs","PresPedunculoRzs","PosicaoRzs","Flowering","DestqPelicRz","DestqCortexRz","ConstrRzs","ComprFilotaxia","AnguloRamif","PorteMod","HCNMod"],"BAG":[0.874649381045863,0.893419497246725,0.331780070660149,0.584610457619389,0.588299342703687,0.910661776639711,0.982714417738007,0.791052235758965,0.716010023065295,0.843928274476804,0.434442599431325,0.450837985130597,0.819639455811512,0.426705927545497,0.560948290121146,0.972936639858713,0.586382202732086,-0,0.734566786379192,0.303839666646552,0.736575162363181,0.979104511583825,0.90947491911518,0.70345256810396,0.714640011077921,0.901296895890101,0.590093298458395,0.867452950552861,0.992476003943082,0.560129975279865,0.95174406891734,0.821514120039713,0.611593633916321,0.768684392501375,0.637086632701694],"Pheno - GW/CH":[0.930167621919419,0.905659150955942,0.428037874327956,0.717289558273341,0.714966238020661,0.967657805491652,0.985461951681098,0.875504291256632,0.847812355052181,0.898401384331701,0.564158388154794,0.580599386233374,0.890491640219491,0.615674779382579,0.729786562417762,0.96954501052924,0.741595829047245,-0,0.833147329940307,0.511190993860204,0.783381447269182,0.986174438275048,0.987511657226395,0.787753956994675,0.800257668337244,0.945165070248669,0.710454827516519,0.954977412503246,0.992329115369309,0.697521335905205,0.944123818357537,0.945046791555596,0.597141230325688,0.837156646616499,0.603986705011601],"Pheno - CH":[0.931182427161484,0.902061045328562,0.425182209803207,0.720048273117729,0.69057040100796,0.952270499008997,0.985144815627562,0.890372692197959,0.843761100603489,0.896385594438565,0.539272546766722,0.586007285523226,0.876168647392353,0.619618113401002,0.742060415992214,0.961236604722876,0.77417520924595,-0,0.808836291986755,0.510184376722198,0.747716685843195,0.981626094190129,0.987844413087681,0.789540306051391,0.811278124459133,0.930432796899466,0.695633639793958,0.938479867423036,0.984511609829399,0.665841749043992,0.951886492858439,0.901735039101639,0.615716268549345,0.854211224769791,0.605006486101202],"Pheno - GW/MLST":[0.891652419178126,0.904820741824233,0.397938227659294,0.698022048576042,0.707343690384112,0.962927458477552,0.986997886186965,0.871459021743989,0.824607982474616,0.882390304765755,0.539709725729234,0.527600226716176,0.88453099090332,0.517749311122165,0.682573104664739,0.94434538105009,0.741595829047245,-0,0.774356575311932,0.435869915362958,0.765926526302432,0.98477355227715,0.969296665365814,0.744423578990063,0.822927484449126,0.948531734527603,0.665104783273638,0.938479867423036,0.981425747450633,0.679948403479914,0.950553062627564,0.924087751338096,0.607243606253378,0.809842409536298,0.597553001508359],"Geno - MR/SH":[0.861141108403013,0.851722127633518,0.227388962036884,0.462402056337056,0.599127198688561,0.920081311517134,0.989048746579568,0.7260041302384,0.776451326882408,0.823644226505383,0.419590930976465,0.4514120260576,0.810100217647507,0.432058030458238,0.530807772682439,0.996026586212805,0.324147656169249,-0,0.708795763356548,0.177184683110956,0.743990941606756,0.9474819021166,0.842757416555883,0.695760308231363,0.848442527036445,0.895683455719357,0.545389748276717,0.893923368059137,0.999485457328686,0.644197663563958,0.981930227047626,0.794828765107433,0.575754850932224,0.720244254604679,0.629589412300943],"Geno - CE/SH":[0.86459430760233,0.8444617557519,0.207823148780204,0.453196847432462,0.580922621180095,0.917497219747227,0.986746200134709,0.740172339605048,0.779809273004729,0.830557525948053,0.424626148048712,0.44813251389254,0.790670784939082,0.429785144964649,0.535262809610525,0.996026586212805,0.287652413597229,-0,0.694406274216399,0.128622435656427,0.736919310979916,0.948025151905921,0.869970836384601,0.704359011986398,0.85968407072949,0.901918549778421,0.548025391109081,0.87983946661704,0.999993648367257,0.638165502474093,0.980638196488262,0.789075340109499,0.576673947223828,0.722692895375225,0.625685756670561],"Geno - MR/EH":[0.866540034367584,0.837295862624801,0.207396765827356,0.440725371406927,0.587772510072044,0.925544269931562,0.984938129336621,0.717928539071667,0.7698092904411,0.841177367559187,0.394398646876698,0.460475376284716,0.764799949757517,0.44114942866966,0.51815791667329,0.995676385934811,0.300063932170002,-0,0.688508136041552,0.128622435656427,0.720013241801606,0.964185408971085,0.852148920789731,0.727042238882018,0.866499838368204,0.909937154731119,0.566262007169068,0.900610217015817,0.998363672593813,0.627509015806714,0.978221677962371,0.786583412645614,0.590909067786011,0.719158062080424,0.623389087981422],"Geno - CE/EH":[0.864439147433527,0.835371959447879,0.207396765827356,0.429881751733997,0.584168756606415,0.921131086778434,0.981941261621089,0.709766490268474,0.768682840957806,0.835974755682225,0.394398646876698,0.457491520099303,0.775363846401723,0.440919794131262,0.505024791556584,0.995676385934811,0.300063932170002,-0,0.687434141222265,0.128622435656427,0.726575894521306,0.966415648412877,0.865634055427256,0.712258815013424,0.858541973182082,0.911044552899261,0.575879311694196,0.887000629351278,0.999591034189098,0.638854301952152,0.980882903123615,0.810972017533606,0.590693870180473,0.717924257108732,0.632294955011418],"Geno - MR/AC":[0.868451358191702,0.892462266524049,0.265360780101635,0.577255977448365,0.588955487301993,0.887959216060142,0.975356937934586,0.775438856408922,0.706139072200455,0.887949075991228,0.43587299811643,0.405142303517807,0.876168647392353,0.408971433879579,0.486651337258342,0.94993802142349,0.34732259594495,-0,0.720365504303434,0.193196413171008,0.735760557959182,0.990392413953121,0.861866761273127,0.638220264184243,0.726735674869748,0.82583783771788,0.484573118356881,0.890491640219491,0.999942834634155,0.606374649646475,0.966592293886,0.733974004398474,0.57899226724614,0.714561495998337,0.624298176908375],"Geno - CE/AC":[0.860343708427764,0.891133224523733,0.249021844113128,0.568879561297965,0.604871178342926,0.919937488343422,0.977232452664358,0.792248395611739,0.754521240587842,0.884303058836219,0.43056272605928,0.398926055248504,0.883450014594353,0.397801179297935,0.550906850280074,0.991703308372582,0.300719695671606,-0,0.714774849619054,0.275584409175154,0.73276069766098,0.977117129416025,0.85007424861081,0.632231248341729,0.758739255402675,0.880789576450041,0.490482480596887,0.914288440912736,0.999479294454309,0.599090714328449,0.967907679538173,0.793319607264916,0.561756330668154,0.702007494324102,0.603252672600027],"Geno - AM/MLST":[0.892463793845713,0.861443109055574,0.216886421327928,0.517124698068902,0.584168756606415,0.918432563913128,0.985329955658368,0.786497715992396,0.753364925629818,0.838880859575284,0.481168432311385,0.496224310871297,0.897296125473617,0.454078311943719,0.564684316299847,0.962773005238754,0.300063932170002,-0,0.706733590390603,0.206995531717441,0.707920905115962,0.987930251311558,0.866893670556864,0.694088286220909,0.790415635701529,0.830349780472111,0.584204911001617,0.911215834289424,0.996026586212805,0.618490388110358,0.962618633208531,0.845234043909535,0.574157242398086,0.702494742533539,0.557685653867107],"Geno - MR/MLST":[0.871493867098362,0.889584962816285,0.211358848717313,0.563571745437897,0.559775417454415,0.90571422731573,0.973624410193925,0.74006935521448,0.744451824977332,0.819536713057877,0.46072538077851,0.435036774780958,0.907063581622761,0.386938318657945,0.538199811823594,0.973349786216423,0.336565071085958,-0,0.701026815055509,0.236255515332415,0.731947200970661,0.979683532357899,0.900902695447897,0.713084219677486,0.700967109936604,0.794057472299474,0.52514961946973,0.914288440912736,0.996026586212805,0.559598215360713,0.976163081836927,0.76693298998595,0.582635414772248,0.66217755609566,0.602904469729348],"Geno - CE/MLST":[0.871493867098362,0.889584962816285,0.211358848717313,0.563571745437897,0.559775417454415,0.90571422731573,0.973624410193925,0.74006935521448,0.744451824977332,0.819536713057877,0.46072538077851,0.435036774780958,0.907063581622761,0.386938318657945,0.538199811823594,0.973349786216423,0.336565071085958,-0,0.701026815055509,0.236255515332415,0.731947200970661,0.979683532357899,0.900902695447897,0.713084219677486,0.700967109936604,0.794057472299474,0.52514961946973,0.914288440912736,0.996026586212805,0.559598215360713,0.976163081836927,0.76693298998595,0.582635414772248,0.66217755609566,0.602904469729348]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"BAG","name":"BAG","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/CH","name":"Pheno - GW/CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - CH","name":"Pheno - CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/MLST","name":"Pheno - GW/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/SH","name":"Geno - MR/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/SH","name":"Geno - CE/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/EH","name":"Geno - MR/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/EH","name":"Geno - CE/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/AC","name":"Geno - MR/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/AC","name":"Geno - CE/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - AM/MLST","name":"Geno - AM/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/MLST","name":"Geno - MR/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/MLST","name":"Geno - CE/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":15,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"ef3f84c4f7b5f18247c1eed196d8f5ac","key":"ef3f84c4f7b5f18247c1eed196d8f5ac"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-e55255c032fd6a098c86">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["CorFolhaApical","CorPeciolo","CorFolhaDesenv","CorNerv","CorCortexCaule","CorExternaCaule","CorEpidCaule","CorRamosTerm","CorExternaRzs","CorCortexRzs","CorPolpaRzs","NLobulos","Pubescencia","FormaLobuloCentral","PosicaoPeciolo","Sinuosidade","ComprEstip","HabCrescCaule","TipoPlan","MargEstip","HabRamif","NiveisRam","ProemCicatrizesFolhas","FormaRzs","TxtEpidermeRzs","PresPedunculoRzs","PosicaoRzs","Flowering","DestqPelicRz","DestqCortexRz","ConstrRzs","AnguloRamif"],"BAG":[0.874281927739704,0.890618414521795,0.325754778727977,0.585100542193669,0.588058805874759,0.911336898771211,0.982265204647425,0.789100594020941,0.716154423472098,0.844975104578852,0.432496850570132,0.461329534721711,0.824642004423236,0.4229448597552,0.550075594160548,0.973371049309228,0.580894475119314,0.127295371016215,0.729583290133879,0.302227379571451,0.736387987180587,0.975766481835956,0.866407557895842,0.696693624545067,0.710917716488231,0.894298083044931,0.576569501744122,0.865618190004114,0.992642659055279,0.544520265907689,0.952428756673666,0.614446546299343],"Pheno - GW/CH":[0.912237334048677,0.900692213580462,0.427975117193949,0.684562650760922,0.715425429454801,0.971046498097441,0.990618550491157,0.878724429496803,0.863746084928149,0.896814522135842,0.545068646130198,0.532552355872384,0.901333253149286,0.609824201634795,0.742323751856373,0.964623855552045,0.732671795360394,0.304722001623317,0.806138209598996,0.565420702348114,0.782584840940357,0.986856750372913,0.966550833935122,0.775585523803499,0.831001622806663,0.940098333403687,0.722990731117884,0.968422599688333,0.979990780740369,0.739896779153033,0.954420219035919,0.635366137823639],"Pheno - CH":[0.918133506550055,0.904584234191324,0.42416627988518,0.71050918606334,0.72687809331169,0.971040881798531,0.989664216370043,0.876926505368137,0.867405148912925,0.891008018508469,0.554974332430537,0.545869153630458,0.904644095001984,0.596146320469844,0.751442844097606,0.970239300331381,0.70843419302904,0.292144254380551,0.790495681046633,0.54884192644648,0.782832811269942,0.983243471717972,0.947200970492681,0.782454431959441,0.831001622806663,0.947211001034469,0.707401885211625,0.958510093334088,0.98890385116293,0.741426266391798,0.959652751343097,0.628182567327534],"Pheno - GW/MLST":[0.90930522147951,0.912568775803497,0.38797932083199,0.688077694980203,0.700824936497345,0.963662558845974,0.989968587590536,0.856698795945098,0.838598302650954,0.90454108893456,0.559803645198314,0.531126562285656,0.920296777984599,0.600495195428805,0.732199402011973,0.982806655969987,0.676228697645765,0.252722326858582,0.790244626824476,0.5052691472599,0.779065181871456,0.980667885887662,0.97370807159801,0.795810206140729,0.802790363305174,0.968577409339865,0.697600517859242,0.978501646233517,0.995881090662219,0.757631210577818,0.96477757560428,0.615770187754752],"Geno - MR/SH":[0.863374221359215,0.841146160915018,0.21823408943365,0.445831447090225,0.622238047068032,0.938100441846082,0.985933095649555,0.749912614834447,0.794693386849719,0.825622935327415,0.434459857262295,0.496719500674376,0.852636448907991,0.464048138814065,0.548962765153055,0.999835394219612,0.317043554721267,0.0745183886292875,0.66767904288663,0.130790291771062,0.75799119140561,0.971361296104389,0.787730465813514,0.679105104460141,0.864826251396842,0.91432720739823,0.596410496136445,0.901333253149286,0.999677360888794,0.607525617474461,0.985134578647834,0.591344851924536],"Geno - CE/SH":[0.874466826344815,0.838466034011118,0.201474926369271,0.459880016714583,0.598936179199724,0.939049508281896,0.973255218902799,0.718590717631503,0.795111540995935,0.813291582851078,0.431228149739032,0.47792052565603,0.844182546683074,0.469037002176624,0.526273985446944,0.999993416009184,0.292144254380551,0.0745183886292875,0.65452879212806,0.112998528397042,0.750749247858641,0.972378590222311,0.812473032856342,0.69154425649796,0.86876026930871,0.919375410917925,0.567115482027249,0.894528864422225,0.998887021009715,0.575149843429895,0.981377906120021,0.595071998996001],"Geno - MR/EH":[0.86281695284898,0.821305763731095,0.21823408943365,0.462450560357535,0.618191526058658,0.940110303272779,0.981953235170909,0.749188283720507,0.783145654478019,0.834376433001597,0.406191922533341,0.49486263091925,0.797842453234309,0.47557024661753,0.523188189547843,0.999466631822738,0.279296090215094,0.094315769532677,0.66614289295106,0.130790291771062,0.751442791169652,0.960604840208408,0.797842453234309,0.681427452615591,0.864826251396842,0.92893201710768,0.602141623065673,0.907894445822849,0.999835394219612,0.61856981334294,0.983937458334105,0.577634402353268],"Geno - CE/EH":[0.853264408741839,0.829181267256193,0.21823408943365,0.459778347943908,0.628245960995923,0.943340264130289,0.985473850763787,0.741837725193175,0.796762379434861,0.829328206997452,0.401297186028644,0.478272735113134,0.807667027763003,0.481572356448603,0.531313403617748,0.999993416009184,0.266161499380957,0.0745183886292875,0.664574561825819,0.130790291771062,0.755569658965164,0.96115366116131,0.787730465813514,0.685812406057584,0.86876026930871,0.925822114353279,0.615041541344915,0.897961614354918,0.999677360888794,0.622823560605072,0.981772417718882,0.580932180853669],"Geno - MR/AC":[0.83334396444569,0.879564332056926,0.230150428315661,0.5920411731926,0.573517463753821,0.900252260910261,0.962099686938221,0.753989441470879,0.777115570284345,0.882340976585804,0.470028577513686,0.414481660360102,0.848442527036445,0.37769721931046,0.420570115763837,0.986626061566416,0.304722001623317,0.130790291771062,0.727117367076428,0.180099612952573,0.763218777964958,0.983834287026484,0.817208948454253,0.676151127157302,0.77201247693655,0.839616339725889,0.533534782531701,0.821875328604325,0.994455766392026,0.495155397838284,0.991083248145951,0.545690328037637],"Geno - CE/AC":[0.866787647131408,0.848271189464418,0.276513781933518,0.586416376026318,0.599834022897586,0.918978778047553,0.966647817838643,0.781989454149308,0.787100299228259,0.847722244664051,0.436915108355583,0.434478756472471,0.839856050987093,0.449030369906605,0.525504243779051,0.996514265925933,0.346426584251189,0.112998528397042,0.703733005801509,0.22484398143064,0.758256201710781,0.983763197215269,0.864826251396842,0.670145372660429,0.726735674869748,0.882488890362288,0.547055379042842,0.835462570504236,0.993663512135187,0.512183163426686,0.948559177904557,0.583413753880531],"Geno - AM/MLST":[0.852165033221527,0.873052302805263,0.201474926369271,0.488699109671473,0.578070477784265,0.922546782036144,0.985410413279576,0.749912614834447,0.778973579376028,0.820380905598229,0.4774970170908,0.406619348469795,0.880180167358643,0.448011278301532,0.61934850849131,0.958510093334088,0.386224915543412,0.130790291771062,0.692907720551827,0.147838810465763,0.699693516262403,0.968270626331341,0.777326024871504,0.719616162281873,0.844182546683074,0.861089087563385,0.547568060922343,0.917285491057312,0.999835394219612,0.599605550471939,0.979774735842812,0.573058088031159],"Geno - MR/MLST":[0.843769268416471,0.875156685631921,0.214140903009511,0.482775608401846,0.582888484025375,0.92326415287586,0.988168400267328,0.770197358707367,0.783522065200493,0.814045898640579,0.474314256380103,0.421295837081404,0.883860677065279,0.453267339102917,0.618000066328766,0.958510093334088,0.428452723620289,0.130790291771062,0.691827368244081,0.16424908485514,0.702943077103733,0.967373732541121,0.787730465813514,0.723333865083215,0.852636448907991,0.863035083944636,0.547568060922343,0.923248985891482,0.999203191618497,0.599605550471939,0.982487232344511,0.57846538040289],"Geno - CE/MLST":[0.88565631318566,0.87024501875275,0.290042756105895,0.580620241558038,0.638184199993002,0.935503544643388,0.985245107841577,0.800455318947458,0.756510284622508,0.830583222022634,0.476225093122901,0.442139760252329,0.891034680658297,0.429274896806684,0.595975938293332,0.984133611426221,0.386224915543412,0.130790291771062,0.661565667085148,0.279296090215094,0.746554531285503,0.981546770528187,0.839856050987093,0.684095322449519,0.802790363305174,0.854184946488908,0.584838318909784,0.917285491057312,0.998518096858168,0.521848297190308,0.96707659412152,0.571880347779392]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"BAG","name":"BAG","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/CH","name":"Pheno - GW/CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - CH","name":"Pheno - CH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Pheno - GW/MLST","name":"Pheno - GW/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/SH","name":"Geno - MR/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/SH","name":"Geno - CE/SH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/EH","name":"Geno - MR/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/EH","name":"Geno - CE/EH","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/AC","name":"Geno - MR/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/AC","name":"Geno - CE/AC","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - AM/MLST","name":"Geno - AM/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - MR/MLST","name":"Geno - MR/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"Geno - CE/MLST","name":"Geno - CE/MLST","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":15,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"200fc374ed989b5c92f2e98926f5a0ba","key":"200fc374ed989b5c92f2e98926f5a0ba"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -954,7 +981,7 @@ SHSelPhen &lt;- data.frame(Method = colnames(SHRelPhen),
 <div id="table-3.-mean-improvement-of-the-shannon-weaver-diversity-index-in-of-nuclear-core-collections-estimated-of-phenotypic-data-compared-to-the-bank-of-germplasm" class="section level4">
 <h4><strong>Table 3.</strong> Mean improvement of the Shannon-Weaver diversity index in % of nuclear core collections estimated of Phenotypic data compared to the Bank of Germplasm</h4>
 <div id="htmlwidget-e2abe0dd005ee0d584f2" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-e2abe0dd005ee0d584f2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Method":["Pheno - GW/CH","Pheno - CH","Pheno - GW/MLST"],"SHMeanImprov":[15.0345426434252,13.4939373845369,9.13000837161499],"SHsd":[18.2052922240895,16.423700075759,10.1695898328273]},"columns":[{"accessor":"Method","name":"Method","type":"character"},{"accessor":"SHMeanImprov","name":"SHMeanImprov","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"SHsd","name":"SHsd","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"ef3a4bdb3dccc54a6aec7a8af25fb7b2","key":"ef3a4bdb3dccc54a6aec7a8af25fb7b2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-e2abe0dd005ee0d584f2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Method":["Pheno - GW/CH","Pheno - CH","Pheno - GW/MLST"],"SHMeanImprov":[16.3259032344264,15.8656457382116,13.0663119130285],"SHsd":[23.6674360153046,22.1481739000655,19.075412780868]},"columns":[{"accessor":"Method","name":"Method","type":"character"},{"accessor":"SHMeanImprov","name":"SHMeanImprov","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"SHsd","name":"SHsd","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"c95592bc262077c3684cdc871495ad2f","key":"c95592bc262077c3684cdc871495ad2f"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 <p>The phenotypic Core Collection selected was GW/CH</p>
 </div>
 </div>
@@ -971,8 +998,75 @@ SHSelGen &lt;- data.frame(Method = colnames(SHRelGen),
 <div id="table-4.-mean-improvement-of-the-shannon-weaver-diversity-index-in-of-nuclear-core-collections-estimated-of-genotypic-data-compared-to-the-bank-of-germplasm" class="section level4">
 <h4><strong>Table 4.</strong> Mean improvement of the Shannon-Weaver diversity index in % of nuclear core collections estimated of Genotypic data compared to the Bank of Germplasm</h4>
 <div id="htmlwidget-8001416bbff60dd08c89" class="reactable html-widget" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8001416bbff60dd08c89">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Method":["Geno - MR/SH","Geno - CE/SH","Geno - MR/EH","Geno - CE/EH","Geno - MR/AC","Geno - CE/AC","Geno - AM/MLST","Geno - MR/MLST","Geno - CE/MLST"],"SHMeanImprov":[-6.24837081290385,-5.78038599789321,-4.24459816143961,-5.61290470950681,-5.96235175013101,-4.81033186055771,-2.73263296326665,-3.88967308802539,-3.88967308802539],"SHsd":[12.4865876642243,14.0118513469892,18.1534214440642,14.0285284010493,9.99086334306635,9.81933865299315,11.9652000361044,10.1677100704791,10.1677100704791]},"columns":[{"accessor":"Method","name":"Method","type":"character"},{"accessor":"SHMeanImprov","name":"SHMeanImprov","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"SHsd","name":"SHsd","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"848e59888f89c3ae1d235287dd37c20e","key":"848e59888f89c3ae1d235287dd37c20e"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
-<p>The Genotypic Core Collection selected was AM/MLST</p>
+<script type="application/json" data-for="htmlwidget-8001416bbff60dd08c89">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Method":["Geno - MR/SH","Geno - CE/SH","Geno - MR/EH","Geno - CE/EH","Geno - MR/AC","Geno - CE/AC","Geno - AM/MLST","Geno - MR/MLST","Geno - CE/MLST"],"SHMeanImprov":[-3.26547223991177,-2.8561638076648,-1.83160939333708,-2.11793624664887,-3.59285417415201,0.302897020377514,-2.40717730601278,-1.67761574398379,-0.716362645739318],"SHsd":[14.4877984832855,19.1880548855616,18.3197657290349,19.1020230490345,11.8541859393767,22.3199682579523,12.2248573365186,11.150803331752,8.6620307230641]},"columns":[{"accessor":"Method","name":"Method","type":"character"},{"accessor":"SHMeanImprov","name":"SHMeanImprov","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}},{"accessor":"SHsd","name":"SHsd","type":"numeric","format":{"cell":{"digits":3,"locales":"en-US"},"aggregated":{"digits":3,"locales":"en-US"}}}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"212ebfe357941fe7bad3820e27cbd1a5","key":"212ebfe357941fe7bad3820e27cbd1a5"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<p>The Genotypic Core Collection selected was CE/AC</p>
+<pre class="r"><code>BAGClones &lt;- Alldataset$Acessos[Alldataset$Data == &quot;BAG&quot;]
+
+CCMethods &lt;- unique(Alldataset$Method) %&gt;% setdiff(&quot;BAG&quot;)
+
+SelCC &lt;- tibble(Clones = BAGClones)
+
+for(i in CCMethods){
+  Common &lt;- BAGClones %in% Alldataset$Acessos[Alldataset$Method == i] %&gt;%
+    as.numeric %&gt;% as.data.frame
+  colnames(Common) &lt;- i
+  SelCC &lt;- cbind(SelCC, Common)
+}
+row.names(SelCC) &lt;- SelCC$Clones
+SelCC$Clones &lt;- NULL
+
+CoincObs &lt;- matrix(data = NA, nrow = ncol(SelCC), ncol = ncol(SelCC))
+colnames(CoincObs) &lt;- rownames(CoincObs) &lt;- colnames(SelCC)
+
+for(i in colnames(SelCC)){
+  for(j in colnames(SelCC)){
+    if(i == j){ CoincObs[i, j] &lt;- 1} else {
+      CoincObs[i, j] &lt;- sum(SelCC[, i] == SelCC[, j])/nrow(SelCC)
+    }
+  }
+}
+
+CoincEsp &lt;- matrix(data = (sum(SelCC[,1])/nrow(SelCC))**2 + (1-(sum(SelCC[,1])/nrow(SelCC)))**2,
+                   nrow = ncol(SelCC), ncol = ncol(SelCC))
+colnames(CoincEsp) &lt;- rownames(CoincEsp) &lt;- colnames(SelCC)
+
+Kappa &lt;- round((CoincObs - CoincEsp)/(1 - CoincEsp), digits = 4)</code></pre>
+</div>
+<div id="table-5.-kappa-index-for-coincidence-of-the-clone-selection-for-the-12-nuclear-collections." class="section level4">
+<h4><strong>Table 5.</strong> Kappa Index for coincidence of the clone selection for the 12 nuclear collections.</h4>
+<div id="htmlwidget-f95b986ff4ddc8fd30fe" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f95b986ff4ddc8fd30fe">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["GW/CH","CH","GW/MLST","MR/SH","CE/SH","MR/EH","CE/EH","MR/AC","CE/AC","AM/MLST","MR/MLST","CE/MLST"],"GW/CH":[1,0.7243,0.4864,0.003,-0.0083,0.003,-0.0008,-0.0347,-0.0121,0.0257,0.0106,0.0899],"CH":[0.7243,1,0.5166,0.0068,-0.0008,0.0068,0.0144,-0.0196,-0.0234,0.0295,0.0295,0.0861],"GW/MLST":[0.4864,0.5166,1,0.0144,0.0219,0.0219,0.0332,-0.0045,-0.0196,0.0483,0.0483,0.037],"MR/SH":[0.003,0.0068,0.0144,1,0.8112,0.815,0.8225,0.0748,0.0634,0.1881,0.1881,-0.0498],"CE/SH":[-0.0083,-0.0008,0.0219,0.8112,1,0.815,0.8263,0.0408,0.0634,0.1994,0.2032,-0.0423],"MR/EH":[0.003,0.0068,0.0219,0.815,0.815,1,0.9396,0.0597,0.0559,0.1616,0.1579,-0.0687],"CE/EH":[-0.0008,0.0144,0.0332,0.8225,0.8263,0.9396,1,0.0521,0.0521,0.1692,0.1654,-0.0763],"MR/AC":[-0.0347,-0.0196,-0.0045,0.0748,0.0408,0.0597,0.0521,1,0.0219,-0.0045,0.003,-0.0121],"CE/AC":[-0.0121,-0.0234,-0.0196,0.0634,0.0634,0.0559,0.0521,0.0219,1,0.0597,0.0597,0.0068],"AM/MLST":[0.0257,0.0295,0.0483,0.1881,0.1994,0.1616,0.1692,-0.0045,0.0597,1,0.932,0.3165],"MR/MLST":[0.0106,0.0295,0.0483,0.1881,0.2032,0.1579,0.1654,0.003,0.0597,0.932,1,0.3278],"CE/MLST":[0.0899,0.0861,0.037,-0.0498,-0.0423,-0.0687,-0.0763,-0.0121,0.0068,0.3165,0.3278,1]},"columns":[{"accessor":".rownames","name":"","type":"character","sortable":false,"filterable":false},{"accessor":"GW/CH","name":"GW/CH","type":"numeric"},{"accessor":"CH","name":"CH","type":"numeric"},{"accessor":"GW/MLST","name":"GW/MLST","type":"numeric"},{"accessor":"MR/SH","name":"MR/SH","type":"numeric"},{"accessor":"CE/SH","name":"CE/SH","type":"numeric"},{"accessor":"MR/EH","name":"MR/EH","type":"numeric"},{"accessor":"CE/EH","name":"CE/EH","type":"numeric"},{"accessor":"MR/AC","name":"MR/AC","type":"numeric"},{"accessor":"CE/AC","name":"CE/AC","type":"numeric"},{"accessor":"AM/MLST","name":"AM/MLST","type":"numeric"},{"accessor":"MR/MLST","name":"MR/MLST","type":"numeric"},{"accessor":"CE/MLST","name":"CE/MLST","type":"numeric"}],"defaultPageSize":10,"paginationType":"numbers","showPageInfo":true,"minRows":1,"dataKey":"6679e55002adc7455ec261eddae99be8","key":"6679e55002adc7455ec261eddae99be8"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="fig-1.-kappa-index-plot-of-the-coincidence-of-selected-clones-by-the-12-methods-of-nuclear-collection." class="section level4">
+<h4><strong>Fig 1.</strong> Kappa index plot of the coincidence of selected clones by the 12 methods of nuclear collection.</h4>
+<pre><code>corrplot 0.92 loaded</code></pre>
+<p><img src="figure/DivGen.Rmd/Fig1-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="venn-diagram-for-each-nuclear-collection-group" class="section level3">
+<h3>Venn diagram for each Nuclear Collection Group</h3>
+<pre class="r"><code>library(ggvenn)</code></pre>
+<pre><code>Loading required package: grid</code></pre>
+<pre class="r"><code>VennDPNC &lt;- list(
+  `GW/CH` = rownames(SelCC)[SelCC$`GW/CH` == 1],
+  CH = rownames(SelCC)[SelCC$CH == 1],
+  `GW/MLST` = rownames(SelCC)[SelCC$`GW/MLST` == 1])
+VD1 &lt;- ggvenn(VennDPNC, fill_color = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;), fill_alpha = 0.6) 
+
+VennDGNC1 &lt;- list(
+  `MR/SH` = rownames(SelCC)[SelCC$`MR/SH` == 1],
+  `CE/SH` = rownames(SelCC)[SelCC$`CE/SH` == 1],
+  `MR/EH` = rownames(SelCC)[SelCC$`MR/EH` == 1],
+  `CE/EH` = rownames(SelCC)[SelCC$`CE/EH` == 1])
+VD2 &lt;- ggvenn(VennDGNC1, fill_color = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;yellow&quot;), fill_alpha = 0.6) 
+
+VennDGNC2 &lt;- list(
+  `AM/MLST` = rownames(SelCC)[SelCC$`AM/MLST` == 1],
+  `MR/MLST` = rownames(SelCC)[SelCC$`MR/MLST` == 1])
+VD3 &lt;- ggvenn(VennDGNC2, fill_color = c(&quot;red&quot;, &quot;blue&quot;), fill_alpha = 0.6) </code></pre>
+<div id="fig-2.-venn-diagram-for-the-three-groups-of-nuclear-collections" class="section level4">
+<h4>Fig 2. Venn diagram for the three groups of Nuclear Collections</h4>
+<p><img src="figure/DivGen.Rmd/Fig2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 </div>
 <div id="comparison-of-the-diversity-between-bag-and-the-core-collections-samples" class="section level2">
@@ -981,10 +1075,9 @@ SHSelGen &lt;- data.frame(Method = colnames(SHRelGen),
 <pre><code>here() starts at /Users/lbd54/Documents/GitHub/CarolineNCC1</code></pre>
 <pre class="r"><code>suppressMessages(library(tidyverse))
 
-DataCar &lt;- read.table(here::here(&quot;data&quot;, &quot;DadosSelCaroline.CSV&quot;), header = T, sep = &quot;,&quot;, dec = &quot;.&quot;,
-                      na.strings = &quot;NA&quot;, colClasses =  c(&quot;factor&quot;,
-                                                        rep(&quot;character&quot;, times = 24),
-                                                        rep(&quot;numeric&quot;, times = 27)))
+DataCar &lt;- readRDS(file = here::here(&quot;output&quot;, &quot;DataSelPreparedCar.rds&quot;)) %&gt;% 
+  mutate(ComprFilotaxia = as.character(ComprFilotaxia),
+         ComprEstip = as.character(ComprEstip))
 
 DistCar &lt;- gower.dist(data.x = DataCar[,-1])
 row.names(DistCar) &lt;- colnames(DistCar) &lt;- DataCar$Acessos
@@ -996,22 +1089,17 @@ for(i in 1:length(Perc)) {
   PercAc[i] &lt;- sum(Perc[1:i])
   names(PercAc)[i] &lt;- i
 }</code></pre>
-<div id="fig-1.-accumulated-variance-explained-by-pca" class="section level4">
-<h4><strong>Fig 1.</strong> Accumulated Variance explained by PCA</h4>
-<p><img src="figure/DivGen.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="fig-3.-accumulated-variance-explained-by-pca" class="section level4">
+<h4><strong>Fig 3.</strong> Accumulated Variance explained by PCA</h4>
+<p><img src="figure/DivGen.Rmd/Fig3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>PointPCA1 &lt;- as.data.frame(PCA$x[,1:5])
 
 Alldataset &lt;- readRDS(here::here(&quot;output&quot;, &quot;AllDataCCCaroline.RDS&quot;))
 CCPhen &lt;- Alldataset %&gt;% filter(Data == &quot;Pheno&quot;, Method == &quot;GW/CH&quot;) %&gt;%
   select(Acessos) 
-CCPhen$Acessos &lt;- CCPhen$Acessos %&gt;% gsub(pattern = &quot;\xed&quot;, replacement = &quot;i&quot;) %&gt;%
-  gsub(pattern = &quot;\xc3&quot;, replacement = &quot;A&quot;) %&gt;%
-  gsub(pattern = &quot;\xe1&quot;, replacement = &quot;a&quot;) %&gt;%
-  gsub(pattern = &quot;\xe3&quot;, replacement = &quot;a&quot;)
 
-CCGen  &lt;- Alldataset %&gt;% filter(Data == &quot;Geno&quot;, Method == &quot;AM/MLST&quot;) %&gt;%
+CCGen  &lt;- Alldataset %&gt;% filter(Data == &quot;Geno&quot;, Method == &quot;CE/AC&quot;) %&gt;%
   select(Acessos)
-CCGen$Acessos &lt;- CCGen$Acessos %&gt;% gsub(pattern = &quot;\xed&quot;, replacement = &quot;i&quot;)
 
 PointPCA1$Sample &lt;- rep(NA, nrow(PointPCA1))
 
@@ -1021,7 +1109,7 @@ for(i in row.names(PointPCA1)){
   } else if(i%in%CCPhen$Acessos &amp;&amp; !i%in%CCGen$Acessos){
     PointPCA1$Sample[row.names(PointPCA1)==i] &lt;- &quot;GW/CH&quot;
   } else if(!i%in%CCPhen$Acessos &amp;&amp; i%in%CCGen$Acessos){
-    PointPCA1$Sample[row.names(PointPCA1)==i] &lt;- &quot;AM/MLST&quot;
+    PointPCA1$Sample[row.names(PointPCA1)==i] &lt;- &quot;CE/AC&quot;
   } else {
     PointPCA1$Sample[row.names(PointPCA1)==i] &lt;- &quot;NS&quot;
   }
@@ -1035,7 +1123,8 @@ for(i in row.names(PointPCA1)){
                alpha = 0.2, 
                show.legend = FALSE, 
                level = 0.95) +
-  xlab(&quot;PC1 - 31.07%&quot;) + ylab(&quot;PC2 - 12.42%&quot;)
+  xlab(paste0(&quot;PC1 - &quot;, round(Perc[1], digits = 2), &quot;%&quot;)) +
+  ylab(paste0(&quot;PC2 - &quot;, round(Perc[2], digits = 2), &quot;%&quot;))
 
 PC34 &lt;- ggplot(data = PointPCA1, aes(x = PC3, y = PC4)) +
   geom_point(aes(color = Sample, shape = Sample)) +
@@ -1046,11 +1135,12 @@ PC34 &lt;- ggplot(data = PointPCA1, aes(x = PC3, y = PC4)) +
                alpha = 0.2, 
                show.legend = FALSE, 
                level = 0.95) +
-  xlab(&quot;PC3 - 8.25%&quot;) + ylab(&quot;PC4 - 6.12%&quot;)</code></pre>
+  xlab(paste0(&quot;PC3 - &quot;, round(Perc[3], digits = 2), &quot;%&quot;)) +
+  ylab(paste0(&quot;PC4 - &quot;, round(Perc[4], digits = 2), &quot;%&quot;))</code></pre>
 </div>
-<div id="fig-2.-análise-de-componentes-principais-da-matriz-de-distância-de-gower-dos-acessos-do-banco-ativo-de-germoplasma-da-embrapa-selecionados-pelas-coleções-nucleares-gwch-e-ammlst" class="section level4">
-<h4><strong>Fig 2.</strong> Análise de Componentes Principais da Matriz de Distância de Gower dos acessos do Banco ativo de germoplasma da EMBRAPA Selecionados pelas Coleções Nucleares GW/CH e AM/MLST</h4>
-<p><img src="figure/DivGen.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="fig-4.-análise-de-componentes-principais-da-matriz-de-distância-de-gower-dos-acessos-do-banco-ativo-de-germoplasma-da-embrapa-selecionados-pelas-coleções-nucleares-gwch-e-ammlst" class="section level4">
+<h4><strong>Fig 4.</strong> Análise de Componentes Principais da Matriz de Distância de Gower dos acessos do Banco ativo de germoplasma da EMBRAPA Selecionados pelas Coleções Nucleares GW/CH e AM/MLST</h4>
+<p><img src="figure/DivGen.Rmd/Fig4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Back - <a href="AnDis.html">Análises Descritivas</a></p>
 <p><a href="index.html">Home</a></p>
 <br>
@@ -1061,9 +1151,9 @@ PC34 &lt;- ggplot(data = PointPCA1, aes(x = PC3, y = PC4)) +
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.1 (2021-08-10)
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Big Sur 11.6.1
+Running under: macOS Big Sur 11.6.5
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.0.dylib
@@ -1077,33 +1167,34 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] ggpubr_0.4.0      here_1.0.1        StatMatch_1.4.0   lpSolve_5.6.15   
- [5] survey_4.1-1      survival_3.2-13   Matrix_1.3-4      proxy_0.4-26     
- [9] reactable_0.2.3   data.table_1.14.2 forcats_0.5.1     stringr_1.4.0    
-[13] dplyr_1.0.7       purrr_0.3.4       readr_2.1.0       tidyr_1.1.4      
-[17] tibble_3.1.6      ggplot2_3.3.5     tidyverse_1.3.1  
+ [1] here_1.0.1        StatMatch_1.4.1   lpSolve_5.6.15    survey_4.1-1     
+ [5] survival_3.3-1    Matrix_1.4-1      proxy_0.4-26      ggpubr_0.4.0     
+ [9] ggvenn_0.1.9      corrplot_0.92     reactable_0.2.3   data.table_1.14.3
+[13] forcats_0.5.1     stringr_1.4.0     dplyr_1.0.9       purrr_0.3.4      
+[17] readr_2.1.2       tidyr_1.2.0       tibble_3.1.7      ggplot2_3.3.6    
+[21] tidyverse_1.3.1  
 
 loaded via a namespace (and not attached):
- [1] fs_1.5.0          lubridate_1.8.0   httr_1.4.2        rprojroot_2.0.2  
- [5] tools_4.1.1       backports_1.3.0   bslib_0.3.1       utf8_1.2.2       
- [9] R6_2.5.1          DBI_1.1.1         colorspace_2.0-2  withr_2.4.2      
-[13] gridExtra_2.3     tidyselect_1.1.1  compiler_4.1.1    git2r_0.29.0     
-[17] cli_3.1.0         rvest_1.0.2       xml2_1.3.2        labeling_0.4.2   
-[21] sass_0.4.0        scales_1.1.1      digest_0.6.28     rmarkdown_2.11   
+ [1] fs_1.5.2          lubridate_1.8.0   httr_1.4.3        rprojroot_2.0.3  
+ [5] tools_4.1.2       backports_1.4.1   bslib_0.3.1       utf8_1.2.2       
+ [9] R6_2.5.1          DBI_1.1.2         colorspace_2.0-3  withr_2.5.0      
+[13] gridExtra_2.3     tidyselect_1.1.2  compiler_4.1.2    git2r_0.30.1     
+[17] cli_3.3.0         rvest_1.0.2       xml2_1.3.3        labeling_0.4.2   
+[21] sass_0.4.1        scales_1.2.0      digest_0.6.29     rmarkdown_2.14   
 [25] pkgconfig_2.0.3   htmltools_0.5.2   dbplyr_2.1.1      fastmap_1.1.0    
-[29] highr_0.9         htmlwidgets_1.5.4 rlang_0.4.12      readxl_1.3.1     
-[33] rstudioapi_0.13   farver_2.1.0      jquerylib_0.1.4   generics_0.1.1   
-[37] jsonlite_1.7.2    crosstalk_1.2.0   car_3.0-12        magrittr_2.0.1   
-[41] Rcpp_1.0.7        munsell_0.5.0     fansi_0.5.0       abind_1.4-5      
-[45] lifecycle_1.0.1   stringi_1.7.5     whisker_0.4       yaml_2.2.1       
-[49] carData_3.0-4     MASS_7.3-54       promises_1.2.0.1  crayon_1.4.2     
-[53] lattice_0.20-45   cowplot_1.1.1     haven_2.4.3       splines_4.1.1    
-[57] hms_1.1.1         knitr_1.36        pillar_1.6.4      ggsignif_0.6.3   
-[61] reprex_2.0.1      glue_1.5.0        evaluate_0.14     mitools_2.4      
-[65] modelr_0.1.8      vctrs_0.3.8       tzdb_0.2.0        httpuv_1.6.3     
+[29] highr_0.9         htmlwidgets_1.5.4 rlang_1.0.2       readxl_1.4.0     
+[33] rstudioapi_0.13   jquerylib_0.1.4   generics_0.1.2    farver_2.1.0     
+[37] jsonlite_1.8.0    crosstalk_1.2.0   car_3.0-12        magrittr_2.0.3   
+[41] Rcpp_1.0.8.3      munsell_0.5.0     fansi_1.0.3       abind_1.4-5      
+[45] lifecycle_1.0.1   stringi_1.7.6     whisker_0.4       yaml_2.3.5       
+[49] carData_3.0-5     MASS_7.3-57       promises_1.2.0.1  crayon_1.5.1     
+[53] lattice_0.20-45   splines_4.1.2     haven_2.5.0       cowplot_1.1.1    
+[57] hms_1.1.1         knitr_1.38        pillar_1.7.0      ggsignif_0.6.3   
+[61] reprex_2.0.1      glue_1.6.2        evaluate_0.15     mitools_2.4      
+[65] modelr_0.1.8      vctrs_0.4.1       tzdb_0.3.0        httpuv_1.6.5     
 [69] cellranger_1.1.0  gtable_0.3.0      reactR_0.4.4      assertthat_0.2.1 
-[73] xfun_0.28         broom_0.7.10      rstatix_0.7.0     later_1.3.0      
-[77] workflowr_1.6.2   ellipsis_0.3.2   </code></pre>
+[73] xfun_0.30         broom_0.8.0       rstatix_0.7.0     later_1.3.0      
+[77] workflowr_1.7.0   ellipsis_0.3.2   </code></pre>
 </div>
 </div>
 </div>
@@ -1111,7 +1202,7 @@ loaded via a namespace (and not attached):
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
