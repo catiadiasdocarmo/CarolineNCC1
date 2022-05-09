@@ -225,36 +225,26 @@ AlldataSetQuant3 <- AlldataSetQuant2 %>% group_by(Trait, Method) %>%
 #### Plotar o boxplot por conjunto de caracteres
 
 ```{r Separando as caracteristicas quantitativas em classes}
-Foliar1 <- c("ComprLobulo", "LargLobulo",
-             "RelComprLar", "ComprPeciolo")
-Foliar2 <- c("AP", "PPA", "IC", "PA")
+Foliar <- c("ComprLobulo", "LargLobulo",
+             "RelComprLar", "ComprPeciolo",
+             "AP", "PPA",
+             "IC", "PA")
 
 Root <- c("EspEntreCasca", "ComprMedRzs", "DiamMedRzs", "HCNPic",
           "NR", "DRY", "DMCsg", "PTR")
 ```
 
-#### **Fig 1.** Boxplot das características morfológicas de folha 1
+#### **Fig 1.** Boxplot das características morfológicas de parte aérea
 ```{r Fig1, fig.align='center', fig.height=4, echo = FALSE, warning = FALSE}
-AlldataSetQuant3 %>% filter(Trait%in%Foliar1) %>%
+AlldataSetQuant3 %>% filter(Trait%in%Foliar) %>%
   ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) + theme_bw() +
   geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
         colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### **Fig 2.** Boxplot das características morfológicas de folha 2
+#### **Fig 2.** Boxplot das características morfológicas de Raiz
 ```{r Fig2, fig.align='center', fig.height=4, echo = FALSE, warning = FALSE}
-AlldataSetQuant3 %>% filter(Trait%in%Foliar2) %>%
-  ggplot(mapping = aes(y = Value, fill = Data, x = Method)) + theme_bw() +
-  geom_boxplot(outlier.shape = NA) + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-        colour = c("blue", rep("red", 3), rep("green", 9))))
-
-```
-
-#### **Fig 3.** Boxplot das características morfológicas de raiz
-
-```{r Fig3, fig.align='center', fig.height=6, echo = FALSE, warning = FALSE}
 AlldataSetQuant3 %>% filter(Trait%in%Root) %>%
   ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) + theme_bw() +
   geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +

@@ -219,7 +219,7 @@ Kappa <- round((CoincObs - CoincEsp)/(1 - CoincEsp), digits = 4)
 #### **Table 5.** Kappa Index for coincidence of the clone selection for the 12 nuclear collections.
 ```{r Table5, echo = FALSE}
 library(reactable)
-Kappa %>% reactable
+Kappa %>% reactable(defaultPageSize = 15)
 ```
 
 #### **Fig 1.** Kappa index plot of the coincidence of selected clones by the 12 methods of nuclear collection.
@@ -243,19 +243,21 @@ VennDPNC <- list(
   `GW/CH` = rownames(SelCC)[SelCC$`GW/CH` == 1],
   CH = rownames(SelCC)[SelCC$CH == 1],
   `GW/MLST` = rownames(SelCC)[SelCC$`GW/MLST` == 1])
-VD1 <- ggvenn(VennDPNC, fill_color = c("red", "blue", "green"), fill_alpha = 0.6) 
+VD1 <- ggvenn(VennDPNC, fill_color = c("red", "blue", "green"),
+              fill_alpha = 0.6, set_name_size = 5)
 
 VennDGNC1 <- list(
   `MR/SH` = rownames(SelCC)[SelCC$`MR/SH` == 1],
   `CE/SH` = rownames(SelCC)[SelCC$`CE/SH` == 1],
   `MR/EH` = rownames(SelCC)[SelCC$`MR/EH` == 1],
   `CE/EH` = rownames(SelCC)[SelCC$`CE/EH` == 1])
-VD2 <- ggvenn(VennDGNC1, fill_color = c("red", "blue", "green", "yellow"), fill_alpha = 0.6) 
+VD2 <- ggvenn(VennDGNC1, fill_color = c("red", "blue", "green", "yellow"),
+              fill_alpha = 0.6, set_name_size = 5)
 
 VennDGNC2 <- list(
   `AM/MLST` = rownames(SelCC)[SelCC$`AM/MLST` == 1],
   `MR/MLST` = rownames(SelCC)[SelCC$`MR/MLST` == 1])
-VD3 <- ggvenn(VennDGNC2, fill_color = c("red", "blue"), fill_alpha = 0.6) 
+VD3 <- ggvenn(VennDGNC2, fill_color = c("red", "blue"), fill_alpha = 0.6, set_name_size = 5 ) 
 ```
 
 
@@ -316,7 +318,7 @@ for(i in row.names(PointPCA1)){
   } else if(!i%in%CCPhen$Acessos && i%in%CCGen$Acessos){
     PointPCA1$Sample[row.names(PointPCA1)==i] <- "CE/AC"
   } else {
-    PointPCA1$Sample[row.names(PointPCA1)==i] <- "NS"
+    PointPCA1$Sample[row.names(PointPCA1)==i] <- "NSel"
   }
 }
 ```
