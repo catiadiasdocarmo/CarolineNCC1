@@ -14,92 +14,115 @@ Boxplot de coleções nucleares - Características Quantitativas
 
 #### Coleções nucleares - Dados Fenotipicos
 
-```{r}
+```{r Lendo os dados das Colecoes Nucleares Fenotipicas}
 suppressMessages(library(tidyverse)); suppressMessages(library(here)); suppressMessages(library(reshape2))
 suppressMessages(library(reactable))
 
 Method1 <- read.table(here::here("output", "CCPhenData", "DadosCCPheno1.CSV"), header = T,
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 
 Method2 <- read.table(here::here("output", "CCPhenData", "DadosCCPheno2.CSV"), header = T,
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 
 Method3 <- read.table(here::here("output", "CCPhenData", "DadosCCPheno3.CSV"), header = T,
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 ```
 
 #### Coleções Nucleares - dados Moleculares
 
-```{r}
+```{r Lendo os dados das Colecoes Nucleares Genotipicas}
 Method4 <- read.table(here::here("output", "CCGenData", "DadosCCGeno1.CSV"), header = T, 
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 
 Method5 <- read.table(here::here("output", "CCGenData", "DadosCCGeno2.CSV"), header = T, 
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 
 Method6 <- read.table(here::here("output", "CCGenData", "DadosCCGeno3.CSV"), header = T, 
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 Method7 <- read.table(here::here("output", "CCGenData", "DadosCCGeno4.CSV"), header = T,
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 
 Method8 <- read.table(here::here("output", "CCGenData", "DadosCCGeno5.CSV"), header = T,
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 
 Method9 <- read.table(here::here("output", "CCGenData", "DadosCCGeno6.CSV"), header = T,
                       sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 Method10 <- read.table(here::here("output", "CCGenData", "DadosCCGeno7.CSV"), header = T,
                        sep = ";", dec = ".",
-                       colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                       colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 
 Method11 <- read.table(here::here("output", "CCGenData", "DadosCCGeno8.CSV"), header = T,
                        sep = ";", dec = ".",
-                      colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
-
+                      colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 
 Method12 <- read.table(here::here("output", "CCGenData", "DadosCCGeno9.CSV"), header = T,
                        sep = ";", dec = ".",
-                       colClasses = c(rep("character", times = 34),
-                                    rep("numeric", times = 20)))
+                       colClasses = c(rep("character", times = 31),
+                                    rep("numeric", times = 3),
+                                    "character",
+                                    rep("numeric", times = 16)))
 ```
 
 #### Banco de Germoplasma de Mandioca da EMBRAPA Mandioca
 
-```{r}
+```{r Lendo os dados de todos os acessos do BAG}
 AllBAG <- readRDS(file = here::here("output", "DataSelPreparedCar.rds"))
 ```
 
 #### Adicionar informações do Método e tipo de dados utilizados na seleção da Coleção Nuclear
 
-```{r}
+```{r Preparando as legendas das figuras}
 AllBAG$Data <- rep("BAG", times = nrow(AllBAG))
 AllBAG$Method <- rep("BAG", times = nrow(AllBAG))
 
@@ -142,7 +165,7 @@ Method12$Method <- rep("CE/MLST", times = nrow(Method12))
 
 #### Juntar todos os Dados das coleções nucleares e do BAG
 
-```{r}
+```{r Juntando os dados das acolecoes nucleares}
 Alldataset <- rbind(AllBAG, Method1, Method2, Method3,
                     Method4, Method5, Method6,
                     Method7, Method8, Method9,
@@ -153,7 +176,7 @@ saveRDS(Alldataset, here::here("output", "AllDataCCCaroline.RDS"))
 
 #### Preparar o data frame para fazer os boxplots
 
-```{r}
+```{r Separando as caracteristicas em qualitativas e quantitativas}
 QualityTrait <- colnames(Alldataset)[sapply(X = Alldataset, class) == "character"] %>% 
   setdiff(., c("Acessos", "Data", "Method"))
 
@@ -166,11 +189,11 @@ AlldataSetQuant2 <- melt(AlldataSetQuant, id.vars = c("Acessos", "Data", "Method
 
 #### **Table 1.** Formato da entrado do objeto para realizar o boxplot
 
-```{r, echo = FALSE}
+```{r table1, echo = FALSE}
 reactable(AlldataSetQuant2, columns = list(Value = colDef(format = colFormat(digits = 2, locales = "en-US"))))
 ```
 
-```{r}
+```{r Ordenando os fatores }
 AlldataSetQuant2$Data <- factor(AlldataSetQuant2$Data,
                                 levels = c("BAG", "Pheno", "Geno"), ordered = T)
 AlldataSetQuant2$Method <- factor(AlldataSetQuant2$Method,
@@ -183,7 +206,7 @@ AlldataSetQuant2$Method <- factor(AlldataSetQuant2$Method,
 
 ##### Remover os outliers
 
-```{r}
+```{r Removendo os outliers das caracteristicas quantitativas}
 filter_lims <- function(x){
   l <- boxplot.stats(x)$stats[1]
   u <- boxplot.stats(x)$stats[5]
@@ -201,39 +224,29 @@ AlldataSetQuant3 <- AlldataSetQuant2 %>% group_by(Trait, Method) %>%
 
 #### Plotar o boxplot por conjunto de caracteres
 
-```{r}
-Foliar1 <- c("AnguloRamif", "ComprLobulo", "LargLobulo",
-             "RelComprLar", "ComprPeciolo")
-Foliar2 <- c("AP", "PPA", "IC", "PA", "Vigor", "RF", "NMa")
+```{r Separando as caracteristicas quantitativas em classes}
+Foliar <- c("ComprLobulo", "LargLobulo",
+             "RelComprLar", "ComprPeciolo",
+             "AP", "PPA",
+             "IC", "PA")
 
 Root <- c("EspEntreCasca", "ComprMedRzs", "DiamMedRzs", "HCNPic",
           "NR", "DRY", "DMCsg", "PTR")
 ```
 
-#### **Fig 1.** Boxplot das características morfológicas de folha
-```{r, fig.align='center', fig.height=9, echo = FALSE, warning = FALSE}
-AlldataSetQuant3 %>% filter(Trait%in%Foliar1) %>%
-  ggplot(mapping = aes(y = Value2, fill = Data, x = Method), message = F) +
+#### **Fig 1.** Boxplot das características morfológicas de parte aérea
+```{r Fig1, fig.align='center', fig.height=4, echo = FALSE, warning = FALSE}
+AlldataSetQuant3 %>% filter(Trait%in%Foliar) %>%
+  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) + theme_bw() +
   geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
         colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### **Fig 2.** Boxplot das características morfológicas de raiz
-```{r, fig.align='center', fig.height=9, echo = FALSE, warning = FALSE}
-AlldataSetQuant3 %>% filter(Trait%in%Foliar2) %>%
-  ggplot(mapping = aes(y = Value, fill = Data, x = Method)) +
-  geom_boxplot(outlier.shape = NA) + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-        colour = c("blue", rep("red", 3), rep("green", 9))))
-
-```
-
-#### **Fig 3.** Boxplot das características morfológicas de raiz
-
-```{r, fig.align='center', fig.height=3, echo = FALSE, warning = FALSE}
+#### **Fig 2.** Boxplot das características morfológicas de Raiz
+```{r Fig2, fig.align='center', fig.height=4, echo = FALSE, warning = FALSE}
 AlldataSetQuant3 %>% filter(Trait%in%Root) %>%
-  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) +
+  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) + theme_bw() +
   geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
         colour = c("blue", rep("red", 3), rep("green", 9))))
@@ -245,7 +258,7 @@ Barplot de coleções nucleares - Características Qualitativas
 
 ##### Preparar os dados qualitativos para plotar barplot
 
-```{r}
+```{r Preparando os dados qualitativos}
 AlldataSetQuali2 <- melt(AlldataSetQuali, id.vars = c("Acessos", "Data", "Method"),
        variable.name = "Trait", value.name = "Value")
 
@@ -272,122 +285,107 @@ AlldataSetQuali3$Score <- factor(AlldataSetQuali3$Score,
 
 #### **Table 2.** Formato da entrado do objeto para realizar o barplot
 
-```{r, echo = FALSE}
+```{r table2, echo = FALSE}
 reactable(AlldataSetQuali3)
 ```
 
 ##### Separar as características em grupos para plotar
 
-```{r}
-traitsFolha <- levels(AlldataSetQuali3$Trait)[c(1:4, 8, 12:17, 20, 23)]
-traitsCaule <- levels(AlldataSetQuali3$Trait)[c(5:7, 18:19, 21:22, 28, 32:34)]
-traitsRaiz <- levels(AlldataSetQuali3$Trait)[c(9:11, 24:27, 29:31, 35)]
+```{r Separando as caracteristicas qualitativas em classes}
+traitsFolha <- levels(AlldataSetQuali3$Trait)[c(1:4, 12:17, 20, 23)]
+traitsCaule <- levels(AlldataSetQuali3$Trait)[c(5:8, 18:19, 21:22, 28, 32)]
+traitsRaiz <- levels(AlldataSetQuali3$Trait)[c(9:11, 24:27, 29:31)]
 
-traitsFolha1 <- traitsFolha[c(1:5)]
-traitsFolha2 <- traitsFolha[c(6, 8, 10, 13)]
-traitsFolha3 <- traitsFolha[c(7, 9, 11:12)]
+traitsFolhaLimbo <- traitsFolha[c(1, 3:7)]
+traitsFolhaPecio <- traitsFolha %>% setdiff(traitsFolhaLimbo)
 
-traitsCaule1 <- traitsCaule[c(1:3, 8:9)]
-traitsCaule2 <- traitsCaule[c(4:7, 11)]
-traitsCaule3 <- traitsCaule[c(10)]
+traitsCauleCor <- traitsCaule[c(1:4)]
+traitsCaule2 <- traitsCaule %>% setdiff(c(traitsCauleCor, "AnguloRamif"))
 
-traitsRaiz1 <- traitsRaiz[c(1:3, 5, 8:9)]
-traitsRaiz2 <- traitsRaiz[c(4, 6:7, 10:11)]
+traitsRaizCor <- traitsRaiz[c(1:3, 8:9)]
+traitsRaizFor <- traitsRaiz %>% setdiff(traitsRaizCor)
 ```
 
-#### **Fig 4.** Barplot para o primeiro grupo de características morfológicas do caule
-```{r, echo = FALSE, warning = FALSE}
-AlldataSetQuali3 %>% filter(Trait%in%traitsCaule1) %>% 
+#### **Fig 4.** Barplot para cores do caule
+```{r Fig4, fig.height=4, echo = FALSE, warning = FALSE}
+AlldataSetQuali3 %>% filter(Trait%in%traitsCauleCor, !is.na(Score)) %>% 
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
   facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d() + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
 #### **Fig 5.** Barplot para o segundo grupo de características morfológicas do caule
-```{r, echo = FALSE, warning = FALSE}
-AlldataSetQuali3 %>% filter(Trait%in%traitsCaule2) %>% 
+```{r Fig5, fig.height=6, echo = FALSE, warning = FALSE}
+AlldataSetQuali3 %>% filter(Trait%in%traitsCaule2, !is.na(Score)) %>% 
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
   facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d() + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### **Fig 6.** Barplot para o terceiro grupo de características morfológicas do caule
-
-```{r, echo = FALSE, warnings = FALSE}
-AlldataSetQuali3 %>% filter(Trait%in%traitsCaule3) %>% 
+#### **Fig 6.** Barplot para Angulo de Ramificação das hastes do caule
+```{r Fig6, fig.height=3.1, echo = FALSE, warning = FALSE}
+AlldataSetQuali3 %>% filter(Trait == "AnguloRamif", !is.na(Score)) %>% 
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
   facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d(guide = guide_legend(ncol = 2)) + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### **Fig 7.** Barplot para o primeiro grupo de características morfológicas foliares
 
-```{r, echo = FALSE, warning = FALSE}
-AlldataSetQuali3 %>% filter(Trait%in%traitsFolha1) %>% 
+#### **Fig 7.** Barplot de características morfológicas do Limbo foliar
+
+```{r Fig7, fig.height=6, echo = FALSE, warning = FALSE}
+AlldataSetQuali3 %>% filter(Trait%in%traitsFolhaLimbo, !is.na(Score)) %>% 
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
   facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d() + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### **Fig 8.** Barplot para o segundo grupo de características morfológicas foliares
+#### **Fig 8.** Barplot de características morfológicas do pecíolo da folha
 
-```{r, echo = FALSE, warning = FALSE}
-AlldataSetQuali3 %>% filter(Trait%in%traitsFolha2) %>% 
+```{r Fig8, fig.height=6, echo = FALSE, warning = FALSE}
+AlldataSetQuali3 %>% filter(Trait%in%traitsFolhaPecio, !is.na(Score)) %>% 
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
   facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d() + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### **Fig 9.** Barplot para o terceiro grupo de características morfológicas foliares
+#### **Fig 9.** Barplot de cor e facilidade de destaque de epiderme da raiz
 
-```{r, echo = FALSE, warning = FALSE}
-AlldataSetQuali3 %>% filter(Trait%in%traitsFolha3) %>% 
+```{r Fig9, fig.height=6, echo = FALSE, warning = F}
+AlldataSetQuali3 %>% filter(Trait%in%traitsRaizCor, !is.na(Score)) %>% 
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
   facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d() + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
 ```
 
-#### **Fig 10.** Barplot para o primeiro grupo de características morfológicas radiculares
+#### **Fig 10.** Barplot de características morfológicas de raiz
 
-```{r, echo = FALSE, warning = F}
-AlldataSetQuali3 %>% filter(Trait%in%traitsRaiz1) %>% 
+```{r Fig10, fig.height=6, echo = FALSE, warning = FALSE}
+AlldataSetQuali3 %>% filter(Trait%in%traitsRaizFor, !is.na(Score)) %>% 
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
   facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
+  scale_fill_viridis_d() + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
                                    colour = c("blue", rep("red", 3), rep("green", 9))))
-```
-
-#### **Fig 11.** Barplot para o segundo grupo de características morfológicas radiculares
-
-```{r, echo = FALSE, warning = FALSE}
-AlldataSetQuali3 %>% filter(Trait%in%traitsRaiz2) %>% 
-  ggplot(aes(y = N, x = Method, fill = Score)) +
-  geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))))
-
 ```
 
 Back - [Coleções Nucleares Genotípicas](CNGeno.html)

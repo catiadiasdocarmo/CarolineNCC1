@@ -15,7 +15,7 @@
 
 <title>Coleções Nucleares Fenotípicas</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -75,6 +75,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -95,6 +96,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -320,7 +324,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -333,7 +337,7 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Analises
      
     <span class="caret"></span>
@@ -404,7 +408,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-03-24
+<strong>Last updated:</strong> 2022-07-28
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -495,16 +499,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treed70c752438db663b0c72edb8e6d7c2b29a9594e4targetblankd70c752a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/d70c752438db663b0c72edb8e6d7c2b29a9594e4" target="_blank">d70c752</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeb455815d88ddff791d540e94d3bba905ad66fd95targetblankb455815a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/b455815d88ddff791d540e94d3bba905ad66fd95" target="_blank">b455815</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treed70c752438db663b0c72edb8e6d7c2b29a9594e4targetblankd70c752a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomLucianoRogerioCarolineNCC1treeb455815d88ddff791d540e94d3bba905ad66fd95targetblankb455815a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/d70c752438db663b0c72edb8e6d7c2b29a9594e4" target="_blank">d70c752</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/LucianoRogerio/CarolineNCC1/tree/b455815d88ddff791d540e94d3bba905ad66fd95" target="_blank">b455815</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -515,49 +519,22 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
+    Ignored:    data/DadosGBSAtualizadosRenomeados.rds
+    Ignored:    data/DadosGBSDuplicados.rds
     Ignored:    output/.DS_Store
-    Ignored:    output/Figures/
+    Ignored:    output/CarDarwinMatrix.txt
 
 Untracked files:
-    Untracked:  data/DadosGBSAtualizadosRenomeados.rds
+    Untracked:  output/KappaIndex.csv
 
 Unstaged changes:
-    Modified:   analysis/CCGeno.Rmd
     Modified:   analysis/CCPheno.Rmd
-    Modified:   analysis/GenoData.Rmd
-    Modified:   analysis/PhenoData.Rmd
-    Modified:   data/Dados fenotípicos BAGSel.csv
-    Modified:   data/DadosCarolineNBlups.csv
-    Modified:   data/DadosFenCarSel.rds
-    Modified:   data/DadosGBSCaroline.RDS
-    Modified:   data/DadosHCNCarSel.rds
-    Deleted:    data/NovoCodinome.CSV
-    Modified:   output/BlupsFenCar.rds
+    Modified:   analysis/DivGen.Rmd
     Modified:   output/CCPhenData/DadosCCPheno1.CSV
     Modified:   output/CCPhenData/DadosCCPheno2.CSV
-    Modified:   output/DadosHCNCaroline.RDS
-    Modified:   output/DadosParcelaCaroline.RDS
-    Modified:   output/DataSelPreparedCar.rds
-    Modified:   output/MatrizGowerCaroline.phy
-    Modified:   output/MixedModels/Blups_AP.rds
-    Modified:   output/MixedModels/Blups_APsF.rds
-    Modified:   output/MixedModels/Blups_DMCoven.rds
-    Modified:   output/MixedModels/Blups_DMCsg.rds
-    Modified:   output/MixedModels/Blups_DRY.rds
-    Modified:   output/MixedModels/Blups_HCNLab.rds
-    Modified:   output/MixedModels/Blups_HCNPic.rds
-    Modified:   output/MixedModels/Blups_IC.rds
-    Modified:   output/MixedModels/Blups_NMa.rds
-    Modified:   output/MixedModels/Blups_NR.rds
-    Modified:   output/MixedModels/Blups_PA.rds
-    Deleted:    output/MixedModels/Blups_PCR.rds
-    Modified:   output/MixedModels/Blups_PPA.rds
-    Modified:   output/MixedModels/Blups_PR.rds
-    Modified:   output/MixedModels/Blups_PRNC.rds
-    Modified:   output/MixedModels/Blups_PTR.rds
-    Modified:   output/MixedModels/Blups_RF.rds
-    Modified:   output/MixedModels/Blups_TAC.rds
-    Modified:   output/MixedModels/Blups_Vigor.rds
+    Modified:   output/Figures/BarPlotCaule2.tiff
+    Modified:   output/Figures/BoxPlotFoliar.tiff
+    Modified:   output/Figures/BoxPlotRaiz.tiff
 
 </code></pre>
 <p>
@@ -598,6 +575,125 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/f4f411c6b0bd9db83bcf61a4df9305f03d48042e/docs/CCPheno.html" target="_blank">f4f411c</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-05-05
+</td>
+<td>
+Add Kappa analysis and Venn diagram
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/6ca75ade7dcbfba166d28b205e14e2490a0edf5e/analysis/CCPheno.Rmd" target="_blank">6ca75ad</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-04-08
+</td>
+<td>
+Merge branch ‘main’ of <a href="https://github.com/LucianoRogerio/CarolineNCC1" class="uri">https://github.com/LucianoRogerio/CarolineNCC1</a>
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/261a2bf3bee436a28f4a32d0f1d86409220978e9/analysis/CCPheno.Rmd" target="_blank">261a2bf</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-04-08
+</td>
+<td>
+Matrix for DARwin software
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/f7fc797e81ed5656e7a3e9682ab36b718ff5a331/analysis/CCPheno.Rmd" target="_blank">f7fc797</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-04-07
+</td>
+<td>
+Results Phenotypic Nuclear Collection Darwin
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/b31cbc52f950a79302b431e432fc3a2870978284/analysis/CCPheno.Rmd" target="_blank">b31cbc5</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-04-07
+</td>
+<td>
+Update Core Collections with new Phenotypic data
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/LucianoRogerio/CarolineNCC1/blob/39c109c85cfa3631379bc1d6ef45ede8a5c6ddcc/analysis/CCPheno.Rmd" target="_blank">39c109c</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+Update dados fenotipicos
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/LucianoRogerio/CarolineNCC1/39c109c85cfa3631379bc1d6ef45ede8a5c6ddcc/docs/CCPheno.html" target="_blank">39c109c</a>
+</td>
+<td>
+LucianoRogerio
+</td>
+<td>
+2022-03-25
+</td>
+<td>
+Update dados fenotipicos
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
@@ -607,7 +703,7 @@ Rmd
 LucianoRogerio
 </td>
 <td>
-2022-03-23
+2022-03-24
 </td>
 <td>
 New Estimation for DARwin Core Collection
@@ -624,7 +720,7 @@ Rmd
 LucianoRogerio
 </td>
 <td>
-2022-03-23
+2022-03-24
 </td>
 <td>
 Atualização do write.table para criar o arquivo de distancias em formato phyllip
@@ -641,7 +737,7 @@ html
 LucianoRogerio
 </td>
 <td>
-2022-03-23
+2022-03-24
 </td>
 <td>
 Atualização do write.table para criar o arquivo de distancias em formato phyllip
@@ -658,7 +754,7 @@ Rmd
 LucianoRogerio
 </td>
 <td>
-2022-03-23
+2022-03-24
 </td>
 <td>
 Nova matriz de dissimilariedade de Gower
@@ -726,7 +822,7 @@ Rmd
 LucianoRogerio
 </td>
 <td>
-2021-11-22
+2021-11-23
 </td>
 <td>
 Improvement for the layout of the website
@@ -743,7 +839,7 @@ html
 LucianoRogerio
 </td>
 <td>
-2021-11-22
+2021-11-23
 </td>
 <td>
 Improvement for the layout of the website
@@ -928,7 +1024,8 @@ First Boxplot Graphs and Html pages
 </div>
 <div id="coleções-nucleares-fenotípicas" class="section level2">
 <h2>Coleções Nucleares Fenotípicas</h2>
-<pre class="r"><code>DataCar &lt;- readRDS(file = here::here(&quot;output&quot;, &quot;DataSelPreparedCar.rds&quot;))</code></pre>
+<pre class="r"><code>suppressMessages(library(tidyverse))
+DataCar &lt;- readRDS(file = here::here(&quot;output&quot;, &quot;DataSelPreparedCar.rds&quot;))</code></pre>
 <div id="coleção-nuclear-1---distância-de-gower-e-pacote-corehunter" class="section level3">
 <h3>Coleção Nuclear 1 - Distância de Gower e pacote CoreHunter</h3>
 <pre class="r"><code>library(corehunter); library(StatMatch)
@@ -936,11 +1033,11 @@ DistCar &lt;- gower.dist(data.x = DataCar[,-1],)
 row.names(DistCar) &lt;- colnames(DistCar) &lt;- DataCar$Acessos
 DistCar2 &lt;- distances(DistCar)
 
-CCSize &lt;- round(nrow(DistCar) * 0.2, digits = 0)
+CCSize &lt;- round(nrow(DistCar) * 0.1, digits = 0)
 
-CCC &lt;- sampleCore(DistCar2, objective(type = &quot;EN&quot;, measure = &quot;PD&quot;), size = CCSize)
+CCC1 &lt;- sampleCore(DistCar2, objective(type = &quot;EN&quot;, measure = &quot;PD&quot;), size = CCSize)
 
-DataCarCCPheno1 &lt;- DataCar[DataCar$Acessos%in%CCC$sel,]
+DataCarCCPheno1 &lt;- DataCar[DataCar$Acessos%in%CCC1$sel,]
 
 write.table(DataCarCCPheno1, here::here(&quot;output&quot;, &quot;CCPhenData&quot;, &quot;DadosCCPheno1.CSV&quot;),
             quote = F, sep = &quot;;&quot;, dec = &quot;.&quot;)</code></pre>
@@ -948,15 +1045,15 @@ write.table(DataCarCCPheno1, here::here(&quot;output&quot;, &quot;CCPhenData&quo
 <div id="coleção-nuclear-2---algoritmo-pacote-corehunter" class="section level3">
 <h3>Coleção Nuclear 2 - Algoritmo pacote CoreHunter</h3>
 <pre class="r"><code>DataCarP &lt;- phenotypes(data = as.data.frame(DataCar[,-1]))
-core &lt;- sampleCore(DataCarP, objective(type = &quot;EN&quot;, measure = &quot;GD&quot;), size = CCSize)
+CCC2 &lt;- sampleCore(DataCarP, objective(type = &quot;EN&quot;, measure = &quot;GD&quot;), size = CCSize)
 
-DataCarCCPheno2 &lt;- DataCar[rownames(DataCar)%in%core$sel,]
+DataCarCCPheno2 &lt;- DataCar[rownames(DataCar)%in%CCC2$sel,]
 
 write.table(DataCarCCPheno2, file = here::here(&quot;output&quot;, &quot;CCPhenData&quot;, &quot;DadosCCPheno2.CSV&quot;),
             quote = F, sep = &quot;;&quot;, dec = &quot;.&quot;)</code></pre>
 </div>
-<div id="coleção-nuclear---distância-de-gower-e-algoritmo-mlst-darwin" class="section level3">
-<h3>Coleção Nuclear - Distância de Gower e Algoritmo MLST DARwin</h3>
+<div id="coleção-nuclear-3---distância-de-gower-e-algoritmo-mlst-darwin-software" class="section level3">
+<h3>Coleção Nuclear 3 - Distância de Gower e Algoritmo MLST DARwin software</h3>
 <pre class="r"><code>DistCar &lt;- as.dist(DistCar)
 cat(nrow(DistCar), &quot;\n&quot;, file = here::here(&quot;output&quot;, &quot;MatrizGowerCaroline.phy&quot;))
 write.table(x = as.matrix(DistCar), file = here::here(&quot;output&quot;, &quot;MatrizGowerCaroline.phy&quot;),
@@ -966,6 +1063,7 @@ CCSize</code></pre>
 <pre class="r"><code>SelDARwin &lt;- read.table(here::here(&quot;output&quot;,&quot;MatrizGowerCaroline.DON&quot;),
                              sep = &quot;\t&quot;, header = T, skip = 2,
                              nrows = 1628)
+table(SelDARwin$CCSel)
 ClonesSel &lt;- SelDARwin %&gt;% filter(CCSel == &quot;Kept&quot;) %&gt;%
   select(Name)
 DataCarCCPheno3 &lt;- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
@@ -983,11 +1081,12 @@ write.table(DataCarCCPheno3, file= here::here(&quot;output&quot;, &quot;CCPhenDa
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.2 (2021-11-01)
+<pre><code>R version 4.1.3 (2022-03-10)
 Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Big Sur 11.6.1
+Running under: macOS Big Sur 11.6.7
 
 Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.0.dylib
 LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
 
 locale:
@@ -997,15 +1096,15 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.8.3     rstudioapi_0.13  whisker_0.4      knitr_1.37      
- [5] magrittr_2.0.2   workflowr_1.7.0  R6_2.5.1         rlang_1.0.2     
- [9] fastmap_1.1.0    fansi_1.0.2      stringr_1.4.0    tools_4.1.2     
-[13] xfun_0.29        utf8_1.2.2       cli_3.2.0        git2r_0.29.0    
-[17] jquerylib_0.1.4  htmltools_0.5.2  ellipsis_0.3.2   rprojroot_2.0.2 
-[21] yaml_2.3.4       digest_0.6.29    tibble_3.1.6     lifecycle_1.0.1 
-[25] crayon_1.5.0     later_1.3.0      sass_0.4.0       vctrs_0.3.8     
+ [1] Rcpp_1.0.8.3     rstudioapi_0.13  whisker_0.4      knitr_1.39      
+ [5] magrittr_2.0.3   workflowr_1.7.0  R6_2.5.1         rlang_1.0.3     
+ [9] fastmap_1.1.0    fansi_1.0.3      stringr_1.4.0    tools_4.1.3     
+[13] xfun_0.31        utf8_1.2.2       cli_3.3.0        git2r_0.30.1    
+[17] jquerylib_0.1.4  htmltools_0.5.2  ellipsis_0.3.2   rprojroot_2.0.3 
+[21] yaml_2.3.5       digest_0.6.29    tibble_3.1.7     lifecycle_1.0.1 
+[25] crayon_1.5.1     later_1.3.0      sass_0.4.1       vctrs_0.4.1     
 [29] promises_1.2.0.1 fs_1.5.2         glue_1.6.2       evaluate_0.15   
-[33] rmarkdown_2.11   stringi_1.7.6    bslib_0.3.1      compiler_4.1.2  
+[33] rmarkdown_2.14   stringi_1.7.6    bslib_0.3.1      compiler_4.1.3  
 [37] pillar_1.7.0     jsonlite_1.8.0   httpuv_1.6.5     pkgconfig_2.0.3 </code></pre>
 </div>
 </div>
