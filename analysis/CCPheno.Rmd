@@ -62,8 +62,8 @@ CCSize
 SelDARwin <- read.table(here::here("output","MatrizGowerCaroline.DON"),
                              sep = "\t", header = T, skip = 2,
                              nrows = 1628)
-table(SelDARwin$CCSel)
-ClonesSel <- SelDARwin %>% filter(CCSel == "Kept") %>%
+table(SelDARwin$Tree.Sample_172)
+ClonesSel <- SelDARwin %>% filter(Tree.Sample_172 == "Kept") %>%
   select(Name)
 DataCarCCPheno3 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
