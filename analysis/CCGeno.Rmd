@@ -98,8 +98,8 @@ write.table(DataCarCCGeno9, file = here::here("output", "CCGenData", "DadosCCGen
 CCSelAM.DARwin <- read.table(here::here("output", "CarDarwinMatrix.don"),
                              sep = "\t", header = T,skip = 2,
                              nrows = 1363)
-
-ClonesSel <- CCSelAM.DARwin %>% filter(CCSel == "Kept") %>%
+table(CCSelAM.DARwin$Tree.Sample_181)
+ClonesSel <- CCSelAM.DARwin %>% filter(Tree.Sample_181 == "Kept") %>%
   select(N)
 DataCarCCGeno10 <- DataCar[DataCar$Acessos%in%ClonesSel$N,]
 
@@ -127,7 +127,8 @@ Rodar após concluir a análise de MLST no DARwin
 CCSelMR.DARwin <- read.table(here::here("output", "MatrizMDCaroline.DON"),
                              sep = "\t", header = T,skip = 2,
                              nrows = 1336)
-ClonesSel <- CCSelMR.DARwin %>% filter(CCSel == "Kept") %>%
+table(CCSelMR.DARwin$Tree.Sample_186)
+ClonesSel <- CCSelMR.DARwin %>% filter(Tree.Sample_186 == "Kept") %>%
   select(Name)
 DataCarCCGeno11 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
 
@@ -152,7 +153,8 @@ Rodar após concluir a análise de MLST no DARwin
 CCSelCE.DARwin <- read.table(here::here("output","MatrizCECaroline.DON"),
                              sep = "\t", header = T, skip = 2,
                              nrows = 1336)
-ClonesSel <- CCSelCE.DARwin %>% filter(CCSel == "Kept") %>%
+table(CCSelCE.DARwin$Tree.Sample_185)
+ClonesSel <- CCSelCE.DARwin %>% filter(Tree.Sample_185 == "Kept") %>%
   select(Name)
 
 DataCarCCGeno12 <- DataCar[DataCar$Acessos%in%ClonesSel$Name,]
