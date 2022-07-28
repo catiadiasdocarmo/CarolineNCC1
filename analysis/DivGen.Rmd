@@ -214,6 +214,8 @@ CoincEsp <- matrix(data = (sum(SelCC[,1])/nrow(SelCC))**2 + (1-(sum(SelCC[,1])/n
 colnames(CoincEsp) <- rownames(CoincEsp) <- colnames(SelCC)
 
 Kappa <- round((CoincObs - CoincEsp)/(1 - CoincEsp), digits = 4)
+write.table(Kappa, file = here::here("output", "KappaIndex.csv"), sep = ",",
+            quote = F)
 ```
 
 #### **Table 5.** Kappa Index for coincidence of the clone selection for the 12 nuclear collections.

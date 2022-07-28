@@ -22,7 +22,7 @@ DistCar <- gower.dist(data.x = DataCar[,-1],)
 row.names(DistCar) <- colnames(DistCar) <- DataCar$Acessos
 DistCar2 <- distances(DistCar)
 
-CCSize <- round(nrow(DistCar) * 0.2, digits = 0)
+CCSize <- round(nrow(DistCar) * 0.1, digits = 0)
 
 CCC1 <- sampleCore(DistCar2, objective(type = "EN", measure = "PD"), size = CCSize)
 
