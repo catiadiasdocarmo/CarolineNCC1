@@ -17,7 +17,7 @@ DataCar <- readRDS(file = here::here("output", "DataSelPreparedCar.rds"))
 GBSDataCar2 <- readRDS(file = here::here("data", "DadosGBSCaroline2.rds"))
 
 CHCar <- genotypes(GBSDataCar2, format = "biparental")
-CCSize <- 331
+CCSize <- 166
 ```
 
 
