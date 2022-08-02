@@ -1,117 +1,41 @@
 
 ### Boxplot AnDis Rmd
 
-tiff(filename = "output/Figures/BoxPlotFoliar.tiff", res = 400, units = "cm",
+tiff(filename = "output/Figures/BoxPlots.tiff", res = 400, units = "cm",
      compression = "lzw", width = 15, height = 15)
-AlldataSetQuant3 %>% filter(Trait%in%Foliar) %>%
-  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) + theme_bw() +
-  geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
+AlldataSetQuant3 %>% filter(Trait != "ComprFilotaxia") %>%
+  ggplot(mapping = aes(y = Value2, x = Method)) + theme_bw() +
+  geom_boxplot(fill = "green") + facet_wrap(~Trait, scales = "free_y", ncol = 4) + ylab(NULL) +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))))
-dev.off()
-
-
-tiff(filename = "output/Figures/BoxPlotRaiz.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 15, height = 15)
-AlldataSetQuant3 %>% filter(Trait%in%Root) %>%
-  ggplot(mapping = aes(y = Value2, fill = Data, x = Method)) + theme_bw() +
-  geom_boxplot() + facet_wrap(~Trait, scales = "free_y", ncol = 2) + ylab(NULL) +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))))
+                                   colour = c("blue", "red", rep("green", 2), "black")))
 dev.off()
 
 
 #### Barplots AndDis Rmd
 
-tiff(filename = "output/Figures/BarPlotCauleCor.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 15, height = 8)
-AlldataSetQuali3 %>% filter(Trait%in%traitsCauleCor, !is.na(Score)) %>%
+tiff(filename = "output/Figures/BarPlots.tiff", res = 400, units = "cm",
+     compression = "lzw", width = 15, height = 25)
+AlldataSetQuali3 %>% filter(Trait != "AnguloRamif", !is.na(Score)) %>%
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
+  facet_wrap(~Trait, ncol = 4, scales = "fixed") + ylab(NULL) +
   scale_fill_viridis_d() + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))),
-        legend.title = element_text(size = 8),
-        legend.text = element_text(size = 7),
-        legend.key.size = unit(0.8, "lines"))
+                                   colour = c("blue", "red", rep("green", 2), "black")),
+        legend.position = "bottom")
 dev.off()
 
-
-tiff(filename = "output/Figures/BarPlotCaule2.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 15, height = 12)
-AlldataSetQuali3 %>% filter(Trait%in%traitsCaule2, !is.na(Score)) %>%
-  ggplot(aes(y = N, x = Method, fill = Score)) +
-  geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() + theme_bw() +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))),
-        legend.title = element_text(size = 8),
-        legend.text = element_text(size = 7),
-        legend.key.size = unit(0.8, "lines"))
-dev.off()
 
 
 tiff(filename = "output/Figures/BarPlotHabCaule.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 10, height = 7)
+     compression = "lzw", width = 15, height = 10)
 AlldataSetQuali3 %>% filter(Trait == "AnguloRamif", !is.na(Score)) %>%
   ggplot(aes(y = N, x = Method, fill = Score)) +
   geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
+  facet_wrap(~Trait, ncol = 4, scales = "fixed") + ylab(NULL) +
   scale_fill_viridis_d(guide = guide_legend(ncol = 2)) + theme_bw() +
   theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))),
-        legend.title = element_text(size = 8),
-        legend.text = element_text(size = 7),
-        legend.key.size = unit(0.8, "lines"))
-dev.off()
-
-
-tiff(filename = "output/Figures/BarPlotHabFolhaLimbo.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 15, height = 12)
-AlldataSetQuali3 %>% filter(Trait%in%traitsFolhaLimbo, !is.na(Score)) %>%
-  ggplot(aes(y = N, x = Method, fill = Score)) +
-  geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() + theme_bw() +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))))
-dev.off()
-
-
-tiff(filename = "output/Figures/BarPlotHabFolhaPeci.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 15, height = 12)
-AlldataSetQuali3 %>% filter(Trait%in%traitsFolhaPecio, !is.na(Score)) %>%
-  ggplot(aes(y = N, x = Method, fill = Score)) +
-  geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() + theme_bw() +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))))
-dev.off()
-
-tiff(filename = "output/Figures/BarPlotHabRaizCor.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 15, height = 12)
-AlldataSetQuali3 %>% filter(Trait%in%traitsRaizCor, !is.na(Score)) %>%
-  ggplot(aes(y = N, x = Method, fill = Score)) +
-  geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() + theme_bw() +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))))
-dev.off()
-
-
-tiff(filename = "output/Figures/BarPlotHabRaizFor.tiff", res = 400, units = "cm",
-     compression = "lzw", width = 15, height = 12)
-AlldataSetQuali3 %>% filter(Trait%in%traitsRaizFor, !is.na(Score)) %>%
-  ggplot(aes(y = N, x = Method, fill = Score)) +
-  geom_bar(stat = "identity", position = "fill") +
-  facet_wrap(~Trait, ncol = 2, scales = "fixed") + ylab(NULL) +
-  scale_fill_viridis_d() + theme_bw() +
-  theme(axis.text.x = element_text(angle = 320, hjust = 0.1,
-                                   colour = c("blue", rep("red", 3), rep("green", 9))))
+                                   colour = c("blue", "red", rep("green", 2), "black")))
 dev.off()
 
 
@@ -120,7 +44,7 @@ tiff(filename = "output/Figures/KappaGraph.tiff", res = 400, units = "cm",
      compression = "lzw", width = 12, height = 12)
 corrplot::corrplot(Kappa,cl.pos = "n", tl.col = c(rep("red", times = 3),
                                                   rep("green", times = 9))) |>
-  corrplot::corrRect(c(1, 4, 8, 9, 10, 12, 12)) |>
+  corrplot::corrRect(c(1, 4, 8, 9, 10, 12)) |>
   corrplot::corrRect(namesMat = r)
 dev.off()
 
