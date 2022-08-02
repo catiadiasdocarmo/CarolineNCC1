@@ -300,7 +300,7 @@ Alldataset %>% filter(Acessos %in% CloneSelNCGeno2, Method == "BAG") %>%
 Alldataset %>% filter(Data == "BAG") %>% select(-Data) %>%
   rbind(.,NCPhenoData,NCGeno1Data, NCGeno2Data,
         rbind(NCPhenoData, NCGeno1Data, NCGeno2Data) %>%
-          dplyr::mutate(Method = "NCSel")) -> Alldataset
+          dplyr::mutate(Method = "NCSel") %>% unique) -> Alldataset
 
 saveRDS(object = Alldataset, file = here::here("output", "AllDataCCFinalCaroline.RDS"))
 ```
