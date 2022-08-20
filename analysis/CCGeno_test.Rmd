@@ -1,0 +1,206 @@
+---
+title: "CCGeno"
+author: "LucianoRogerio; Caroline Cardoso"
+date: "2021-10-25"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Coleções Nucleares Genotípicas
+
+```{r Lendo arquivo de Dados Genotípicos e Fenotípicos, eval = F}
+library(here)
+library(corehunter); library(tidyverse); library(data.table)
+DataCar <- readRDS(file = here::here("output", "DataSelPreparedCar.rds"))
+
+GBSDataCar2 <- readRDS(file = here::here("data", "DadosGBSCaroline2.rds"))
+
+CHCar <- genotypes(GBSDataCar2, format = "biparental")
+CCSize <- 166
+```
+
+################################################################################
+### Coleção Nuclear 1 - Shannon Weaver optimization with Modified Rogers Distance
+
+```{r SH/MR, eval = F}
+CCC4 <- sampleCore(CHCar, objective(type = "SH", measure = "MR"), size = CCSize)
+CloneSel <- CCC4$sel
+
+DataCarCCGeno4 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno4, file= here::here("output", "CCGenData", "DadosCCGeno1.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+###############################################
+## Análise dos SNPs da coleção 1
+#Criando subconjunto coleção 1
+colnugeno <- GBSDataCar2[rownames(GBSDataCar2) %in% CCC4$sel,] 
+
+#https://cran.r-project.org/web/packages/snpReady/vignettes/snpReady-vignette.html#PGS
+library(snpReady)
+
+#carregando dados e filtro de MAF 
+geno.ready <- raw.data(as.matrix(colnugeno),frame = "wide", base = FALSE, maf = 0.05, imput = FALSE)
+##Obs: marcadores foram removidos## 
+
+####
+#função para salvar arquivos
+salvar = function (n){
+  dir.create(paste("colecao",n,sep=""))
+  setwd(paste("colecao",n,sep=""))
+  
+  write.table(geno.ready$M.clean, file= paste(paste("DadosSNPsCCGeno",n,sep=""),".csv",sep=""))
+  
+  write.table(summary_BGM_colnu, file = paste(paste("summary_BGM_colnu",n,sep=""), ".csv",sep=""))
+  
+  write.table(summary_snp_colnu, file = paste(paste("summary_snp_colnu",n,sep=""), ".csv",sep=""))
+  
+  write.table(summary_pop_colnu, file = paste(paste("summary_pop_colnu",n,sep=""), ".csv",sep=""))
+  setwd("../")
+}
+####
+pop.gen <- popgen(M = geno.ready$M.clean)
+summary_BGM_colnu<-pop.gen$whole$Genotypes
+summary_snp_colnu<-pop.gen$whole$Markers
+summary_pop_colnu<-pop.gen$whole$Population
+salvar(1)
+###
+
+################################################################################
+
+### Coleção Nuclear 2 - Shannon optimization with Cavalli-Sforza and Edwards Distance
+
+```{r SH/CE, eval = F}
+CCC5 <- sampleCore(CHCar, objective(type = "SH", measure = "CE"), size = CCSize)
+
+DataCarCCGeno5 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno5, file = here::here("output", "CCGenData", "DadosCCGeno2.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+
+##  Análise dos SNPs da coleção 2
+colnugeno <- GBSDataCar2[rownames(GBSDataCar2) %in% CCC5$sel,] 
+geno.ready <- raw.data(as.matrix(colnugeno),frame = "wide", base = FALSE, maf = 0.05, imput = FALSE)
+pop.gen <- popgen(M = geno.ready$M.clean)
+summary_BGM_colnu<-pop.gen$whole$Genotypes
+summary_snp_colnu<-pop.gen$whole$Markers
+summary_pop_colnu<-pop.gen$whole$Population
+salvar(2)
+################################################################################
+
+### Coleção Nuclear 3 - Expected Proportion of Heterozigous Loci optimization with Modified Rogers Distance
+
+```{r HE/MR, eval = F}
+CCC6 <- sampleCore(CHCar, objective(type = "HE", measure = "MR"), size = CCSize)
+CloneSel <- CCC6$sel 
+
+DataCarCCGeno6 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno6, file = here::here("output", "CCGenData", "DadosCCGeno3.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+##  Análise dos SNPs da coleção 3
+colnugeno <- GBSDataCar2[rownames(GBSDataCar2) %in% CCC6$sel,] 
+geno.ready <- raw.data(as.matrix(colnugeno),frame = "wide", base = FALSE, maf = 0.05, imput = FALSE)
+pop.gen <- popgen(M = geno.ready$M.clean)
+summary_BGM_colnu<-pop.gen$whole$Genotypes
+summary_snp_colnu<-pop.gen$whole$Markers
+summary_pop_colnu<-pop.gen$whole$Population
+salvar(3)
+################################################################################
+
+### Coleção Nuclear 4 - Expected Proportion of Heterozigous Loci optimization with Cavalli-Sforza and Edwards Distance
+
+```{r HE/CE, eval = F}
+CCC7 <- sampleCore(CHCar, objective(type = "HE", measure = "CE"), size = CCSize)
+CloneSel <- CCC7$sel
+
+DataCarCCGeno7 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno7, file= here::here("output", "CCGenData", "DadosCCGeno4.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+##  Análise dos SNPs da coleção 4
+colnugeno <- GBSDataCar2[rownames(GBSDataCar2) %in% CCC7$sel,] 
+geno.ready <- raw.data(as.matrix(colnugeno),frame = "wide", base = FALSE, maf = 0.05, imput = FALSE)
+pop.gen <- popgen(M = geno.ready$M.clean)
+summary_BGM_colnu<-pop.gen$whole$Genotypes
+summary_snp_colnu<-pop.gen$whole$Markers
+summary_pop_colnu<-pop.gen$whole$Population
+salvar(4)
+################################################################################
+
+### Coleção Nuclear 5 - Allele coverage optimization with Modified Rogers Distance
+
+```{r CV/MR, eval = F}
+CCC8 <- sampleCore(CHCar, objective(type = "CV", measure = "MR"), size = CCSize)
+CloneSel <- CCC8$sel
+
+DataCarCCGeno8 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno8, file= here::here("output", "CCGenData", "DadosCCGeno5.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+##  Análise dos SNPs da coleção 5
+colnugeno <- GBSDataCar2[rownames(GBSDataCar2) %in% CCC8$sel,] 
+geno.ready <- raw.data(as.matrix(colnugeno),frame = "wide", base = FALSE, maf = 0.05, imput = FALSE)
+pop.gen <- popgen(M = geno.ready$M.clean)
+summary_BGM_colnu<-pop.gen$whole$Genotypes
+summary_snp_colnu<-pop.gen$whole$Markers
+summary_pop_colnu<-pop.gen$whole$Population
+salvar(5)
+################################################################################
+
+### Coleção Nuclear 6 - Allele coverage optimization with Cavalli-Sforza and Edwards Distance
+
+```{r CV/CE, eval = F}
+CCC9 <- sampleCore(CHCar, objective(type = "CV", measure = "CE"), size = CCSize)
+CloneSel <- CCC9$sel
+
+DataCarCCGeno9 <- DataCar[DataCar$Acessos%in%CloneSel,]
+
+write.table(DataCarCCGeno9, file = here::here("output", "CCGenData", "DadosCCGeno6.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+##  Análise dos SNPs da coleção 6
+colnugeno <- GBSDataCar2[rownames(GBSDataCar2) %in% CCC9$sel,] 
+geno.ready <- raw.data(as.matrix(colnugeno),frame = "wide", base = FALSE, maf = 0.05, imput = FALSE)
+pop.gen <- popgen(M = geno.ready$M.clean)
+summary_BGM_colnu<-pop.gen$whole$Genotypes
+summary_snp_colnu<-pop.gen$whole$Markers
+summary_pop_colnu<-pop.gen$whole$Population
+salvar(6)
+
+################################################################################
+### Coleção Nuclear 7 - Allele Match Distance for MLST - DARwin software
+
+```{r AM/MLST DARwin, eval = F}
+CCSelAM.DARwin <- read.table(here::here("output", "CarDarwinMatrix.don"),
+                             sep = "\t", header = T,skip = 2,
+                             nrows = 1363)
+table(CCSelAM.DARwin$Tree.Sample_181)
+ClonesSel <- CCSelAM.DARwin %>% filter(Tree.Sample_181 == "Kept") %>%
+  select(N)
+DataCarCCGeno10 <- DataCar[DataCar$Acessos%in%ClonesSel$N,]
+
+write.table(DataCarCCGeno10, file= here::here("output", "CCGenData", "DadosCCGeno7.CSV"),
+            quote = F, sep = ";", dec = ".")
+```
+##  Análise dos SNPs da coleção 7
+colnugeno <- GBSDataCar2[rownames(GBSDataCar2) %in% ClonesSel$N,] 
+geno.ready <- raw.data(as.matrix(colnugeno),frame = "wide", base = FALSE, maf = 0.05, imput = FALSE)
+pop.gen <- popgen(M = geno.ready$M.clean)
+summary_BGM_colnu<-pop.gen$whole$Genotypes
+summary_snp_colnu<-pop.gen$whole$Markers
+summary_pop_colnu<-pop.gen$whole$Population
+salvar(7)
+################################################################################
+### continua
+
+Back - [Coleções Nucleares Fenotípicas](CCPheno.html)
+
+Next - [Análises Discriminantes](AnDis.html)
+
+[Home](index.html)
